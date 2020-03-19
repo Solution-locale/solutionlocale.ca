@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+ 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
-Route::post('/places', 'PlaceController@store')->name('places.store');
+Route::middleware(['auth', 'can:do-admin'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
-Route::post('/categorie', 'CategoryController@store')->name('categories.store');
+    Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
+    Route::post('/places', 'PlaceController@store')->name('places.store');
+
+    Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
+    Route::post('/categorie', 'CategoryController@store')->name('categories.store');
+});
