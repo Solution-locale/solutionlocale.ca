@@ -22,6 +22,7 @@
                         @if($place->additionnalPhoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->additionnalPhoneNumber }}</p>@endif
                         @if($place->email !== null)<p><i class="fas fa-at"></i> {{ $place->email }}</p>@endif
                         @if($place->url !== null)<p><i class="fas fa-desktop"></i> {{ $place->url }}</p>@endif
+                        <p class="card-text"><i class="fas fa-truck"></i> {{ $place->deliveryZone }}</p>
                         <p class="card-text"><i class="fas fa-info-circle"></i> {{ $place->instructions }}</p>
                     </div>
                     <div class="card-footer">

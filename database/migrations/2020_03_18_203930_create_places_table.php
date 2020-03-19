@@ -28,6 +28,7 @@ class CreatePlacesTable extends Migration
             $table->string('additionnalPhoneNumber')->nullable();
             $table->string('email')->nullable();
             $table->string('url')->nullable();
+            $table->text('deliveryZone')->nullable();
             $table->text('instructions');
             $table->timestamps();
         });
