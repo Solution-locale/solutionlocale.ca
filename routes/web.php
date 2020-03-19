@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
  
 Auth::routes();
+Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
 Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
