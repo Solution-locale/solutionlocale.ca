@@ -24,10 +24,10 @@ class CreatePlacesTable extends Migration
             $table->string('postalCode');
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
-            $table->string('phoneNumber');
-            $table->string('additionnalPhoneNumber');
-            $table->string('email');
-            $table->string('url');
+            $table->string('phoneNumber')->nullable();
+            $table->string('additionnalPhoneNumber')->nullable();
+            $table->string('email')->nullable();
+            $table->string('url')->nullable();
             $table->text('instructions');
             $table->timestamps();
         });

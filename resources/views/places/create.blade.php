@@ -68,7 +68,7 @@
                             <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel.</label>
 
                             <div class="col-md-9">
-                                <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ old('phoneNumber') }}" required autocomplete="phoneNumber" autofocus>
+                                <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ old('phoneNumber') }}" autocomplete="phoneNumber" autofocus>
 
                                 @error('phoneNumber')
                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +82,7 @@
                             <label for="additionnalPhoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel. add.</label>
 
                             <div class="col-md-9">
-                                <input id="additionnalPhoneNumber" type="text" class="form-control @error('additionnalPhoneNumber') is-invalid @enderror" name="additionnalPhoneNumber" value="{{ old('additionnalPhoneNumber') }}" required autocomplete="additionnalPhoneNumber" autofocus>
+                                <input id="additionnalPhoneNumber" type="text" class="form-control @error('additionnalPhoneNumber') is-invalid @enderror" name="additionnalPhoneNumber" value="{{ old('additionnalPhoneNumber') }}" autocomplete="additionnalPhoneNumber" autofocus>
 
                                 @error('additionnalPhoneNumber')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                             <label for="email" class="col-md-3 col-form-label text-md-right">Courriel</label>
 
                             <div class="col-md-9">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -110,7 +110,7 @@
                             <label for="url" class="col-md-3 col-form-label text-md-right">Adresse web</label>
 
                             <div class="col-md-9">
-                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" required autocomplete="url" autofocus>
+                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" autocomplete="url" autofocus>
 
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">
@@ -124,9 +124,7 @@
                             <label for="instructions" class="col-md-3 col-form-label text-md-right">Instructions</label>
 
                             <div class="col-md-9">
-                                <textarea id="instructions" class="form-control @error('instructions') is-invalid @enderror" name="instructions" required>
-                                    {{ old('instructions') }}
-                                </textarea>
+                                <textarea id="instructions" class="form-control @error('instructions') is-invalid @enderror" name="instructions" required>{{ old('instructions') }}</textarea>
 
                                 @error('instructions')
                                     <span class="invalid-feedback" role="alert">
