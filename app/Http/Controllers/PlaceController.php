@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Place;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,8 @@ class PlaceController extends Controller
     {
         $addressData = json_decode($request->addressData);
 
-        $place = Place::create([
+        $category = Category::find($request->category);
+        $place = new Place([
             'name' => $request->name,
             'address' => $addressData->name,
             'province' => $addressData->administrative,
@@ -53,6 +55,8 @@ class PlaceController extends Controller
             'lat' => $addressData->latlng->lat,
             'instructions' => $request->instructions
         ]);
+
+        $category->places()->save($place);
 
         dd("ok", $place);
     }

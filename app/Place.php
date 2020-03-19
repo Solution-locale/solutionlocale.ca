@@ -13,4 +13,9 @@ class Place extends Model
     protected $hidden = [
         'long', 'lat',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
