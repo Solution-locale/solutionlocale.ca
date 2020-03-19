@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Statistiques</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <ul>
+                        <li>Nombre de catégories: {{ App\Category::count() }}</li>
+                        <li>Nombre de places: {{ App\Place::count() }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
