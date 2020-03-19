@@ -16,8 +16,9 @@ class CreatePlacesTable extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('address');
             $table->string('province');
-            $table->string('county');
+            $table->string('region');
             $table->string('city');
             $table->string('countryCode');
             $table->string('postalCode');
@@ -27,6 +28,7 @@ class CreatePlacesTable extends Migration
             $table->string('additionnalPhoneNumber');
             $table->string('email');
             $table->string('url');
+            $table->text('instructions');
             $table->timestamps();
         });
     }

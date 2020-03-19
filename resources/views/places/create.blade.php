@@ -14,7 +14,117 @@
                         </div>
                     @endif
 
-                    ...
+                    <form method="POST" action="/places">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label text-md-right">Nom</label>
+
+                            <div class="col-md-9">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-3 col-form-label text-md-right">Addresse</label>
+
+                            <div class="col-md-9">
+                                <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
+
+                                <div class="alert alert-info mt-3" role="alert">
+                                    Addresse sélectionnée: <strong id="address-value">Aucune</strong>
+                                </div>
+
+                                <input type="hidden" id="address-data" name="addressData" />
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel.</label>
+
+                            <div class="col-md-9">
+                                <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ old('phoneNumber') }}" required autocomplete="phoneNumber" autofocus>
+
+                                @error('phoneNumber')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="additionnalPhoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel. add.</label>
+
+                            <div class="col-md-9">
+                                <input id="additionnalPhoneNumber" type="text" class="form-control @error('additionnalPhoneNumber') is-invalid @enderror" name="additionnalPhoneNumber" value="{{ old('additionnalPhoneNumber') }}" required autocomplete="additionnalPhoneNumber" autofocus>
+
+                                @error('additionnalPhoneNumber')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-3 col-form-label text-md-right">Courriel</label>
+
+                            <div class="col-md-9">
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="url" class="col-md-3 col-form-label text-md-right">Adresse web</label>
+
+                            <div class="col-md-9">
+                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" required autocomplete="url" autofocus>
+
+                                @error('url')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="instructions" class="col-md-3 col-form-label text-md-right">Instructions</label>
+
+                            <div class="col-md-9">
+                                <textarea id="instructions" class="form-control @error('instructions') is-invalid @enderror" name="instructions" required>
+                                    {{ old('instructions') }}
+                                </textarea>
+
+                                @error('instructions')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
                 </div>
             </div>
         </div>

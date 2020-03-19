@@ -35,7 +35,26 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addressData = json_decode($request->addressData);
+
+        $place = Place::create([
+            'name' => $request->name,
+            'address' => $addressData->name,
+            'province' => $addressData->administrative,
+            'region' => $addressData->county,
+            'city' => $addressData->city,
+            'countryCode' => $addressData->countryCode,
+            'postalCode' => $addressData->postcode,
+            'phoneNumber' => $request->phoneNumber,
+            'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
+            'email' => $request->email,
+            'url' => $request->url,
+            'long' => $addressData->latlng->lng,
+            'lat' => $addressData->latlng->lat,
+            'instructions' => $request->instructions
+        ]);
+
+        dd("ok", $place);
     }
 
     /**
