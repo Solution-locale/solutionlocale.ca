@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         App\Category::create(['name' => 'Alcool']);
         App\Category::create(['name' => 'Chips']);
         App\Category::create(['name' => 'Essence']);
+
+        App\User::create(['name' => "Jean-Philippe Murray", "email" => "curieuxmurray@gmail.com", "password" => Illuminate\Support\Facades\Hash::make('secret')]);
     }
 }
