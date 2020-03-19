@@ -37,9 +37,8 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $addressData = json_decode($request->addressData);
-
-        $category = Category::find($request->category);
-        $place = new Place([
+        
+        $place = Place::create([
             'name' => $request->name,
             'address' => $addressData->name,
             'province' => $addressData->administrative,
@@ -56,7 +55,7 @@ class PlaceController extends Controller
             'instructions' => $request->instructions
         ]);
 
-        $category->places()->save($place);
+        $place->categories()->sync($request->categories);
 
         dd("ok", $place);
     }

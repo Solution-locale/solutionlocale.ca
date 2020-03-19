@@ -14,8 +14,8 @@ class Place extends Model
         'long', 'lat',
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 }

@@ -32,20 +32,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="category" class="col-md-3 col-form-label text-md-right">Catégorie</label>
+                            <label for="categories" class="col-md-3 col-form-label text-md-right">Catégories</label>
 
                             <div class="col-md-9">
-                                <select id="category" class="custom-select @error('category') is-invalid @enderror" name="category">
-                                    @foreach(App\Category::all() as $categorie)
-                                    <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('category')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @foreach(App\Category::all() as $categorie)
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}">
+                                  <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
 

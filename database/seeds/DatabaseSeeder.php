@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        App\Category::create(['name' => 'Nourriture']);
+        App\Category::create(['name' => 'Papier de  toilette']);
+        App\Category::create(['name' => 'Animaux']);
+        App\Category::create(['name' => 'Alcool']);
+        App\Category::create(['name' => 'Chips']);
+        App\Category::create(['name' => 'Essence']);
     }
 }
