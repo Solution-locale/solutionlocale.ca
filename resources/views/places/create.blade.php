@@ -136,7 +136,11 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                        <div class="form-group row">
+                            <span class="col-md-5"></span>
+
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
                     </form>
                 </div>
             </div>

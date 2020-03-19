@@ -39,7 +39,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        dd("ok", $category);
+        return redirect('home')->with('status', 'Catégorie ajoutée!');
     }
 
     /**
