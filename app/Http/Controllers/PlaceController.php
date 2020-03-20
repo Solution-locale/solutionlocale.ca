@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Place;
+use App\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
 {
@@ -26,6 +28,11 @@ class PlaceController extends Controller
     public function create()
     {
         return view("places.create");
+    }
+
+    public function createPublic()
+    {
+        return view("add");
     }
 
     /**
@@ -64,6 +71,36 @@ class PlaceController extends Controller
         return redirect('home')->with('status', 'Place ajoutée!');
     }
 
+    public function storePublic(Request $request)
+    {
+        $addressData = json_decode($request->addressData);
+        
+        $place = Place::create([
+            'name' => $request->name,
+            'address' => $addressData->name,
+            'province' => $addressData->administrative,
+            'region_id' => $request->region_id,
+            'subRegion' => $addressData->county,
+            'city' => $addressData->city,
+            'countryCode' => $addressData->countryCode,
+            'postalCode' => $addressData->postcode,
+            'phoneNumber' => $request->phoneNumber,
+            'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
+            'email' => $request->email,
+            'url' => $request->url,
+            'long' => $addressData->latlng->lng,
+            'lat' => $addressData->latlng->lat,
+            'instructions' => $request->instructions,
+            'deliveryZone' => $request->deliveryZone
+        ]);
+
+        $place->categories()->sync($request->categories);
+        $place->delivery()->sync($request->deliveryType);
+        $place->types()->sync($request->placeType);
+
+        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si fiche sera modérée puis affichée sous peu!');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -72,7 +109,11 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        //
+        if (!$place->is_approved && Gate::denies('do-admin')) {
+            abort(403);
+        }
+        
+        return view("places.show")->with(['place' => $place]);
     }
 
     /**
@@ -102,7 +143,6 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
-        $place->instructions = $request->instructions;
         $place->deliveryZone = $request->deliveryZone;
         $place->save();
 
@@ -122,5 +162,28 @@ class PlaceController extends Controller
     public function destroy(Place $place)
     {
         //
+    }
+
+    public function moderation()
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $moderationQueue = Place::where('is_approved', false)->get()->groupBy("region.name");
+        
+        return view("places.moderation")->with('queue', $moderationQueue);
+    }
+
+    public function approve(Place $place)
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $place->is_approved = true;
+        $place->save();
+
+        return back();
     }
 }
