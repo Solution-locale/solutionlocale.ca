@@ -87,28 +87,30 @@
         </div>
       </div>
 
-      @foreach($places as $row)
-      <div class="row">
-        @foreach($row as $place)
-        <div class="col-md-4">
+      @foreach($places as $place)
+        <div class="col-md-8 offset-md-2">
           <div class="card mb-4 shadow-sm">
-            <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale">
+            {{-- <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale"> --}}
             <div class="card-body">
-              <h5 class="card-title">{{ $place->name }}</h5>
-              
-              <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ $place->address }}<br> {{ $place->city }} {{ $place->postalCode }}</p>
+              <h4 class="card-title text-center">{{ $place->name }}</h4>
+              <h5 class="text-center"><i class="fas fa-map-marker-alt"></i> {{ $place->region->name }}, {{ $place->subRegion }}</h5>
 
-              @if($place->phoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->phoneNumber }}</p>@endif
+              <div class="container mt-3">
+                <div class="row">
+                  <div class="col">
+                    <p class="text-center">
+                      <i class="fas fa-shopping-cart"></i> Méthode d'acquisition
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p class="text-center">
+                      <i class="fas fa-tags"></i> Catégories
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-              @if($place->additionnalPhoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->additionnalPhoneNumber }}</p>@endif
-
-              @if($place->email !== null)<p><i class="fas fa-at"></i> <a href="mailto:{{ $place->email }}">{{ $place->email }}</a></p>@endif
-
-              @if($place->url !== null)<p><i class="fas fa-desktop"></i> <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a></p>@endif
-
-              @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-shopping-cart"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif
-
-              @if($place->deliveryZone !== null)<p><i class="fas fa-truck-loading"></i> {{ $place->deliveryZone }}</p>@endif
+              {{-- @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-shopping-cart"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif --}}
 
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -117,13 +119,10 @@
                   <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.edit', ['place' => $place->slug]) }}">Edit</a>
                   @endauth
                 </div>
-                <small class="text-muted">{{ $place->region->name }}, {{ $place->subRegion }}</small>
               </div>
             </div>
           </div>
         </div>
-        @endforeach
-      </div>
       @endforeach
     </div>
   </div>
