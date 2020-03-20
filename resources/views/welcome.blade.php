@@ -14,7 +14,7 @@
                         <div class="card">
                             {{-- <img src="..." class="card-img-top" alt="..."> --}}
                             <div class="card-body">
-                                <h5 class="card-title">{{ $place->name }}</h5>
+                                <h5 class="card-title">{{ $place->name }}@auth() <a href="{{ route('places.edit', ['place' => $place->slug]) }}"><i class="far fa-edit"></i></a>@endauth</h5>
                                 
                                 <p><address><i class="fas fa-map-marker-alt"></i> {{ $place->address }}, {{ $place->city }} {{ $place->postalCode }}</address></p>
                                 @if($place->phoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->phoneNumber }}</p>@endif

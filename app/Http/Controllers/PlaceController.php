@@ -53,7 +53,8 @@ class PlaceController extends Controller
             'url' => $request->url,
             'long' => $addressData->latlng->lng,
             'lat' => $addressData->latlng->lat,
-            'instructions' => $request->instructions
+            'instructions' => $request->instructions,
+            'deliveryZone' => $request->deliveryZone
         ]);
 
         $place->categories()->sync($request->categories);
@@ -82,7 +83,7 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        //
+        return view("places.edit")->with(['place' => $place]);
     }
 
     /**
@@ -94,7 +95,22 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        //
+
+        $place->name = $request->name;
+        $place->region_id = $request->region_id;
+        $place->phoneNumber = $request->phoneNumber;
+        $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
+        $place->email = $request->email;
+        $place->url = $request->url;
+        $place->instructions = $request->instructions;
+        $place->deliveryZone = $request->deliveryZone;
+        $place->save();
+
+        $place->categories()->sync($request->categories);
+        $place->delivery()->sync($request->deliveryType);
+        $place->types()->sync($request->placeType);
+
+        return redirect('home')->with('status', 'Place modifiée!');
     }
 
     /**
