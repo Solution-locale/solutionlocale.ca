@@ -56,6 +56,9 @@
               <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a>
             </p>
           </div>
+          <div class="card-footer">
+            Si vous trouvez une erreur, ou désirez effectuer une modification, <a href="https://www.facebook.com/Solutionlocale/" target="_blank">contactez-nous par Facebook</a>!
+          </div>
         </div>
       </div>
   </div>
