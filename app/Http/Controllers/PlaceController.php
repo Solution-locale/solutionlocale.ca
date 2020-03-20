@@ -30,6 +30,11 @@ class PlaceController extends Controller
         return view("places.create");
     }
 
+    public function createPublic()
+    {
+        return view("add");
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -64,6 +69,36 @@ class PlaceController extends Controller
         $place->type()->sync($request->placeType);
 
         return redirect('home')->with('status', 'Place ajoutée!');
+    }
+
+    public function storePublic(Request $request)
+    {
+        $addressData = json_decode($request->addressData);
+        
+        $place = Place::create([
+            'name' => $request->name,
+            'address' => $addressData->name,
+            'province' => $addressData->administrative,
+            'region_id' => $request->region_id,
+            'subRegion' => $addressData->county,
+            'city' => $addressData->city,
+            'countryCode' => $addressData->countryCode,
+            'postalCode' => $addressData->postcode,
+            'phoneNumber' => $request->phoneNumber,
+            'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
+            'email' => $request->email,
+            'url' => $request->url,
+            'long' => $addressData->latlng->lng,
+            'lat' => $addressData->latlng->lat,
+            'instructions' => $request->instructions,
+            'deliveryZone' => $request->deliveryZone
+        ]);
+
+        $place->categories()->sync($request->categories);
+        $place->delivery()->sync($request->deliveryType);
+        $place->types()->sync($request->placeType);
+
+        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si fiche sera modérée puis affichée sous peu!');
     }
 
     /**
