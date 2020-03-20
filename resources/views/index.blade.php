@@ -2,6 +2,7 @@
 
 @section('content')
 <main role="main">
+  @if(!$is_regional)
   <section class="jumbotron text-center">
     <div class="container">
       <h1>Répertoire de ressources locales<br>en contexte de distanciation sociale</h1>
@@ -11,6 +12,7 @@
       </p>
     </div>
   </section>
+  @endif
 
   <div class="album py-5 bg-light">
     <div class="container">
@@ -22,6 +24,14 @@
           @endforeach
         </div>
       </div>
+
+      @if($is_regional)
+      <h1 class="text-center mb-5">{{ $region->name }}</h1>
+      @endif
+
+      @if($places->isEmpty())
+      <div class="alert alert-info">Toujours aucune entreprise enregistrée dans cette région! Vous en connaissez une? <b><a href="{{ route('places.create-public') }}">Inscrivez-là!</a></b></div>
+      @endif
 
       @foreach($places as $place)
         @include('index-place-cards', ['place' => $place])
