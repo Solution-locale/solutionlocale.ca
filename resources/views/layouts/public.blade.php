@@ -3,9 +3,22 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        {{-- <meta name="description" content=""> --}}
-    
         <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <meta name="description" content="Des ressources locales en contexte de distanciation sociale">
+        <meta name="image" content="https://solutionlocale.ca/images/social.png">
+        
+        <meta itemprop="name" content="Solution locale">
+        <meta itemprop="description" content="Des ressources locales en contexte de distanciation sociale">
+        <meta itemprop="image" content="https://solutionlocale.ca/images/social.png">
+        
+        <meta name="og:title" content="Solution locale">
+        <meta name="og:description" content="Des ressources locales en contexte de distanciation sociale">
+        <meta name="og:image" content="https://solutionlocale.ca/images/social.png">
+        <meta name="og:url" content="https://solutionlocale.ca">
+        <meta name="og:site_name" content="Solution Locale">
+        <meta name="og:locale" content="fr_CA">
+        <meta name="og:type" content="website">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
