@@ -9,11 +9,9 @@
               <p class="text-white">Solution locale n'est pas responsable des méthodes utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs à l'égard de la santé de leurs clients.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
+              <h4 class="text-white">Médias sociaux</h4>
               <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+                <li><a href="https://www.facebook.com/Solutionlocale/" class="text-white">Facebook</a></li>
               </ul>
               @auth
               <h4 class="text-white">Meta</h4>
