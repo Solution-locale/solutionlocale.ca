@@ -1,4 +1,4 @@
-Auth::routes(['register' => false]);<?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 
