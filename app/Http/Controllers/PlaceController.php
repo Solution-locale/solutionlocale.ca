@@ -102,7 +102,6 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
-        $place->instructions = $request->instructions;
         $place->deliveryZone = $request->deliveryZone;
         $place->save();
 
