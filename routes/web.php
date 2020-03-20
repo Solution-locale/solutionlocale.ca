@@ -1,4 +1,4 @@
-<?php
+Auth::routes(['register' => false]);<?php
 
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +33,7 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
 });
  
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
