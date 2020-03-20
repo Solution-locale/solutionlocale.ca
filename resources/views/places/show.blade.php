@@ -4,6 +4,11 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
+        @if(!$place->is_approved)
+        <div class="alert alert-info" role="alert">
+          <b><a href="{{ route('places.approve', ['place' => $place->slug]) }}">Cette fiche est en attente de modération. Cliquez ici pour l'approuver.</a></b>
+        </div>
+        @endif
         <div class="card">
           <div class="card-body">
             <h1>{{ $place->name }}</h1>

@@ -22,9 +22,11 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
 
+    Route::get('/places/moderation', 'PlaceController@moderation')->name('places.moderation');
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
     Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
+    Route::get('/places/{place:slug}/approbation', 'PlaceController@approve')->name('places.approve');
     Route::put('/places/{place:slug}', 'PlaceController@update')->name('places.update');
 
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
@@ -35,5 +37,7 @@ Auth::routes();
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
 Route::get('/region/{region:slug}', 'PublicController@index_regional')->name('public.index-region');
+Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
+Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public');
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
 Route::get('/', 'PublicController@index')->name('public.index');
