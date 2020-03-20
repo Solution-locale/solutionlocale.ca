@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get("/user/{user}", 'UserController@edit')->name('users.edit');
+    Route::put("/user/{user}", 'UserController@update')->name('users.update');
+
     Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
 
