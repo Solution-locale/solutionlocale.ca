@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Place;
+use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -126,6 +127,17 @@ class PlaceController extends Controller
     public function destroy(Place $place)
     {
         //
+    }
+
+    public function moderation()
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $moderationQueue = Place::where('is_approved', false)->get()->groupBy("region.name");
+        
+        return view("places.moderation")->with('queue', $moderationQueue);
     }
 
     public function approve(Place $place)

@@ -22,6 +22,7 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
 
+    Route::get('/places/moderation', 'PlaceController@moderation')->name('places.moderation');
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
     Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
