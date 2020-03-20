@@ -3,7 +3,7 @@
 WIP. Come back later please!
 
 # Changelog
-## Next
+## 1.1.0 (2020-03-20)
 - Changed footer
 - Added link to public home page on logo
 - Added notice to contact on Facebook for changes
