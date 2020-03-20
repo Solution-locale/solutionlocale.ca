@@ -45,6 +45,19 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Modes de distribution</label>
+
+                            <div class="col-md-9">
+                                @foreach(App\DeliveryType::all() as $type)
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}">
+                                  <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="address" class="col-md-3 col-form-label text-md-right">Addresse</label>
 
                             <div class="col-md-9">

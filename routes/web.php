@@ -23,6 +23,9 @@ Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('cate
 Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
+    Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
+
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
 

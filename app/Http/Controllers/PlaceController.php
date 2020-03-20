@@ -56,6 +56,7 @@ class PlaceController extends Controller
         ]);
 
         $place->categories()->sync($request->categories);
+        $place->delivery()->sync($request->deliveryType);
 
         return redirect('home')->with('status', 'Place ajoutée!');
     }

@@ -18,4 +18,9 @@ class Place extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function delivery()
+    {
+        return $this->belongsToMany(DeliveryType::class);
+    }
 }
