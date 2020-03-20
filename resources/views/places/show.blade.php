@@ -9,6 +9,11 @@
           <b><a href="{{ route('places.approve', ['place' => $place->slug]) }}">Cette fiche est en attente de modération. Cliquez ici pour l'approuver.</a></b>
         </div>
         @endif
+        @if(Illuminate\Support\Facades\Auth::user()->is_admin)
+        <div class="alert alert-info" role="alert">
+          <b><a href="{{ route('places.ediy', ['place' => $place->slug]) }}">Modifier la fiche.</a></b>
+        </div>
+        @endif
         <div class="card">
           <div class="card-body">
             <h1>{{ $place->name }}</h1>
