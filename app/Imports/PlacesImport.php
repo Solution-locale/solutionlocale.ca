@@ -25,9 +25,6 @@ class PlacesImport implements ToCollection, WithHeadingRow
 
             $result = $this->client->search("{$row['coordonnees_adresse']}");
 
-            // dd($result['hits'][0]);
-            // dd($this->client->search(""))
-
             if ($result['nbHits'] == 0) {
                 $search = false;
                 echo "{$this->nbsErreur} Aucun résultat: {$row['nom_de_lentreprise']} ({$row['coordonnees_adresse']} {$row['code_postal']})\r\n";

@@ -186,20 +186,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="instructions" class="col-md-3 col-form-label text-md-right">Instructions</label>
-
-                            <div class="col-md-9">
-                                <textarea id="instructions" class="form-control @error('instructions') is-invalid @enderror" name="instructions" required>{{ $place->instructions }}</textarea>
-
-                                @error('instructions')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <span class="col-md-5"></span>
 
                             <button type="submit" class="btn btn-primary">Envoyer</button>

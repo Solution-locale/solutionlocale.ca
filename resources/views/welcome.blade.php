@@ -21,8 +21,7 @@
                                 @if($place->additionnalPhoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->additionnalPhoneNumber }}</p>@endif
                                 @if($place->email !== null)<p><i class="fas fa-at"></i> {{ $place->email }}</p>@endif
                                 @if($place->url !== null)<p><i class="fas fa-desktop"></i> {{ $place->url }}</p>@endif
-                                <p class="card-text"><i class="fas fa-truck"></i> {{ $place->delivery->implode('name', ', ') }}</p>
-                                <p class="card-text"><i class="fas fa-info-circle"></i> {{ $place->instructions }}</p>
+                                @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-truck"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">{{ $place->region->name }}, {{ $place->subRegion }}</small>

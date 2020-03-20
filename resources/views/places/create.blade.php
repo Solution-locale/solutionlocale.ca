@@ -165,26 +165,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="secteurLivraison" class="col-md-3 col-form-label text-md-right">Secteur desservi pour la livraison</label>
+                            <label for="deliveryZone" class="col-md-3 col-form-label text-md-right">Secteur desservi pour la livraison</label>
 
                             <div class="col-md-9">
-                                <textarea id="secteurLivraison" class="form-control @error('secteurLivraison') is-invalid @enderror" name="secteurLivraison" required>{{ old('secteurLivraison') }}</textarea>
+                                <textarea id="deliveryZone" class="form-control @error('deliveryZone') is-invalid @enderror" name="deliveryZone" required>{{ old('deliveryZone') }}</textarea>
 
-                                @error('secteurLivraison')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="instructions" class="col-md-3 col-form-label text-md-right">Instructions</label>
-
-                            <div class="col-md-9">
-                                <textarea id="instructions" class="form-control @error('instructions') is-invalid @enderror" name="instructions" required>{{ old('instructions') }}</textarea>
-
-                                @error('instructions')
+                                @error('deliveryZone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
