@@ -21,26 +21,30 @@
                 height: 75px;
             }
 
-            .btn-primary, .badge-primary, .badge-info {
-                color: #fff;
-                background-color: #83ba8b !important;
-                border-color: #83ba8b !important;
+            .badge-info, .badge-secondary{
+                background-color: #e9ecef;
+                color: black;
             }
 
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-          }
-
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
+            .btn-primary, .badge-primary{
+                background-color: #0276d3;
+                border-color: #0276d3;
             }
-          }
+
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                      font-size: 3.5rem;
+                } 
+            }
         </style>
     </head>
 
