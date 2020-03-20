@@ -76,6 +76,24 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="region_id" class="col-md-3 col-form-label text-md-right">Région administrative</label>
+
+                            <div class="col-md-9">
+                                <select class="custom-select" name="region_id" id="region">
+                                    @foreach(App\Region::all() as $region)
+                                    <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('region')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         
                         <div class="form-group row">
                             <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel.</label>

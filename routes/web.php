@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
- 
-Auth::routes();
-Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
-
 Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,3 +25,10 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+ 
+Auth::routes();
+Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');

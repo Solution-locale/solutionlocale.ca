@@ -24,7 +24,7 @@
                         <p class="card-text"><i class="fas fa-info-circle"></i> {{ $place->instructions }}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">{{ $place->region }}</small>
+                        <small class="text-muted">{{ $place->region->name }}, {{ $place->subRegion }}</small>
                     </div>
                 </div>
                 @endforeach
