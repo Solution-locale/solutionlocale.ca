@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+    
     public function index()
     {
-        return view('index')->with(['places' => Place::all()]);
+        return view('index')->with(['places' => Place::all()->chunk(3)]);
     }
 
     public function index_regional(Region $region)
     {
-        return view('index')->with(['places' => $region->places]);
+        return view('index')->with(['places' => $region->places->chunk(3)]);
     }
 }
