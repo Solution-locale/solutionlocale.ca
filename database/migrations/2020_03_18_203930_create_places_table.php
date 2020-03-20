@@ -23,7 +23,7 @@ class CreatePlacesTable extends Migration
             $table->string('subRegion');
             $table->string('city');
             $table->string('countryCode');
-            $table->string('postalCode');
+            $table->string('postalCode')->nullable();
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
             $table->string('phoneNumber')->nullable();

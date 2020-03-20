@@ -169,10 +169,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="deliveryZone" class="col-md-3 col-form-label text-md-right">Secteur desservi pour la livraison</label>
+                    <label for="deliveryZone" class="col-md-3 col-form-label text-md-right">Secteur desservi pour la livraison à domicile</label>
 
                     <div class="col-md-9">
-                        <textarea id="deliveryZone" class="form-control @error('deliveryZone') is-invalid @enderror" name="deliveryZone" required>{{ old('deliveryZone') }}</textarea>
+                        <textarea id="deliveryZone" class="form-control @error('deliveryZone') is-invalid @enderror" name="deliveryZone">{{ old('deliveryZone') }}</textarea>
 
                         @error('deliveryZone')
                             <span class="invalid-feedback" role="alert">

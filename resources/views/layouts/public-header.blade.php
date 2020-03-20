@@ -15,6 +15,12 @@
                 <li><a href="#" class="text-white">Like on Facebook</a></li>
                 <li><a href="#" class="text-white">Email me</a></li>
               </ul>
+              @auth
+              <h4 class="text-white">Meta</h4>
+              <ul class="list-unstyled">
+                <li><a href="/home" class="text-white">Administration</a></li>
+              </ul>
+              @endauth
             </div>
           </div>
         </div>
