@@ -24,6 +24,11 @@ class Place extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function types()
+    {
+        return $this->belongsToMany(PlaceType::class);
+    }
+
     public function delivery()
     {
         return $this->belongsToMany(DeliveryType::class);

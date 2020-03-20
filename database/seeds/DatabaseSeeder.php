@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         App\Category::create(['name' => 'Hygiène et produits naturels']);
         App\Category::create(['name' => 'Mets cuisinés']);
 
+        App\PlaceType::create(['name' => "L'entreprise offre essentiellement des produits cultivés, fabriqués ou transformés au Québec"]);
+        App\PlaceType::create(['name' => "L'entreprise est un commerce de proximité au sein d'une municipalité"]);
+
         App\DeliveryType::create(['name' => 'Cueillette sans contact']);
         $delivery = App\DeliveryType::create(['name' => 'Livraison à domicile sans contact']);
         App\DeliveryType::create(['name' => 'Livraison par la poste']);
@@ -42,6 +45,7 @@ class DatabaseSeeder extends Seeder
         $place = App\Place::create(['name' => "Miel Beaulieu", 'address' => '224 Rue de la Petite-Pointe', 'province' => 'Québec', 'subRegion' => 'Les Chenaux', 'city' => 'Sainte-Geneviève-de-Batiscan', 'countryCode' => 'ca', 'postalCode' => 'G0X 2R0', 'long' => '-72.3445000', 'lat' => '46.5318000', 'phoneNumber' => "819-489-0184", "email" => "mielbeaulieu@gmail.com", 'instructions' => "Livraison sans contact (MRC des Chenaux et Trois-Rivières)", 'region_id' => $region->id]);
         $place->categories()->sync($category->id);
         $place->delivery()->sync($delivery->id);
+        $place->types()->sync([1,2]);
 
         App\User::create(['name' => "Jean-Philippe Murray", "email" => "curieuxmurray@gmail.com", "password" => Illuminate\Support\Facades\Hash::make('secret')]);
     }
