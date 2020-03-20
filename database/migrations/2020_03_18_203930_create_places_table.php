@@ -31,6 +31,7 @@ class CreatePlacesTable extends Migration
             $table->string('email')->nullable();
             $table->string('url')->nullable();
             $table->text('deliveryZone')->nullable();
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
     }

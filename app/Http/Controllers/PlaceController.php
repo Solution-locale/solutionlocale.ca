@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Place;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
 {
@@ -72,6 +73,10 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
+        if (!$place->is_approved && Gate::denies('do-admin')) {
+            abort(403);
+        }
+        
         return view("places.show")->with(['place' => $place]);
     }
 
@@ -121,5 +126,17 @@ class PlaceController extends Controller
     public function destroy(Place $place)
     {
         //
+    }
+
+    public function approve(Place $place)
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $place->is_approved = true;
+        $place->save();
+
+        return back();
     }
 }

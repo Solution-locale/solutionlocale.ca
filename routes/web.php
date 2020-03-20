@@ -25,6 +25,7 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
     Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
+    Route::get('/places/{place:slug}/approbation', 'PlaceController@approve')->name('places.approve');
     Route::put('/places/{place:slug}', 'PlaceController@update')->name('places.update');
 
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');

@@ -17,9 +17,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center mb-5 h5">
-          <a href="/" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::count() }}</span></a>
+          <a href="/" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
           @foreach(App\Region::all() as $region)
-          <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places->count() }}</span></a>
+          <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
         </div>
       </div>
