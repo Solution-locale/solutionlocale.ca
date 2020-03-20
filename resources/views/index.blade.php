@@ -19,7 +19,7 @@
                 @foreach($places as $place)
                     <div class="col mb-4">
                         <div class="card">
-                            <img src="https://loremflickr.com/cache/resized/65535_49579232627_6b80eb507c_320_240_nofilter.jpg" class="card-img-top" alt="...">
+                            <img src="/images/solutionlocale-placeholder.png" class="card-img-top" alt="Solution locale">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $place->name }}@auth() <a href="{{ route('places.edit', ['place' => $place->slug]) }}"><i class="far fa-edit"></i></a>@endauth</h5>
                                 
