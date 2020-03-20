@@ -11,7 +11,7 @@
         @endif
         @if(Illuminate\Support\Facades\Auth::user()->is_admin)
         <div class="alert alert-info" role="alert">
-          <b><a href="{{ route('places.ediy', ['place' => $place->slug]) }}">Modifier la fiche.</a></b>
+          <b><a href="{{ route('places.edit', ['place' => $place->slug]) }}">Modifier la fiche.</a></b>
         </div>
         @endif
         <div class="card">
