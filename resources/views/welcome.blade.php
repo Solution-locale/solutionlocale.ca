@@ -19,9 +19,10 @@
                                 <p><address><i class="fas fa-map-marker-alt"></i> {{ $place->address }}, {{ $place->city }} {{ $place->postalCode }}</address></p>
                                 @if($place->phoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->phoneNumber }}</p>@endif
                                 @if($place->additionnalPhoneNumber !== null)<p><i class="fas fa-phone"></i> {{ $place->additionnalPhoneNumber }}</p>@endif
-                                @if($place->email !== null)<p><i class="fas fa-at"></i> {{ $place->email }}</p>@endif
-                                @if($place->url !== null)<p><i class="fas fa-desktop"></i> {{ $place->url }}</p>@endif
-                                @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-truck"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif
+                                @if($place->email !== null)<p><i class="fas fa-at"></i> <a href="mailto:{{ $place->email }}">{{ $place->email }}</a></p>@endif
+                                @if($place->url !== null)<p><i class="fas fa-desktop"></i> <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a></p>@endif
+                                @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-shopping-cart"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif
+                                @if($place->deliveryZone !== null)<p><i class="fas fa-truck-loading"></i> {{ $place->deliveryZone }}</p>@endif
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">{{ $place->region->name }}, {{ $place->subRegion }}</small>
