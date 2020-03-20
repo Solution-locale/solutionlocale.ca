@@ -93,24 +93,19 @@
                 {{-- <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale"> --}}
                 <div class="card-body">
                   <h4 class="card-title text-center">{{ $place->name }}</h4>
-                  <h5 class="text-center"><i class="fas fa-map-marker-alt"></i> {{ $place->region->name }}, {{ $place->subRegion }}</h5>
+                  <h5 class="text-center mb-3"><i class="fas fa-map-marker-alt"></i> {{ $place->region->name }}, {{ $place->subRegion }}</h5>
 
-                  <div class="container mt-3">
-                    <div class="row">
-                      <div class="col">
-                        <p class="text-center">
-                          <i class="fas fa-shopping-cart"></i> Méthode d'acquisition
-                        </p>
-                      </div>
-                      <div class="col">
-                        <p class="text-center">
-                          <i class="fas fa-tags"></i> Catégories
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  @if($place->delivery->isNotEmpty())
+                  <p class="card-text">
+                    <i class="fas fa-shopping-cart"></i> {{ $place->delivery->implode('name', ', ') }}
+                  </p>
+                  @endif
 
-                  {{-- @if($place->delivery->isNotEmpty())<p class="card-text"><i class="fas fa-shopping-cart"></i> {{ $place->delivery->implode('name', ', ') }}</p>@endif --}}
+                  @if($place->categories->isNotEmpty())
+                  <p class="card-text">
+                    <i class="fas fa-tags"></i> {{ $place->categories->implode('name', ', ') }}
+                  </p>
+                  @endif
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
