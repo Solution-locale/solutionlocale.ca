@@ -8,7 +8,6 @@
       <p class="lead text-muted">Une initiative citoyenne, en collaboration<br>avec plusieurs partenaires locaux</p>
       <p>
         <a href="{{ route('places.create-public') }}" class="btn btn-primary my-2">Inscrivez une entreprise</a>
-        <a href="#" class="btn btn-secondary my-2">Un autre bouton!</a>
       </p>
     </div>
   </section>
