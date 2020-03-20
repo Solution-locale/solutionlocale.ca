@@ -20,6 +20,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('header_css')
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29335714-11"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-29335714-11');
+    </script>
 </head>
 <body>
     <div id="app">
