@@ -13,6 +13,20 @@
         <script src="https://kit.fontawesome.com/f3c2c1b87f.js" crossorigin="anonymous"></script>
 
         <style>
+            .bg-soloc{
+                background-color: #83ba8b !important;
+            }
+
+            .soloc-logo{
+                height: 75px;
+            }
+
+            .btn-primary, .badge-primary, .badge-info {
+                color: #fff;
+                background-color: #83ba8b !important;
+                border-color: #83ba8b !important;
+            }
+
           .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;

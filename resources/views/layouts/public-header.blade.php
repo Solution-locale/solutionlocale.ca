@@ -1,5 +1,5 @@
 <header>
-      <div class="collapse bg-dark" id="navbarHeader">
+      <div class="collapse bg-soloc" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
@@ -17,11 +17,10 @@
           </div>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="navbar navbar-dark bg-soloc shadow-sm">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <i class="far fa-compass"></i>&nbsp;
-            <strong>Solution locale</strong>
+            <img src="/images/solution-locale-logo.png" alt="Solution locale" class="soloc-logo" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
