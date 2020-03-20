@@ -3,6 +3,9 @@
 WIP. Come back later please!
 
 # Changelog
+## Next
+- Changed footer
+
 ## 1.0.2 (2020-03-20)
 - Typo
 
