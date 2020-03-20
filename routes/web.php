@@ -27,10 +27,9 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
  
 Auth::routes();
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
+
+Route::get('/region/{region:slug}', 'PublicController@index_regional')->name('public.index-region');
+Route::get('/', 'PublicController@index')->name('public.index');

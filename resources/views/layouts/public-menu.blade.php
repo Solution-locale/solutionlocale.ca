@@ -5,13 +5,13 @@
 
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Par catégorie<span class="caret"></span>
+                Par région<span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                @foreach(App\Category::all() as $category)
-                <a class="dropdown-item" href="{{ route('categories.index', ['category' => $category->slug]) }}">
-                    {{ $category->name }}
+                @foreach(App\Region::all() as $region)
+                <a class="dropdown-item" href="{{ route('public.index-region', ['region' => $region->slug]) }}">
+                    {{ $region->name }}
                 </a>
                 @endforeach
             </div>

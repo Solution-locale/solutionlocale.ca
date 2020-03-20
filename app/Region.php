@@ -10,7 +10,7 @@ class Region extends Model
         'name'
     ];
 
-    public function place()
+    public function places()
     {
         return $this->hasMany(Place::class);
     }
