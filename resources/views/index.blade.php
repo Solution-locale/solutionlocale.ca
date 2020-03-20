@@ -26,7 +26,7 @@
       </div>
 
       @if($is_regional)
-      <h1 class="text-center mb-5">{{ $region->name }}</h1>
+      <h1 class="text-center mb-5">{{ $selectedRegion->name }}</h1>
       @endif
 
       @if($places->isEmpty())
