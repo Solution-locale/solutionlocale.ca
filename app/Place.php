@@ -33,4 +33,9 @@ class Place extends Model
     {
         return $this->belongsToMany(DeliveryType::class);
     }
+
+    public function getCompleteAddressAttribute()
+    {
+        return "{$this->address}, {$this->city}, {$this->province}, {$this->postalCode}";
+    }
 }
