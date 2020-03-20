@@ -9,13 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "algolia/algoliasearch-client-php": "^2.6",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laracademy/interactive-make": "^1.4",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

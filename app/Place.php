@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     protected $fillable = [
-        'name', 'address', 'province', 'region', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'instructions', 'deliveryZone'
+        'name', 'address', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'instructions', 'deliveryZone'
     ];
 
     protected $hidden = [
