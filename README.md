@@ -3,6 +3,10 @@
 WIP. Come back later please!
 
 # Changelog
+# 1.3.1 (2020-03-21)
+- Added city with region in places cards.
+- Added daily logs for ease of consultations.
+
 # 1.2.1 (2020-03-20)
 - Corrections de français.
 
