@@ -3,7 +3,7 @@
 WIP. Come back later please!
 
 # Changelog
-# Next
+# 1.4.0 (2020-03-21)
 - Can delete a place from the moderation queue, if admin
 - Can delete from the page details, if admin
 - Permission checks in route middleware AND controller
