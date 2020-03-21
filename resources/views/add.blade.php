@@ -4,6 +4,14 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-6 offset-md-3">
+        <div class="card mb-3 text-white bg-secondary">
+            <div class="card-header">
+                <b>Information importante</b>
+            </div>
+            <div class="card-body">
+                Afin d'être affichés sur le site, les produits offerts doivent appartenir à l’une des catégories suivantes : <b>Produits d’épicerie - Mets cuisinés - Repas de restaurant - Médicaments et produits de pharmacie - Hygiène et produits naturels.</b> Merci de votre compréhension !
+            </div>
+        </div>
         <div class="card">
           <div class="card-header">
             Ajout d'une entreprise au répertoire

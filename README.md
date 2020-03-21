@@ -3,6 +3,12 @@
 WIP. Come back later please!
 
 # Changelog
+# 1.2.0 (2020-03-20)
+- Removed subregion display as it's inconsistent.
+- Added notice on categories for places to be shown.
+- Image for social sharing.
+- Lots of small fixes and UI tweaks.
+
 ## 1.1.0 (2020-03-20)
 - Changed footer
 - Added link to public home page on logo

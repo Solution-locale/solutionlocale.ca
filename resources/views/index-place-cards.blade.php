@@ -3,7 +3,7 @@
     {{-- <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale"> --}}
     <div class="card-body">
       <h4 class="card-title text-center">{{ $place->name }}</h4>
-      <h5 class="text-center mb-3"><i class="fas fa-map-marker-alt"></i> {{ $place->region->name }}, {{ $place->subRegion }}</h5>
+      <h5 class="text-center mb-3"><i class="fas fa-map-marker-alt"></i> {{ $place->region->name }}</h5>
 
       @if($place->delivery->isNotEmpty())
       <p class="card-text">
