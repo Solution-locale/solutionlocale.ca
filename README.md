@@ -4,7 +4,8 @@ WIP. Come back later please!
 
 # Changelog
 # Next
-- Can delete a place from the moderation queue.
+- Can delete a place from the moderation queue, if admin.
+- Can delete from the page details, if admin.
 
 # 1.3.1 (2020-03-21)
 - Fixed cases where a place could be duplicate with same slug.
