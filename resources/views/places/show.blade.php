@@ -4,16 +4,23 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
-        @if(!$place->is_approved)
-        <div class="alert alert-info" role="alert">
-          <b><a href="{{ route('places.approve', ['place' => $place->slug]) }}">Cette fiche est en attente de modération. Cliquez ici pour l'approuver.</a></b>
-        </div>
-        @endif
         @if(Illuminate\Support\Facades\Auth::check() && Illuminate\Support\Facades\Auth::user()->is_admin)
-        <div class="alert alert-info" role="alert">
-          <b><a href="{{ route('places.edit', ['place' => $place->slug]) }}">Modifier la fiche.</a></b>
+        <div class="card text-white bg-info mb-3">
+          <div class="card-header">Ces options s'offrent à vous car vous êtes connectés comme administrateur.</div>
+          <div class="card-body">
+            <h5 class="card-title">Administration</h5>
+            <ul>
+              @if(!$place->is_approved)
+              <li><b>Fiche est en attente de modération: </b> <a href="{{ route('places.approve', ['place' => $place->slug]) }}" class="text-dark">Cliquez ici pour l'approuver.</a></li>
+              @endif
+              <li><a href="{{ route('places.edit', ['place' => $place->slug]) }}" class="text-dark"
+                >Modifier la fiche.</a></li>
+              <li><a href="{{ route('places.delete', ['place' => $place]) }}" class="text-dark">Détruire la fiche</a></li>
+            </ul>
+          </div>
         </div>
         @endif
+
         <div class="card">
           <div class="card-body">
             <h1>{{ $place->name }}</h1>

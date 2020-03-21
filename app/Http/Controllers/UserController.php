@@ -58,6 +58,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if (Auth::user()->id != $user->id) {
+            abort(401);
+        }
+
         return view("users.edit")->with(['user' => $user]);
     }
 
@@ -70,6 +74,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (Auth::user()->id != $user->id) {
+            abort(401);
+        }
+        
         $user->password = Hash::make($request->password);
         $user->save();
         

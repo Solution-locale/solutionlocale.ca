@@ -14,6 +14,10 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
         return view('byCategory')->with(['places' => $category->places]);
     }
 
@@ -24,6 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
         return view("categories.create");
     }
 
@@ -35,6 +43,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+        
         $category = Category::create([
             'name' => $request->name
         ]);
