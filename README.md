@@ -3,6 +3,9 @@
 WIP. Come back later please!
 
 # Changelog
+# Next
+- Removed subregion display as it's inconsistent.
+
 ## 1.1.0 (2020-03-20)
 - Changed footer
 - Added link to public home page on logo
