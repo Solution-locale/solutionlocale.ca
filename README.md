@@ -3,6 +3,9 @@
 WIP. Come back later please!
 
 # Changelog
+# Next
+- Added city with region in places cards.
+
 # 1.2.1 (2020-03-20)
 - Corrections de français.
 
