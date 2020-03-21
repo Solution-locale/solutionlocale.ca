@@ -5,6 +5,7 @@ WIP. Come back later please!
 # Changelog
 # Next
 - Removed subregion display as it's inconsistent.
+- Added notice on categories for places to be shown.
 
 ## 1.1.0 (2020-03-20)
 - Changed footer
