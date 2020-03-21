@@ -1,41 +1,11 @@
 # solutionlocale.ca
 
-WIP. Come back later please!
+Dans le contexte de distanciation sociale imposée par la COVID-19, le répertoire de Solution locale met en relation nos commerces locaux avec la population actuellement en isolement. En achetant local, nous nous assurerons de sauvegarder le plus de nos commerces locaux possibles durant et après la crise, en plus de nous approvisionner en nourriture et produits essentiels en toute sécurité ! Une initiative citoyenne!
 
-# Changelog
-# 1.4.0 (2020-03-21)
-- Can delete a place from the moderation queue, if admin
-- Can delete from the page details, if admin
-- Permission checks in route middleware AND controller
-- Moved algolia app id and api key in config and env
+Ce répertoire est une initiative citoyenne rendue possible grâce à la mobilisation de la population et des organismes et acteurs socio-économiques de chacune des régions participantes.
 
-# 1.3.1 (2020-03-21)
-- Fixed cases where a place could be duplicate with same slug
+Solution locale n'est pas responsable des méthodes d’échange utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs et entrepreneuses à l'égard de la santé de leurs clients et clientes.
 
-# 1.3.0 (2020-03-21)
-- Added city with region in places cards
-- Added daily logs for ease of consultations
+## English or french?
 
-# 1.2.1 (2020-03-20)
-- Corrections de français
-
-# 1.2.0 (2020-03-20)
-- Removed subregion display as it's inconsistent
-- Added notice on categories for places to be shown
-- Image for social sharing
-- Lots of small fixes and UI tweaks
-
-## 1.1.0 (2020-03-20)
-- Changed footer
-- Added link to public home page on logo
-- Added notice to contact on Facebook for changes
-- Added Facebook to social media links
-
-## 1.0.2 (2020-03-20)
-- Typo
-
-## 1.0.1 (2020-03-20)
-- UI Tweaks
-
-## 1.0.0 (2020-03-20)
-- First usable version. We'll build on this!
+The whole projet, code-wise, will be kept and organized in english in an effort to make it open to more and more developer if needed. Speak french if you'd like, we'll just keep commits and changelog in english for now at least!
