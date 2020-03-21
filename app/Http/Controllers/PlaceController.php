@@ -27,6 +27,10 @@ class PlaceController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
         return view("places.create");
     }
 
@@ -43,6 +47,10 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
         $addressData = json_decode($request->addressData);
         
         $place = Place::create([
@@ -124,6 +132,10 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
         return view("places.edit")->with(['place' => $place]);
     }
 
@@ -136,6 +148,9 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
 
         $place->name = $request->name;
         $place->region_id = $request->region_id;
