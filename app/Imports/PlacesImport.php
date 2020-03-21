@@ -15,7 +15,7 @@ class PlacesImport implements ToCollection, WithHeadingRow
     public function __construct()
     {
         $this->nbsErreur = 1;
-        $this->client = \Algolia\AlgoliaSearch\PlacesClient::create("plJBE2GZITUG", "cd0aff4d3cec724246d29efc4cfd1b21");
+        $this->client = \Algolia\AlgoliaSearch\PlacesClient::create(config("services.algolia_places.app_id"), config("services.algolia_places.key"));
     }
     public function collection(Collection $rows)
     {
