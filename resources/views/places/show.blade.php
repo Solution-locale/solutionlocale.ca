@@ -41,7 +41,7 @@
             </p>
 
             <p class="card-text">
-              <b>Addresse :</b> <a href="https://maps.google.com/?q={{ $place->complete_address }}" target="_blank">{{ $place->complete_address }}</a>
+              <b>Adresse :</b> <a href="https://maps.google.com/?q={{ $place->complete_address }}" target="_blank">{{ $place->complete_address }}</a>
             </p>
 
             <p class="card-text">

@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-3 col-form-label text-md-right">Addresse</label>
+                            <label for="address" class="col-md-3 col-form-label text-md-right">Adresse</label>
 
                             <div class="col-md-9">
                                 <div class="alert alert-warning mt-3" role="alert">
@@ -84,7 +84,7 @@
                                 <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
 
                                 <div class="alert alert-info mt-3" role="alert">
-                                    Addresse sélectionnée: <strong id="address-value">Aucune</strong>
+                                    Adresse sélectionnée: <strong id="address-value">Aucune</strong>
                                 </div>
 
                                 <input type="hidden" id="address-data" name="addressData" />
@@ -116,7 +116,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel.</label>
+                            <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tél.</label>
 
                             <div class="col-md-9">
                                 <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ $place->phoneNumber }}" autocomplete="phoneNumber" autofocus>
@@ -130,7 +130,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="additionnalPhoneNumber" class="col-md-3 col-form-label text-md-right">No. de tel. add.</label>
+                            <label for="additionnalPhoneNumber" class="col-md-3 col-form-label text-md-right">No. de tél. add.</label>
 
                             <div class="col-md-9">
                                 <input id="additionnalPhoneNumber" type="text" class="form-control @error('additionnalPhoneNumber') is-invalid @enderror" name="additionnalPhoneNumber" value="{{ $place->additionnalPhoneNumber }}" autocomplete="additionnalPhoneNumber" autofocus>

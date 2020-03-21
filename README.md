@@ -3,6 +3,9 @@
 WIP. Come back later please!
 
 # Changelog
+# 1.2.1 (2020-03-20)
+- Corrections de français.
+
 # 1.2.0 (2020-03-20)
 - Removed subregion display as it's inconsistent.
 - Added notice on categories for places to be shown.
