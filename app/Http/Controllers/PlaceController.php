@@ -153,15 +153,25 @@ class PlaceController extends Controller
         return redirect('home')->with('status', 'Place modifiée!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
+    // display the destroy page.
+    public function delete(Place $place)
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        return view("places.delete")->with(['place' => $place]);
+    }
+
     public function destroy(Place $place)
     {
-        //
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $place->delete();
+
+        return redirect('home')->with('status', 'Fiche détruite!');
     }
 
     public function moderation()
