@@ -3,7 +3,7 @@
 WIP. Come back later please!
 
 # Changelog
-# x (2020-03-20)
+# 1.2.1 (2020-03-20)
 - Corrections de français.
 
 # 1.2.0 (2020-03-20)
