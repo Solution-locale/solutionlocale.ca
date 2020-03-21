@@ -11,12 +11,15 @@
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Médias sociaux</h4>
               <ul class="list-unstyled">
-                <li><a href="https://www.facebook.com/Solutionlocale/" class="text-white">Facebook</a></li>
+                <li><a href="https://www.facebook.com/Solutionlocale/" class="text-white" target="_blank">Facebook</a></li>
+                <li><a href="https://github.com/Solution-locale/solutionlocale.ca" class="text-white" target="_blank">Github</a></li>
               </ul>
               @auth
               <h4 class="text-white">Meta</h4>
               <ul class="list-unstyled">
+                @if(Auth::check() && Auth::user()->is_admin)
                 <li><a href="/home" class="text-white">Administration</a></li>
+                @endif
               </ul>
               @endauth
             </div>
