@@ -2,6 +2,9 @@
 
 Changelog is kept in english in an effort to make the whole projet open to more people.
 
+# 1.4.1 (2020-03-21)
+- Moved to a Github organization for publicly announced open sourcing of the project, so we cleaned up our readme, changelog and contributing guildelines.
+
 # 1.4.0 (2020-03-21)
 - Can delete a place from the moderation queue, if admin
 - Can delete from the page details, if admin
