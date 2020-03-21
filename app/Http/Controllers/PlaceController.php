@@ -98,7 +98,7 @@ class PlaceController extends Controller
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
 
-        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si fiche sera modérée puis affichée sous peu!');
+        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
     /**

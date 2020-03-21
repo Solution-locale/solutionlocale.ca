@@ -4,9 +4,9 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4 class="text-white">À propos</h4>
-              <p class="text-white">Dans le contexte de distanciation sociale imposée par la COVID-19, le répertoire de Solution locale a pour objectif de mettre en relation nos commerces locaux et la population actuellement en isolement. En choisissant local, nous nous assurerons de maintenir le plus de commerces locaux possibles durant cette période et après la crise, en plus de s'approvisionnez en nourritures et biens essentiels en toute sécurité !  Une initiative citoyenne!</p>
-              <p class="text-white">Ce répertoire est une initiative citoyenne et est possible grâce à la mobilisation de la population, organismes et acteurs de chacune des régions participantes.</p>
-              <p class="text-white">Solution locale n'est pas responsable des méthodes utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs à l'égard de la santé de leurs clients.</p>
+              <p class="text-white">Dans le contexte de distanciation sociale imposée par la COVID-19, le répertoire de <em>Solution locale</em> met en relation nos commerces locaux avec la population actuellement en isolement. En achetant local, nous nous assurerons de sauvegarder le plus de nos commerces locaux possibles durant et après la crise, en plus de nous approvisionner en nourriture et produits essentiels en toute sécurité ! Une initiative citoyenne!</p>
+              <p class="text-white">Ce répertoire est une initiative citoyenne rendue possible grâce à la mobilisation de la population et des organismes et acteurs socio-économiques de chacune des régions participantes.</p>
+              <p class="text-white"><em>Solution locale</em> n'est pas responsable des méthodes d’échange utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs et entrepreneuses à l'égard de la santé de leurs clients et clientes.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Médias sociaux</h4>
