@@ -4,6 +4,9 @@ WIP. Come back later please!
 
 # Changelog
 # 1.3.1 (2020-03-21)
+- Fixed cases where a place could be duplicate with same slug.
+
+# 1.3.0 (2020-03-21)
 - Added city with region in places cards.
 - Added daily logs for ease of consultations.
 
