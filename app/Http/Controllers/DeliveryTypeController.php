@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DeliveryType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DeliveryTypeController extends Controller
 {
