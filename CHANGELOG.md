@@ -1,6 +1,7 @@
 # Changelog
 
-Changelog is kept in english in an effort to make the whole projet open to more people.
+# Next
+- Divided js and css resources in two parts (frontend and backend), and extracted vendor files.
 
 # 1.4.1 (2020-03-21)
 - Moved to a Github organization for publicly announced open sourcing of the project, so we cleaned up our readme, changelog and contributing guildelines.
