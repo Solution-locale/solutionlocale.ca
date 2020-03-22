@@ -35,7 +35,7 @@
         </div>
         @else
         <div class="col-md-12 text-center mb-5 h5">
-          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toute la {{ $selectedRegion->name }} <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
           @foreach(App\Category::all() as $category)
             <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
           @endforeach
