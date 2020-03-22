@@ -39,6 +39,7 @@ Auth::routes(['register' => false]);
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
+Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public');
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
