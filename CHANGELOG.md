@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added telescope (gated to admin only) to better debug.
+
 # 1.5.0 (2020-03-22)
 - Divided js and css resources in two parts (frontend and backend), and extracted vendor files.
 - Can filter region listing by categories.
