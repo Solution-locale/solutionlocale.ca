@@ -20,9 +20,11 @@
         <meta name="og:locale" content="fr_CA">
         <meta name="og:type" content="website">
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
 
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/manifest.js') }}" defer></script>
+        <script src="{{ asset('js/vendor.js') }}" defer></script>
+        <script src="{{ asset('js/frontend.js') }}" defer></script>
         <script src="https://kit.fontawesome.com/f3c2c1b87f.js" crossorigin="anonymous"></script>
 
         <style>

@@ -16,18 +16,32 @@
 
   <div class="album py-5 bg-light">
     <div class="container">
+
+      @if($is_regional)
+      <h1 class="text-center mb-2">{{ $selectedRegion->name }}</h1>
+      @endif
+
+      @if(isset($category))
+      <h2 class="text-center mb-5">{{ $category->name }}</h1>
+      @endif      
+
       <div class="row">
+        @if(!$is_regional)
         <div class="col-md-12 text-center mb-5 h5">
           <a href="/" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
           @foreach(App\Region::all() as $region)
           <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
         </div>
+        @else
+        <div class="col-md-12 text-center mb-5 h5">
+          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toute la {{ $selectedRegion->name }} <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
+          @foreach(App\Category::all() as $category)
+            <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
+          @endforeach
+        </div>
+        @endif
       </div>
-
-      @if($is_regional)
-      <h1 class="text-center mb-5">{{ $selectedRegion->name }}</h1>
-      @endif
 
       @if($places->isEmpty())
       <div class="alert alert-info">Toujours aucune entreprise enregistrée dans cette région! Vous en connaissez une? <b><a href="{{ route('places.create-public') }}">Inscrivez-là!</a></b></div>
