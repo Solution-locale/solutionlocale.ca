@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 1.7.0 (2020-03-23)
 - Moved analytics ID into config and environment file.
 - Moved Algolia credentials to environment file in the Mix assets.
 
