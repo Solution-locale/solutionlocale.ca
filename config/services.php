@@ -35,4 +35,10 @@ return [
         'key' => env('ALGOLIA_PLACES_KEY'),
     ],
 
+    'google' => [
+        'analytics' => [
+            'id' => env('GOOGLE_ANALYTICS_ID'),
+        ],
+    ],
+
 ];

@@ -23,13 +23,13 @@
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     @yield('header_css')
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29335714-11"></script>
+     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config("services.google.analytics.id") }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'UA-29335714-11');
+      gtag('config', '{{ config("services.google.analytics.id") }}');
     </script>
 </head>
 <body>
