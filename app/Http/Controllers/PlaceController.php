@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
 use Illuminate\Http\Request;
@@ -45,59 +46,56 @@ class PlaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePlaces $request)
     {
         if (Gate::denies('do-admin')) {
             abort(401);
         }
 
-        $addressData = json_decode($request->addressData);
-        
         $place = Place::create([
             'name' => $request->name,
-            'address' => $addressData->name,
-            'province' => $addressData->administrative,
-            'region' => $request->region,
-            'subRegion' => !isset($addressData->county) ? $addressData->city : $addressData->county,
-            'city' => $addressData->city,
-            'countryCode' => $addressData->countryCode,
-            'postalCode' => !isset($addressData->postcode) ? null : $addressData->postcode,
+            'address' => $request->addressjson['name'],
+            'province' => !isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'region_id' => $request->region_id,
+            'subRegion' => !isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
+            'city' => $request->addressjson['city'],
+            'countryCode' => !isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
+            'postalCode' => !isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => $addressData->latlng->lng,
-            'lat' => $addressData->latlng->lat,
+            'long' => !isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
+            'lat' => !isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone
         ]);
 
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
-        $place->type()->sync($request->placeType);
+        $place->types()->sync($request->placeType);
 
         return redirect('home')->with('status', 'Place ajoutée!');
     }
 
-    public function storePublic(Request $request)
+    public function storePublic(StorePlaces $request)
     {
-        $addressData = json_decode($request->addressData);
         
         $place = Place::create([
             'name' => $request->name,
-            'address' => $addressData->name,
-            'province' => $addressData->administrative,
+            'address' => $request->addressjson['name'],
+            'province' => !isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
             'region_id' => $request->region_id,
-            'subRegion' => !isset($addressData->county) ? $addressData->city : $addressData->county,
-            'city' => $addressData->city,
-            'countryCode' => $addressData->countryCode,
-            'postalCode' => !isset($addressData->postcode) ? null : $addressData->postcode,
+            'subRegion' => !isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
+            'city' => $request->addressjson['city'],
+            'countryCode' => !isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
+            'postalCode' => !isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => $addressData->latlng->lng,
-            'lat' => $addressData->latlng->lat,
+            'long' => !isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
+            'lat' => !isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone
         ]);
