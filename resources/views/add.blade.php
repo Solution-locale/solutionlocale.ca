@@ -24,6 +24,17 @@
               </div>
             @endif
 
+            @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <p>Merci de corriger les erreurs suivantes:</p>
+                <ul>
+                    @foreach($errors->all() as $message)
+                    <li>{!! $message !!}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <div class="alert alert-info">Un astérisque (*) dénote une information obligatoire!</div>
             
             <form method="POST" action="/entreprise/ajout">
@@ -37,7 +48,7 @@
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -53,6 +64,12 @@
                           <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
                         </div>
                         @endforeach
+
+                        @error('categories')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{!! $message !!}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -66,6 +83,12 @@
                           <label class="form-check-label" for="inlinePlaceTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                         </div>
                         @endforeach
+
+                        @error('placeType')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{!! $message !!}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -79,6 +102,12 @@
                           <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                         </div>
                         @endforeach
+
+                        @error('deliveryType')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{!! $message !!}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -92,11 +121,11 @@
                             Adresse sélectionnée: <strong id="address-value">Aucune</strong>
                         </div>
 
-                        <input type="hidden" id="address-data" name="addressData" />
+                        <input type="hidden" id="address-data" name="addressjson" />
 
-                        @error('name')
+                        @error('address')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -114,7 +143,7 @@
 
                         @error('region')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -128,7 +157,7 @@
 
                         @error('phoneNumber')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -142,7 +171,7 @@
 
                         @error('additionnalPhoneNumber')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -156,7 +185,7 @@
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -170,7 +199,7 @@
 
                         @error('url')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
@@ -184,7 +213,7 @@
 
                         @error('deliveryZone')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{!! $message !!}</strong>
                             </span>
                         @enderror
                     </div>
