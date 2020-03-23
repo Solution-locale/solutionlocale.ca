@@ -31,8 +31,8 @@ return [
     ],
 
     'algolia_places' => [
-        'app_id' => env('ALGOLIA_PLACES_APP_IP'),
-        'key' => env('ALGOLIA_PLACES_KEY'),
+        'app_id' => env('MIX_ALGOLIA_PLACES_APP_IP'),
+        'key' => env('MIX_ALGOLIA_PLACES_KEY'),
     ],
 
     'google' => [

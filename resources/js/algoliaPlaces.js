@@ -2,8 +2,8 @@
 var places = require('places.js');
 
 const fixedOptions = {
-  appId: 'plJBE2GZITUG',
-  apiKey: 'cd0aff4d3cec724246d29efc4cfd1b21',
+  appId: process.env.MIX_ALGOLIA_PLACES_APP_IP,
+  apiKey: process.env.MIX_ALGOLIA_PLACES_KEY,
   container: document.querySelector('#address'),
 };
 
