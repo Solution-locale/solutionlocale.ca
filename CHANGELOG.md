@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.7.0 (2020-03-23)
+- Moved analytics ID into config and environment file.
+- Moved Algolia credentials to environment file in the Mix assets.
+
 # 1.6.0 (2020-03-23)
 - Added telescope (gated to admin only) to better debug.
 - Moved validation of new places into its own `FormRequest`. We now validate URL, email, phone number, required fields and conditional required fields based on other fields.
