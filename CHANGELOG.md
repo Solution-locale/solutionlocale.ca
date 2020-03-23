@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 1.6.0 (2020-03-23)
 - Added telescope (gated to admin only) to better debug.
 - Moved validation of new places into its own `FormRequest`. We now validate URL, email, phone number, required fields and conditional required fields based on other fields.
 
