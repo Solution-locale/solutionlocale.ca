@@ -80,7 +80,7 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
-        dd($request->all());
+        
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->addressjson['name'],
