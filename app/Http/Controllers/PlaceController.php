@@ -80,7 +80,7 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
-        
+        dd($request->all());
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->addressjson['name'],
@@ -89,7 +89,7 @@ class PlaceController extends Controller
             'subRegion' => !isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
             'city' => $request->addressjson['city'],
             'countryCode' => !isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => !isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
+            'postalCode' => !isset($request->addressjson['postcode']) ? null : $request->addressjson['postcode'],
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
