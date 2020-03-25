@@ -2,6 +2,7 @@
 
 # Next
 - Moved Slack's webhook (for backups) to the env file.
+- Will throw an error if delivery zone is not empty and corresponding delivery type isn't checked.
 
 # 1.8.1 (2020-03-25)
 - Fixes backup disk to amazon s3.
