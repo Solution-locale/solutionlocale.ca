@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 1.8.0 (2020-03-25)
 - Fixed postal code not saving since last update.
 - Added notice to user when entering data in form.
 - Clarified informations on what we accept when submitting a new place.
