@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# # 1.9.0 (2020-03-25)
 - Moved Slack's webhook (for backups) to the env file.
 - Will throw an error if delivery zone is not empty and corresponding delivery type isn't checked.
 - Form to publicly add places will correctly re-populate fields based on previous values on errors.
