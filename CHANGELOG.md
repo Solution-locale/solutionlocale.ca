@@ -4,6 +4,7 @@
 - Fixed postal code not saving since last update.
 - Added notice to user when entering data in form.
 - Clarified informations on what we accept when submitting a new place.
+- Added daily backups of data.
 
 # 1.7.0 (2020-03-23)
 - Moved analytics ID into config and environment file.
