@@ -118,7 +118,8 @@
                         <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
 
                         <div class="alert alert-info mt-3" role="alert">
-                            Adresse sélectionnée: <strong id="address-value">Aucune</strong>
+                            <p>Merci de vous assurer vous que votre adresse est complète (ex: numéro, rue et ville).</p>
+                            <p>Addresse sélectionnée: <strong id="address-value">Aucune</strong></p>
                         </div>
 
                         <input type="hidden" id="address-data" name="addressjson" />
@@ -196,6 +197,10 @@
 
                     <div class="col-md-9">
                         <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" autocomplete="url" autofocus>
+
+                        <div class="alert alert-secondary mt-3" role="alert">
+                            Vous pouvez entrer n'importe quelle adresse web, <strong>incluant celle de votre page Facebook</strong>! 
+                        </div>
 
                         @error('url')
                             <span class="invalid-feedback" role="alert">
