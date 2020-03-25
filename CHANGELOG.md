@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Moved Slack's webhook (for backups) to the env file.
+
 # 1.8.1 (2020-03-25)
 - Fixes backup disk to amazon s3.
 
