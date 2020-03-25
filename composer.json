@@ -21,7 +21,8 @@
         "laravel/ui": "^2.0",
         "maatwebsite/excel": "^3.1",
         "propaganistas/laravel-phone": "^4.2",
-        "spatie/laravel-backup": "^6.8"
+        "spatie/laravel-backup": "^6.8",
+        "league/flysystem-aws-s3-v3": "~1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
