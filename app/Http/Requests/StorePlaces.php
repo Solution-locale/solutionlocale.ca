@@ -23,6 +23,7 @@ class StorePlaces extends FormRequest
      */
     protected function prepareForValidation()
     {
+
         $data = $this->input();
         $isDeliveryTypeSet = isset($data['deliveryType']);
 
@@ -53,8 +54,16 @@ class StorePlaces extends FormRequest
             'additionnalPhoneNumber' => ['nullable', 'phone:CA'],
             'deliveryZone' => [
                 function ($attribute, $value, $fail) {
-                    if (empty($value) && !is_null($this->input('deliveryType')) && in_array('2', $this->input('deliveryType'))) {
+                    
+                    $is_house_delivery = in_array('2', $this->input('deliveryType'));
+
+                    if (empty($value) && !is_null($this->input('deliveryType')) && $is_house_delivery) {
                         $fail("Comme vous offrez la livraison à domicile, vous devez renseigner le secteur desservi.");
+                    }
+
+                    
+                    if (!is_null($this->input('deliveryType')) && !$is_house_delivery && !is_null($this->input('deliveryZone'))) {
+                        $fail("Le champs « secteur desservi pour la livraison à domicile » ne doit être utilisé que si l'option « Livraison à domicile sans contact » est sélectionnée.");
                     }
                 },
             ]

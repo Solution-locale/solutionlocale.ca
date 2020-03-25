@@ -39,6 +39,7 @@
                     @foreach($errors->all() as $message)
                     <li>{!! $message !!}</li>
                     @endforeach
+                    <li>Prenez soins de renseigner de nouveau l'adresse complète de votre entreprise.</li>
                 </ul>
             </div>
             @endif
@@ -47,6 +48,7 @@
             
             <form method="POST" action="/entreprise/ajout">
                 @csrf
+                @honeypot
 
                 <div class="form-group row">
                     <label for="name" class="col-md-3 col-form-label text-md-right">Nom *</label>
@@ -64,11 +66,11 @@
 
                 <div class="form-group row">
                     <label for="categories" class="col-md-3 col-form-label text-md-right">Catégorie *</label>
-
+                    
                     <div class="col-md-9">
                         @foreach(App\Category::all() as $categorie)
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}">
+                          <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}" @if(!empty(old('categories')) && in_array($categorie->id, old('categories'))) CHECKED @endif>
                           <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
                         </div>
                         @endforeach
@@ -87,7 +89,7 @@
                     <div class="col-md-9">
                         @foreach(App\PlaceType::all() as $type)
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="placeType[]" type="checkbox" id="inlinePlaceTypeCheckbox{{ $type->id }}" value="{{ $type->id }}">
+                          <input class="form-check-input" name="placeType[]" type="checkbox" id="inlinePlaceTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if(!empty(old('placeType')) && in_array($type->id, old('placeType'))) CHECKED @endif>
                           <label class="form-check-label" for="inlinePlaceTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                         </div>
                         @endforeach
@@ -106,7 +108,7 @@
                     <div class="col-md-9">
                         @foreach(App\DeliveryType::all() as $type)
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}">
+                          <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if(!empty(old('deliveryType')) && in_array($type->id, old('deliveryType'))) CHECKED @endif>
                           <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                         </div>
                         @endforeach
@@ -146,7 +148,7 @@
                     <div class="col-md-9">
                         <select class="custom-select" name="region_id" id="region">
                             @foreach(App\Region::all() as $region)
-                            <option value="{{ $region->id }}">{{ $region->name }}</option>
+                            <option value="{{ $region->id }}" @if(old('region_id') == $region->id) SELECTED @endif>{{ $region->name }}</option>
                             @endforeach
                         </select>
 
