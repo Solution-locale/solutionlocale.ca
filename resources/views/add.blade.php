@@ -48,6 +48,7 @@
             
             <form method="POST" action="/entreprise/ajout">
                 @csrf
+                @honeypot
 
                 <div class="form-group row">
                     <label for="name" class="col-md-3 col-form-label text-md-right">Nom *</label>
