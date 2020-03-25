@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.8.1 (2020-03-25)
+- Fixes backup disk to amazon s3.
+
 # 1.8.0 (2020-03-25)
 - Fixed postal code not saving since last update.
 - Added notice to user when entering data in form.
