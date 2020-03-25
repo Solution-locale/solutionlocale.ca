@@ -4,12 +4,20 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-6 offset-md-3">
-        <div class="card mb-3 text-white bg-secondary">
+        <div class="card mb-3 text-white bg-info">
             <div class="card-header">
-                <b>Information importante</b>
+                <b>Informations importantes</b>
             </div>
             <div class="card-body">
-                Afin d'être affichés sur le site, les produits offerts doivent appartenir à l’une des catégories suivantes : <b>Produits d’épicerie - Mets cuisinés - Repas de restaurant - Médicaments et produits de pharmacie - Hygiène et produits naturels.</b> Merci de votre compréhension !
+                <h6><b>Produits essentiels uniquement</b></h6>
+                <p>Afin d'être affichés sur le site, les produits offerts doivent appartenir à l’une des catégories suivantes : Produits d’épicerie - Mets cuisinés - Repas de restaurant - Médicaments et produits de pharmacie - Hygiène et produits naturels. </p>
+                <p>Malgré les demandes, nous ne comptons pas élargir les catégories pour le moment. Notre initiative citoyenne repose sur des ressources limitées et nous nous concentrons sur les produits essentiels pour la population en isolement. Merci de votre compréhension! </p>
+
+                <h6><b>Approvisionnement sécuritaire</b></h6>
+                <p>Votre mode de distribution doit être 100% sans contact : paiement sans contact avec carte à puce ou en ligne, livraison ou collecte sans contact direct avec le client.</p>
+
+                <h6><b>Commerces de proximité</b></h6>
+                <p>Notre initiative vise à soutenir les entreprises québécoises qui offre des produits locaux ou essentiels dans un souci de vitalité économique et sociale de nos municipalités régionales, dans le respect de l’environnement.</p>
             </div>
         </div>
         <div class="card">
@@ -118,7 +126,8 @@
                         <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
 
                         <div class="alert alert-info mt-3" role="alert">
-                            Adresse sélectionnée: <strong id="address-value">Aucune</strong>
+                            <p>Merci de vous assurer vous que votre adresse est complète (ex: numéro, rue et ville).</p>
+                            <p>Addresse sélectionnée: <strong id="address-value">Aucune</strong></p>
                         </div>
 
                         <input type="hidden" id="address-data" name="addressjson" />
@@ -196,6 +205,10 @@
 
                     <div class="col-md-9">
                         <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" autocomplete="url" autofocus>
+
+                        <div class="alert alert-secondary mt-3" role="alert">
+                            Vous pouvez entrer n'importe quelle adresse web, <strong>incluant celle de votre page Facebook</strong>! 
+                        </div>
 
                         @error('url')
                             <span class="invalid-feedback" role="alert">
