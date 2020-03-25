@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Fixes `StorePlaces` requests validation.
+
 # # 1.9.0 (2020-03-25)
 - Moved Slack's webhook (for backups) to the env file.
 - Will throw an error if delivery zone is not empty and corresponding delivery type isn't checked.
