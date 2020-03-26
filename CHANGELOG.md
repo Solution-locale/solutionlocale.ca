@@ -3,6 +3,7 @@
 # Next
 - Fixes `StorePlaces` requests validation.
 - Removed closure based routes to facilitate route caching on production servers.
+- Front page shows only a random set of 5 places to accelerate the load time.
 
 # # 1.9.0 (2020-03-25)
 - Moved Slack's webhook (for backups) to the env file.

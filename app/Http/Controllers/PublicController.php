@@ -13,7 +13,7 @@ class PublicController extends Controller
     
     public function index()
     {
-        return view('index')->with(['places' => Place::where('is_approved', true)->get(), 'is_regional' => false]);
+        return view('index')->with(['places' => Place::where('is_approved', true)->get()->random(5), 'is_regional' => false]);
     }
 
     public function indexRegional(Region $region)
