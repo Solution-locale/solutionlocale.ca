@@ -13,19 +13,19 @@ class PublicController extends Controller
     
     public function index()
     {
-        return view('index')->with(['places' => Place::where('is_approved', true)->get(), 'is_regional' => false]);
+        return view('index')->with(['places' => Place::where('is_approved', true)->get()->random(5), 'is_regional' => false]);
     }
 
     public function indexRegional(Region $region)
     {
         
-        return view('index')->with(['places' => $region->places()->where('is_approved', true)->get(), 'selectedRegion' => $region, 'is_regional' => true]);
+        return view('index')->with(['places' => $region->places()->where('is_approved', true)->orderBy('name')->get(), 'selectedRegion' => $region, 'is_regional' => true]);
     }
 
     public function indexRegionalCategories(Region $region, $category)
     {
         $category = Category::where('slug', $category)->first();
-        $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->get();
+        $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy('name')->get();
         
         return view('index')->with(['places' => $places, 'selectedRegion' => $region, 'is_regional' => true, 'category' => $category]);
     }
