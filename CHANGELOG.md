@@ -1,7 +1,10 @@
 # Changelog
 
-# Next
+# # 1.11.0 (2020-03-26)
 - Fixed profil page for moderators throwing auth error.
+- Fixed "all places" link to its own URL rather than index page.
+- Streamlined moderation interface.
+- Simplified menu for non super-admin.
 
 # # 1.10.0 (2020-03-26)
 - Fixes `StorePlaces` requests validation.
