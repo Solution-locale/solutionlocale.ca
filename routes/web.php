@@ -23,13 +23,15 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
 
-    Route::get('/places/moderation', 'PlaceController@moderation')->name('places.moderation');
+    Route::get('/moderation', 'ModerationController@index')->name('moderation.index');
+    Route::get('/moderation/{region:slug}', 'ModerationController@show')->name('moderation.show');
+    Route::get('/moderation/place/{place:slug}/approbation', 'ModerationController@store')->name('moderation.approve');
+    Route::get('/moderation/places/{place:slug}/enlever', 'ModerationController@delete')->name('moderation.delete');
+    Route::post('/moderation/places/{place:slug}/enlever', 'ModerationController@destroy')->name('moderation.destroy');
+
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
     Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
-    Route::get('/places/{place:slug}/approbation', 'PlaceController@approve')->name('places.approve');
-    Route::get('/places/{place:slug}/enlever', 'PlaceController@delete')->name('places.delete');
-    Route::post('/places/{place:slug}/enlever', 'PlaceController@destroy')->name('places.destroy');
     Route::put('/places/{place:slug}', 'PlaceController@update')->name('places.update');
 
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');

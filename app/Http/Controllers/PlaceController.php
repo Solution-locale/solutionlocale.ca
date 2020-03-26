@@ -170,48 +170,4 @@ class PlaceController extends Controller
 
         return redirect('home')->with('status', 'Place modifiée!');
     }
-
-    // display the destroy page.
-    public function delete(Place $place)
-    {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
-        return view("places.delete")->with(['place' => $place]);
-    }
-
-    public function destroy(Place $place)
-    {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
-        $place->delete();
-
-        return redirect('home')->with('status', 'Fiche détruite!');
-    }
-
-    public function moderation()
-    {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
-        $moderationQueue = Place::where('is_approved', false)->get()->groupBy("region.name");
-        
-        return view("places.moderation")->with('queue', $moderationQueue);
-    }
-
-    public function approve(Place $place)
-    {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
-        $place->is_approved = true;
-        $place->save();
-
-        return back();
-    }
 }
