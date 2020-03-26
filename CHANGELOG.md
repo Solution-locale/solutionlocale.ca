@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Fixed profil page for moderators throwing auth error.
+
 # # 1.10.0 (2020-03-26)
 - Fixes `StorePlaces` requests validation.
 - Removed closure based routes to facilitate route caching on production servers.
