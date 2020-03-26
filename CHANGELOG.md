@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# # 1.10.0 (2020-03-26)
 - Fixes `StorePlaces` requests validation.
 - Removed closure based routes to facilitate route caching on production servers.
 - Front page shows only a random set of 5 places to accelerate the load time.
