@@ -4,6 +4,9 @@
         @auth
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
 
+        <a class="nav-link" href="{{ route("moderation.index") }}">Modération de fiches</a>
+
+        @can('super-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Modes de distribution<span class="caret"></span>
@@ -15,7 +18,9 @@
                 </a>
             </div>
         </li>
+        @endcan
 
+        @can('super-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Catégories<span class="caret"></span>
@@ -27,7 +32,9 @@
                 </a>
             </div>
         </li>
+        @endcan
 
+        @can('super-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Places<span class="caret"></span>
@@ -39,6 +46,7 @@
                 </a>
             </div>
         </li>
+        @endcan
         @endauth
     </ul>
 
