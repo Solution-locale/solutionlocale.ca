@@ -5,6 +5,7 @@
 - Removed closure based routes to facilitate route caching on production servers.
 - Front page shows only a random set of 5 places to accelerate the load time.
 - Sort regional and category listing alphabetically.
+- Added a view count for place, counting only non admin and non logged in views.
 
 # # 1.9.0 (2020-03-25)
 - Moved Slack's webhook (for backups) to the env file.

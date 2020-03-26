@@ -22,9 +22,8 @@
         @endif
 
         <div class="card">
+          <h1 class="card-header">{{ $place->name }}</h1>
           <div class="card-body">
-            <h1>{{ $place->name }}</h1>
-
             <h3>
               @foreach($place->delivery as $delivery)
               <span class="badge badge-primary">{{ $delivery->name }}</span>
@@ -61,6 +60,10 @@
 
             <p class="card-text">
               <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a>
+            </p>
+
+            <p class="card-text text-right">
+              Nombre de vue sur la fiche: {{ $place->views }}
             </p>
           </div>
           <div class="card-footer">

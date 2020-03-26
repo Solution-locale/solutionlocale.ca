@@ -7,6 +7,7 @@ use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
@@ -118,7 +119,11 @@ class PlaceController extends Controller
         if (!$place->is_approved && Gate::denies('do-admin')) {
             abort(403);
         }
-        
+
+        if (Gate::denies('do-admin')) {
+            $place->increment('views');
+        }
+
         return view("places.show")->with(['place' => $place]);
     }
 
