@@ -29,7 +29,7 @@
         @if(!$is_regional)
         <div class="col-md-12 text-center mb-5 h5">
           <h3 class="mb-4">Filtrer par région</h3>
-          <a href="/" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route("public.index-provincial") }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
           @foreach(App\Region::all() as $region)
           <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
@@ -48,7 +48,7 @@
       <div class="alert alert-info">Toujours aucune entreprise enregistrée dans cette région! Vous en connaissez une? <b><a href="{{ route('places.create-public') }}">Inscrivez-là!</a></b></div>
       @endif
 
-      @if(!$is_regional && !isset($category))
+      @if(!$is_regional && !isset($category) && !$is_provincial)
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 

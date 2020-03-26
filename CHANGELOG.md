@@ -2,6 +2,7 @@
 
 # Next
 - Fixed profil page for moderators throwing auth error.
+- Fixed "all places" link to its own URL rather than index page.
 
 # # 1.10.0 (2020-03-26)
 - Fixes `StorePlaces` requests validation.

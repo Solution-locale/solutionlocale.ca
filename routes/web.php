@@ -39,6 +39,7 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
 Auth::routes(['register' => false]);
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
+Route::get('/region/province', 'PublicController@indexProvincial')->name('public.index-provincial');
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
 Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
