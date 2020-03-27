@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Http\Filters\PlaceFilter;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param \App\Http\Filters\PlaceFilter
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PlaceFilter $request)
     {
-        //
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $places = Place::filter($request)->get();
+        $regions = Region::all()->pluck('name', 'id');
+
+        return view('places.index', compact('places', 'regions'));
     }
 
     /**
@@ -81,7 +87,6 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
-        
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->addressjson['name'],
@@ -104,6 +109,7 @@ class PlaceController extends Controller
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
+
 
         return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }

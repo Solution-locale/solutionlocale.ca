@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
+    use Filterable;
+
     protected $fillable = [
         'name', 'address', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone'
     ];
