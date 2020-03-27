@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added factories (PR from @rachids)
+
 # # 1.11.0 (2020-03-26)
 - Fixed profil page for moderators throwing auth error.
 - Fixed "all places" link to its own URL rather than index page.
