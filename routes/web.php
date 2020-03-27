@@ -17,8 +17,8 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get("/user/{user}", 'UserController@edit')->name('users.edit');
-    Route::put("/user/{user}", 'UserController@update')->name('users.update');
+    Route::get('/user/{user}', 'UserController@edit')->name('users.edit');
+    Route::put('/user/{user}', 'UserController@update')->name('users.update');
 
     Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
@@ -37,7 +37,7 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
 });
- 
+
 Auth::routes(['register' => false]);
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 

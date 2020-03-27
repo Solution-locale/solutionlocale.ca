@@ -6,9 +6,16 @@ Ce répertoire est une initiative citoyenne rendue possible grâce à la mobilis
 
 Solution locale n'est pas responsable des méthodes d’échange utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs et entrepreneuses à l'égard de la santé de leurs clients et clientes.
 
-## English or french?
+## Contributions
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 The whole projet, code-wise, will be kept and organized in english in an effort to make it open to more and more developer if needed. Speak french if you'd like, we'll just keep commits and changelog in english for now at least!
+
+## Changelog
+See [CHANGELOG.md](CHANGELOG.md).
+
+## Communication language
+The web site is, at least for now, focused for a french speaking population and as such, we think we'll get more francophone collaborators. But since it's not a requirement, we decided to make any issues, commits and comments in english to facilitate future collaboration with any one from the community.
 
 ## Running the project in developper mode
 

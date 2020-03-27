@@ -64,7 +64,7 @@ class UserController extends Controller
             abort(401);
         }
 
-        return view("users.edit")->with(['user' => $user]);
+        return view('users.edit')->with(['user' => $user]);
     }
 
     /**
@@ -79,10 +79,10 @@ class UserController extends Controller
         if (Auth::user()->id != $user->id) {
             abort(401);
         }
-        
+
         $user->password = Hash::make($request->password);
         $user->save();
-        
+
         return redirect()->back()->with('status', 'Profil modifié!');
     }
 

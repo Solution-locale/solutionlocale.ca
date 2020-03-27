@@ -29,7 +29,7 @@ class DeliveryTypeController extends Controller
             abort(401);
         }
 
-        return view("deliveryTypes.create");
+        return view('deliveryTypes.create');
     }
 
     /**
@@ -43,9 +43,9 @@ class DeliveryTypeController extends Controller
         if (Gate::denies('do-admin')) {
             abort(401);
         }
-        
+
         $category = DeliveryType::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
         return redirect('home')->with('status', 'Mode de distribution ajouté!');

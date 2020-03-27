@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Imports;
 
 use App\Place;
@@ -11,12 +12,13 @@ class PlacesImport implements ToCollection, WithHeadingRow
 {
     private $client;
     public $nbsErreur;
-    
+
     public function __construct()
     {
         $this->nbsErreur = 1;
-        $this->client = \Algolia\AlgoliaSearch\PlacesClient::create(config("services.algolia_places.app_id"), config("services.algolia_places.key"));
+        $this->client = \Algolia\AlgoliaSearch\PlacesClient::create(config('services.algolia_places.app_id'), config('services.algolia_places.key'));
     }
+
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
@@ -38,12 +40,12 @@ class PlacesImport implements ToCollection, WithHeadingRow
                     $place = Place::create([
                         'name' => $row['nom_de_lentreprise'],
                         'address' => $search['locale_names']['default'][0],
-                        'province' => "Québec",
+                        'province' => 'Québec',
                         'region_id' => $region->id,
-                        'subRegion' => !isset($search['county']) ? $search['city']['default'][0] : $search['county']['default'][0],
+                        'subRegion' => ! isset($search['county']) ? $search['city']['default'][0] : $search['county']['default'][0],
                         'city' => $search['city']['default'][0],
                         'countryCode' => $search['country_code'],
-                        'postalCode' => !isset($search['postcode']) ? $row['code_postal'] : $search['postcode'][0],
+                        'postalCode' => ! isset($search['postcode']) ? $row['code_postal'] : $search['postcode'][0],
                         'phoneNumber' => $row['numero_de_telephone'],
                         'email' => $row['courriel'],
                         'url' => $row['site_web'],
