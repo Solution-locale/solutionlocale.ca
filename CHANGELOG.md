@@ -1,8 +1,8 @@
 # Changelog
 
-# Next
+# #  (2020-03-27)
 - Added factories (PR from @rachids)
-- Added a button to delete places from the card listing
+- Added a button to delete places from the card listing to compensate for lack of mod panel on show places
 
 # # 1.11.0 (2020-03-26)
 - Fixed profil page for moderators throwing auth error.
