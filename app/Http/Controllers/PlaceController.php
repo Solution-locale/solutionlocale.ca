@@ -70,6 +70,7 @@ class PlaceController extends Controller
             'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);
@@ -98,6 +99,7 @@ class PlaceController extends Controller
             'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);

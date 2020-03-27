@@ -129,7 +129,16 @@
 
                         <div class="alert alert-info mt-3" role="alert">
                             <p>Merci de vous assurer vous que votre adresse est complète (ex: numéro, rue et ville).</p>
-                            <p>Addresse sélectionnée: <strong id="address-value">Aucune</strong></p>
+                            <p>Adresse sélectionnée: <strong id="address-value">Aucune</strong></p>
+                        </div>
+
+                        <div class="alert alert-info mt-3" role="alert">
+                            <p>Votre adresse n'a pas besoin d'être affichée ? (Commerce en ligne, etc.)</p>
+                            
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="hideAddress" type="checkbox" id="hideAddressCheckbox">
+                                <label class="form-check-label" for="hideAddressCheckbox">Cacher l'adresse du commerce</label>
+                            </div>
                         </div>
 
                         <input type="hidden" id="address-data" name="addressjson" />
