@@ -80,7 +80,7 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
-            'is_regional' => false, 
+            'is_regional' => false,
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
             'is_search' => false,
