@@ -42,11 +42,11 @@ class LocalTestingSeeder extends Seeder
         App\Region::create(['name' => 'Montérégie']);
         App\Region::create(['name' => 'Centre-du-Québec']);
 
-        $place = App\Place::create(['name' => "Miel Beaulieu", 'address' => '224 Rue de la Petite-Pointe', 'province' => 'Québec', 'subRegion' => 'Les Chenaux', 'city' => 'Sainte-Geneviève-de-Batiscan', 'countryCode' => 'ca', 'postalCode' => 'G0X 2R0', 'long' => '-72.3445000', 'lat' => '46.5318000', 'phoneNumber' => "819-489-0184", "email" => "mielbeaulieu@gmail.com", 'region_id' => $region->id]);
+        $place = App\Place::create(['name' => 'Miel Beaulieu', 'address' => '224 Rue de la Petite-Pointe', 'province' => 'Québec', 'subRegion' => 'Les Chenaux', 'city' => 'Sainte-Geneviève-de-Batiscan', 'countryCode' => 'ca', 'postalCode' => 'G0X 2R0', 'long' => '-72.3445000', 'lat' => '46.5318000', 'phoneNumber' => '819-489-0184', 'email' => 'mielbeaulieu@gmail.com', 'region_id' => $region->id]);
         $place->categories()->sync($category->id);
         $place->delivery()->sync($delivery->id);
-        $place->types()->sync([1,2]);
+        $place->types()->sync([1, 2]);
 
-        App\User::create(['name' => "Jean-Philippe Murray", "email" => "curieuxmurray@gmail.com", "password" => Illuminate\Support\Facades\Hash::make('secret')]);
+        App\User::create(['name' => 'Jean-Philippe Murray', 'email' => 'curieuxmurray@gmail.com', 'password' => Illuminate\Support\Facades\Hash::make('secret')]);
     }
 }
