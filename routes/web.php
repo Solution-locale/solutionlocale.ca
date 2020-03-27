@@ -28,7 +28,10 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/moderation/place/{place:slug}/approbation', 'ModerationController@store')->name('moderation.approve');
     Route::get('/moderation/places/{place:slug}/enlever', 'ModerationController@delete')->name('moderation.delete');
     Route::post('/moderation/places/{place:slug}/enlever', 'ModerationController@destroy')->name('moderation.destroy');
+    Route::get('/moderation/places/{place:slug}/fermer', 'ModerationController@close')->name('moderation.close');
+    Route::post('/moderation/places/{place:slug}/fermer', 'ModerationController@closing')->name('moderation.closing');
 
+    Route::get('/places', 'PlaceController@index')->name('places.index');
     Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
     Route::post('/places', 'PlaceController@store')->name('places.store');
     Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
@@ -37,14 +40,15 @@ Route::middleware(['auth', 'can:do-admin'])->group(function () {
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
 });
- 
+
 Auth::routes(['register' => false]);
 Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
 
+Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
 Route::get('/region/province', 'PublicController@indexProvincial')->name('public.index-provincial');
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
 Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
-Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
+Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public');
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
 Route::get('/', 'PublicController@index')->name('public.index');
