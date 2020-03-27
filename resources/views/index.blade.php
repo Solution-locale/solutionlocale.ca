@@ -44,6 +44,12 @@
         @endif
       </div>
 
+      @if (session('status'))
+          <div class="alert alert-success text-center" role="alert">
+              {{ session('status') }}
+          </div>
+      @endif
+
       @if($places->isEmpty())
       <div class="alert alert-info">Toujours aucune entreprise enregistrée dans cette région! Vous en connaissez une? <b><a href="{{ route('places.create-public') }}">Inscrivez-là!</a></b></div>
       @endif

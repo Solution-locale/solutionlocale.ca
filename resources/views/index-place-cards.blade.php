@@ -20,9 +20,10 @@
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">Plus de détails</a>
-          @auth()
-          <a class="btn btn-sm btn-outline-danger" href="{{ route('places.edit', ['place' => $place->slug]) }}">Modifier la fiche</a>
-          @endauth
+          @can('do-admin')
+          <a class="btn btn-sm btn-outline-primary" href="{{ route('places.edit', ['place' => $place->slug]) }}">✏️</a>
+          <a class="btn btn-sm btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}">🗑</a>
+          @endcan
         </div>
       </div>
     </div>
