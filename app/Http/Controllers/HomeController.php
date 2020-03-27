@@ -27,7 +27,7 @@ class HomeController extends Controller
         if (Gate::denies('do-admin')) {
             abort(401);
         }
-        
+
         return view('home');
     }
 }
