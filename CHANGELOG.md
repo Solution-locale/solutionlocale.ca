@@ -1,6 +1,6 @@
 # Changelog
 
-# #  (2020-03-27)
+# # 1.12.0 (2020-03-27)
 - Added factories (PR from @rachids)
 - Added a button to delete places from the card listing to compensate for lack of mod panel on show places
 
