@@ -2,6 +2,7 @@
 
 # Next
 - Added factories (PR from @rachids)
+- Added a button to delete places from the card listing
 
 # # 1.11.0 (2020-03-26)
 - Fixed profil page for moderators throwing auth error.
