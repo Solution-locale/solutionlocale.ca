@@ -38,4 +38,13 @@ class Place extends Model
     {
         return "{$this->address}, {$this->city}, {$this->province}, {$this->postalCode}";
     }
+
+    /**
+     * Method returning the page title of the object
+     * @return string
+     */
+    public function getPageTitle(): string 
+    {
+        return $this->name . ' - Entreprise - ' . config('app.name', '');
+    }
 }

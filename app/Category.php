@@ -14,4 +14,14 @@ class Category extends Model
     {
         return $this->belongsToMany(Place::class);
     }
+
+
+    /**
+     * Method returning the page title of the object
+     * @return string
+     */
+    public function getPageTitle(): string
+    {
+        return $this->name . ' - Catégorie - ' . config('app.name', '');
+    }
 }
