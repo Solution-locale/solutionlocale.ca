@@ -162,6 +162,7 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
+        $place->hide_address = $request->boolean('hideAddress');
         $place->deliveryZone = $request->deliveryZone;
         $place->save();
 

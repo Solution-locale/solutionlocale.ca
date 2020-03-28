@@ -2,6 +2,7 @@
 
 ## Next
 - Display region on place.show.
+- Added ability to hide address from places.
 
 ## 1.13.0 (2020-03-28)
 - Added docker file for devs
