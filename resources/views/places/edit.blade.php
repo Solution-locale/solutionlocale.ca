@@ -102,7 +102,7 @@
 
                             <div class="col-md-9">
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" value="{{ $place->hide_address }}" @if($place->hide_address) CHECKED @endif>
+                                  <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" @if($place->hide_address) CHECKED @endif>
                                 </div>
                             </div>
                         </div>
