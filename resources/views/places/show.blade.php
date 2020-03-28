@@ -5,7 +5,10 @@
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
         <div class="card">
-          <h1 class="card-header">{{ $place->name }}</h1>
+          <div class="card-header">
+            <h1>{{ $place->name }}</h1>
+            <h3>{{ $place->region->name }}</h3>
+          </div>
           <div class="card-body">
             <h3>
               @foreach($place->delivery as $delivery)
@@ -15,7 +18,7 @@
 
             <h4>
               @foreach($place->categories as $category)
-              <span class="badge badge-secondary">{{ $category->name }}</span>
+              <span class="badge badge-secondary">{{ $category->name }}</span> 
               @endforeach
             </h4>
 
@@ -29,9 +32,11 @@
               <b>Zone de livraison: </b> {{ $place->deliveryZone }}
             </p>
 
-            <p class="card-text">
-              <b>Adresse :</b> <a href="https://maps.google.com/?q={{ $place->complete_address }}" target="_blank">{{ $place->complete_address }}</a>
-            </p>
+            @if (!$place->hide_address)
+              <p class="card-text">
+                <b>Adresse :</b> <a href="https://maps.google.com/?q={{ $place->complete_address }}" target="_blank">{{ $place->complete_address }}</a>
+              </p>
+            @endif
 
             <p class="card-text">
               <b>Téléphone: </b> {{ $place->phoneNumber }}
@@ -42,7 +47,7 @@
             </p>
 
             <p class="card-text">
-              <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a>
+              <b>Site web: </b> <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a>
             </p>
 
             <p class="card-text text-right">
