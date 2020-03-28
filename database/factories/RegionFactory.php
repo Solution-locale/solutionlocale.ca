@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Region::class, function (Faker $faker) {
     return [
         'name'  =>  $faker->name,
-        'slug'  =>  $faker->slug
+        'slug'  =>  $faker->slug,
     ];
 });

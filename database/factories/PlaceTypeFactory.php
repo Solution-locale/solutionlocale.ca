@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(PlaceType::class, function (Faker $faker) {
     return [
-        'name'  =>  $faker->words(7, true)
+        'name'  =>  $faker->words(7, true),
     ];
 });

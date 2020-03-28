@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Gate;
 
 class ModerationController extends Controller
 {
-    
     public function index()
     {
         if (Gate::denies('do-admin')) {
             abort(401);
         }
-        
-        return view("moderation.index");
+
+        return view('moderation.index');
     }
 
     public function show(Region $region)
@@ -25,7 +24,7 @@ class ModerationController extends Controller
             abort(401);
         }
 
-        return view("moderation.show")->with(['queue' => $region->places()->where('is_approved', false)->get(), 'region' => $region]);
+        return view('moderation.show')->with(['queue' => $region->places()->where('is_approved', false)->get(), 'region' => $region]);
     }
 
     public function store(Place $place)
@@ -47,7 +46,7 @@ class ModerationController extends Controller
             abort(401);
         }
 
-        return view("moderation.delete")->with(['place' => $place]);
+        return view('moderation.delete')->with(['place' => $place]);
     }
 
     public function destroy(Place $place)

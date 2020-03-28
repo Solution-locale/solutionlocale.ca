@@ -33,7 +33,7 @@ class CategoryController extends Controller
             abort(401);
         }
 
-        return view("categories.create");
+        return view('categories.create');
     }
 
     /**
@@ -47,9 +47,9 @@ class CategoryController extends Controller
         if (Gate::denies('do-admin')) {
             abort(401);
         }
-        
+
         $category = Category::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
         return redirect('home')->with('status', 'Catégorie ajoutée!');
