@@ -51,7 +51,7 @@
                 @honeypot
 
                 <div class="form-group row">
-                    <label for="name" class="col-md-3 col-form-label text-md-right">Nom *</label>
+                    <label for="name" class="col-md-3 col-form-label text-md-right">Nom de votre entreprise *</label>
 
                     <div class="col-md-9">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
