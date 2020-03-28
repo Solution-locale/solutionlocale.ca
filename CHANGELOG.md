@@ -1,5 +1,8 @@
 # Changelog
 
+## Next
+- Display region on place.show.
+
 ## 1.13.0 (2020-03-28)
 - Added docker file for devs
 - Precised that "name" is the name of the place in the "add place" page, because people 🤷‍♂️

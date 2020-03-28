@@ -5,7 +5,10 @@
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
         <div class="card">
-          <h1 class="card-header">{{ $place->name }}</h1>
+          <div class="card-header">
+            <h1>{{ $place->name }}</h1>
+            <h3>{{ $place->region->name }}</h3>
+          </div>
           <div class="card-body">
             <h3>
               @foreach($place->delivery as $delivery)
@@ -15,7 +18,7 @@
 
             <h4>
               @foreach($place->categories as $category)
-              <span class="badge badge-secondary">{{ $category->name }}</span>
+              <span class="badge badge-secondary">{{ $category->name }}</span> 
               @endforeach
             </h4>
 
