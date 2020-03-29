@@ -1,8 +1,12 @@
 # Changelog
 
+# 1.15.0 (2020-03-29)
+- Added a moderation panel back to places show.
+- Cleaned up authorization gates and granulated permissions.
+
 ## 1.14.0 (2020-03-28)
 - Display region on place.show.
-- Added ability to hide address from places.
+- Added ability to hide address from places (by @desjarlaisdumaishugo).
 
 ## 1.13.0 (2020-03-28)
 - Added docker file for devs

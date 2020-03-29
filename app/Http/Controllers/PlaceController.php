@@ -29,7 +29,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -49,7 +49,7 @@ class PlaceController extends Controller
      */
     public function store(StorePlaces $request)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -117,11 +117,11 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        if (! $place->is_approved && Gate::denies('do-admin')) {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
             abort(403);
         }
 
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             $place->increment('views');
         }
 
@@ -136,7 +136,7 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -152,7 +152,7 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
