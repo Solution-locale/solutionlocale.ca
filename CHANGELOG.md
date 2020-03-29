@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 1.15.0 (2020-03-29)
 - Added a moderation panel back to places show.
 - Cleaned up authorization gates and granulated permissions.
 
