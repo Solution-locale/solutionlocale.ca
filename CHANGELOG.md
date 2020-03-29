@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 1.15.1 (2020-03-29)
 - Corrected permission needed to show link to backend
 
 # 1.15.0 (2020-03-29)
