@@ -2,6 +2,7 @@
 
 # Next
 - Added a moderation panel back to places show.
+- Cleaned up authorization gates and granulated permissions.
 
 ## 1.14.0 (2020-03-28)
 - Display region on place.show.

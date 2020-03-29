@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'is_admin', 'is_super_admin', 'is_moderator'
     ];
 
     /**
@@ -35,5 +35,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_moderator' => 'boolean',
+        'is_admin' => 'boolean',
+        'is_super_admin' => 'boolean',
     ];
 }

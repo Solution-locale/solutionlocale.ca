@@ -4,7 +4,7 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
-        @can("do-admin")
+        @can("do-moderation")
         <div class="card border-info mb-1">
           <div class="card-header">Options de modération</div>
           <div class="card-body text-info">
