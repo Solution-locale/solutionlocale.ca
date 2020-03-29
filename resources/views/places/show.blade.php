@@ -9,7 +9,6 @@
           <div class="card-header">Options de modération</div>
           <div class="card-body text-info">
             <div class="btn-group" role="group" aria-label="Basic example">
-              <a class="btn btn-outline-primary" href="{{ route("places.show", $place->slug) }}" role="button" target="_blank">👀</a>
               <a class="btn btn-outline-primary" href="{{ route("places.edit", $place->slug) }}" role="button" target="_blank">✏️</a>
               @if(!$place->is_approved)
               <a class="btn btn-outline-primary" href="{{ route('moderation.approve', ['place' => $place->slug]) }}" role="button">✅</a>
