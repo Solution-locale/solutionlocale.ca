@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added a moderation panel back to places show.
+
 ## 1.14.0 (2020-03-28)
 - Display region on place.show.
 - Added ability to hide address from places (by @desjarlaisdumaishugo).

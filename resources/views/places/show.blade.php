@@ -4,6 +4,21 @@
 <main role="main">
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
+        @can("do-admin")
+        <div class="card border-info mb-1">
+          <div class="card-header">Options de modération</div>
+          <div class="card-body text-info">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a class="btn btn-outline-primary" href="{{ route("places.show", $place->slug) }}" role="button" target="_blank">👀</a>
+              <a class="btn btn-outline-primary" href="{{ route("places.edit", $place->slug) }}" role="button" target="_blank">✏️</a>
+              @if(!$place->is_approved)
+              <a class="btn btn-outline-primary" href="{{ route('moderation.approve', ['place' => $place->slug]) }}" role="button">✅</a>
+              @endif
+              <a class="btn btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
+            </div>
+          </div>
+        </div>
+        @endcan
         <div class="card">
           <div class="card-header">
             <h1>{{ $place->name }}</h1>
