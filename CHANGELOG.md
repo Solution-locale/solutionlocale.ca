@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added maps! (by @desjarlaisdumaishugo)
+
 # 1.16.0 (2020-03-30)
 - Removed redundent show button on show page's moderation tool.
 - Change slugs on name update.
