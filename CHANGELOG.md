@@ -1,5 +1,24 @@
 # Changelog
 
+# Next
+- Removed redundent show button on show page's moderation tool.
+- Change slugs on name update.
+
+# 1.15.1 (2020-03-29)
+- Corrected permission needed to show link to backend
+
+# 1.15.0 (2020-03-29)
+- Added a moderation panel back to places show.
+- Cleaned up authorization gates and granulated permissions.
+
+## 1.14.0 (2020-03-28)
+- Display region on place.show.
+- Added ability to hide address from places (by @desjarlaisdumaishugo).
+
+## 1.13.0 (2020-03-28)
+- Added docker file for devs
+- Precised that "name" is the name of the place in the "add place" page, because people 🤷‍♂️
+
 ## 1.12.0 (2020-03-27)
 - Added factories (PR from @rachids)
 - Added a button to delete places from the card listing to compensate for lack of mod panel on show places

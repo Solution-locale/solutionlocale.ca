@@ -4,9 +4,11 @@
         @auth
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
 
+        @can('do-moderation')
         <a class="nav-link" href="{{ route("moderation.index") }}">Modération de fiches</a>
+        @endcan
 
-        @can('super-admin')
+        @can('do-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Modes de distribution<span class="caret"></span>
@@ -18,9 +20,7 @@
                 </a>
             </div>
         </li>
-        @endcan
 
-        @can('super-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Catégories<span class="caret"></span>
@@ -34,7 +34,8 @@
         </li>
         @endcan
 
-        @can('super-admin')
+        {{-- Removed until we can streamline and fix places creation process --}}
+        {{-- @can('do-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Places<span class="caret"></span>
@@ -46,7 +47,8 @@
                 </a>
             </div>
         </li>
-        @endcan
+        @endcan --}}
+
         @endauth
     </ul>
 

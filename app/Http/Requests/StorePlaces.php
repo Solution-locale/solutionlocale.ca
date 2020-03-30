@@ -49,6 +49,7 @@ class StorePlaces extends FormRequest
             'region_id' => ['required'],
             'email' => ['nullable', 'email'],
             'url' => ['nullable', 'url'],
+            'hide_address' => ['boolean'],
             'phoneNumber' => ['nullable', 'phone:CA'],
             'additionnalPhoneNumber' => ['nullable', 'phone:CA'],
             'deliveryZone' => [
