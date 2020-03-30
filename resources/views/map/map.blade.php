@@ -61,7 +61,7 @@ Carte interactive - {{ config('app.name', '') }}
             }
 
             innerHTML += '<div class="badge-container">';
-                
+
             if(place.categories && place.categories.length > 0)
             {
                 for(var i = 0; i < place.categories.length; i++)
@@ -69,7 +69,7 @@ Carte interactive - {{ config('app.name', '') }}
                     var category = place.categories[i];
                     innerHTML += '<div class="badge badge-primary">'+category.name+'</div>';
                 }
-                
+
             }
 
             if(place.delivery && place.delivery.length > 0)
@@ -93,7 +93,7 @@ Carte interactive - {{ config('app.name', '') }}
                 innerHTML += '<a href="/entreprise/'+place.slug+'"  class="flex-grow-1" title="Fiche de l\'entreprise"><i class="fas fa-address-card"></i></a>';
             innerHTML += '</div>';
 
-            
+
 
             return innerHTML;
         }
@@ -253,9 +253,9 @@ Carte interactive - {{ config('app.name', '') }}
                                 .setHTML(generateLoadingHTML())
                                 .addTo(map);
 
-                                $.getJSON("/entreprise/json/"+placeJson.slug, function(emp) { 
+                                $.getJSON("/entreprise/json/"+placeJson.slug, function(emp) {
                                     popup.setHTML(generatePlaceHTML(emp));
-                                }); 
+                                });
                         });
 
                         // Change the cursor to a pointer when the mouse is over the places layer.
