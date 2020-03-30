@@ -174,6 +174,7 @@ Nouvelle entreprise - {{ config('app.name', '') }}
 
                     <div class="col-md-9">
                         <select class="custom-select" name="region_id" id="region">
+                            <option>Choisir une région</option>
                             @foreach(App\Region::all() as $region)
                             <option value="{{ $region->id }}" @if(old('region_id') == $region->id) SELECTED @endif>{{ $region->name }}</option>
                             @endforeach
