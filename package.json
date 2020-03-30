@@ -23,7 +23,5 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "dependencies": {
-        "places.js": "^1.18.1"
-    }
+    "dependencies": {}
 }
