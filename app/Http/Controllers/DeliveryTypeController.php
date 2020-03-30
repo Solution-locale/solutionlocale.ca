@@ -25,10 +25,6 @@ class DeliveryTypeController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         return view('deliveryTypes.create');
     }
 
@@ -40,10 +36,6 @@ class DeliveryTypeController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         $category = DeliveryType::create([
             'name' => $request->name,
         ]);

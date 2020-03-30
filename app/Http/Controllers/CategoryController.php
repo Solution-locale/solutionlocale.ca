@@ -15,10 +15,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         $categories = Category::where('active','=',1)->get();
 
         return view('categories.index', compact('categories'));
@@ -31,9 +27,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
         $categories = Category::where('active','=',1)->get();
         return view("categories.create", compact('categories'));
     }
@@ -47,10 +40,6 @@ class CategoryController extends Controller
      */
     public function store(StoreCategories $request)
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         $category = new Category(request([
                 'name',
                 'parent_id'
