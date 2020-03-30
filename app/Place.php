@@ -48,4 +48,26 @@ class Place extends Model
         $midName = @$this->region->name ? " - {$this->region->name} - " : ' - ';
         return "{$this->name}{$midName}".config('app.name', '');
     }
+
+    /**
+     * Method for search places by keywords.
+     * @param string $q
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public static function searchByKeyword($q) {
+        $like = '%'.str_replace(' ', '%', $q).'%';
+        $search = 'is_approved and (name like ? or address like ? or city like ?)';
+        $bindings = [$like, $like, $like];
+        return Parent::whereRaw($search, $bindings)->orderBy('name')->get();
+    }
+
+    /**
+     * Method for counting places corresponding some keywords.
+     * @param string $q
+     * @return int
+     */
+    public static function countByKeyword($q) {
+        $places = self::searchByKeyword($q);
+        return count($places);
+    }
 }
