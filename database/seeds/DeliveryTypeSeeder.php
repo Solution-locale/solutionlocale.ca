@@ -12,8 +12,9 @@ class DeliveryTypeSeeder extends Seeder
      */
     public function run()
     {
-        DeliveryType::create(['name' => 'Cueillette sans contact']);
+        DeliveryType::create(['name' => 'Collecte sans contact sur place']);
         DeliveryType::create(['name' => 'Livraison à domicile sans contact']);
         DeliveryType::create(['name' => 'Livraison par la poste']);
+        DeliveryType::create(['name' => 'Service offert en ligne uniquement']);
     }
 }

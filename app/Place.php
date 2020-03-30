@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     protected $fillable = [
-        'name', 'address', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone', 'hide_address',
+        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone', 'hide_address',
     ];
 
     protected $hidden = [
@@ -43,7 +43,7 @@ class Place extends Model
      * Method returning the page title of the object.
      * @return string
      */
-    public function getPageTitle(): string 
+    public function getPageTitle(): string
     {
         $midName = @$this->region->name ? " - {$this->region->name} - " : ' - ';
         return "{$this->name}{$midName}".config('app.name', '');
