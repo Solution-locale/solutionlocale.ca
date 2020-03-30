@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PlaceType extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
     ];
-    
+
     public function places()
     {
         return $this->belongsToMany(Place::class);

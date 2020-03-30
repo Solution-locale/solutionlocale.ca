@@ -1,12 +1,12 @@
 # Contributing
 
-Open issues and PRs !
+New issues and PRs are welcomed, but:
 
-Contributions and pull requests are welcome, but we ask the following guidelines are respected;
+- If you want to tackle one of the already opened issue or item on the projet's todo list, please mention it in comment. We're getting help from multiple sources and we want to avoid multiple people working on the same thing!
+
+- We ask the following guidelines are respected;
 
     the PR adds a compelling new feature
     OR addresses a known / open issue
     OR improves reliability / robustness
     don't update version num - will be incremented when the PR is merged
-
-If you want to be more involved in the _day to day_, contact us, we'll be happy to have you and add you to our Slack!

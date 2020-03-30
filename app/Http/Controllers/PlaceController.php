@@ -35,16 +35,16 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
-        return view("places.create");
+        return view('places.create');
     }
 
     public function createPublic()
     {
-        return view("add");
+        return view('add');
     }
 
     /**
@@ -55,27 +55,28 @@ class PlaceController extends Controller
      */
     public function store(StorePlaces $request)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->addressjson['name'],
-            'province' => !isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
             'region_id' => $request->region_id,
-            'subRegion' => !isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
+            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
             'city' => $request->addressjson['city'],
-            'countryCode' => !isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => !isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
+            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
+            'postalCode' => ! isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => !isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => !isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
+            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
+            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
-            'deliveryZone' => $request->deliveryZone
+            'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);
@@ -90,20 +91,21 @@ class PlaceController extends Controller
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->addressjson['name'],
-            'province' => !isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
             'region_id' => $request->region_id,
-            'subRegion' => !isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
+            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
             'city' => $request->addressjson['city'],
-            'countryCode' => !isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => !isset($request->addressjson['postcode']) ? null : $request->addressjson['postcode'],
+            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
+            'postalCode' => ! isset($request->addressjson['postcode']) ? null : $request->addressjson['postcode'],
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => !isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => !isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
+            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
+            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
-            'deliveryZone' => $request->deliveryZone
+            'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);
@@ -122,15 +124,15 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        if (!$place->is_approved && Gate::denies('do-admin')) {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
             abort(403);
         }
 
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             $place->increment('views');
         }
 
-        return view("places.show")->with(['place' => $place]);
+        return view('places.show')->with(['place' => $place]);
     }
 
     /**
@@ -141,11 +143,11 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
-        return view("places.edit")->with(['place' => $place]);
+        return view('places.edit')->with(['place' => $place]);
     }
 
     /**
@@ -157,7 +159,7 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -167,6 +169,7 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
+        $place->hide_address = $request->boolean('hideAddress');
         $place->deliveryZone = $request->deliveryZone;
         $place->save();
 

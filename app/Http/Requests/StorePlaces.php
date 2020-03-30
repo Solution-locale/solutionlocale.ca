@@ -23,7 +23,6 @@ class StorePlaces extends FormRequest
      */
     protected function prepareForValidation()
     {
-
         $data = $this->input();
         $isDeliveryTypeSet = isset($data['deliveryType']);
 
@@ -50,23 +49,22 @@ class StorePlaces extends FormRequest
             'region_id' => ['required'],
             'email' => ['nullable', 'email'],
             'url' => ['nullable', 'url'],
+            'hide_address' => ['boolean'],
             'phoneNumber' => ['nullable', 'phone:CA'],
             'additionnalPhoneNumber' => ['nullable', 'phone:CA'],
             'deliveryZone' => [
                 function ($attribute, $value, $fail) {
-                    
-                    $is_house_delivery = !is_null($this->input('deliveryType')) && in_array('2', $this->input('deliveryType'));
+                    $is_house_delivery = ! is_null($this->input('deliveryType')) && in_array('2', $this->input('deliveryType'));
 
                     if (empty($value) && $is_house_delivery) {
-                        $fail("Comme vous offrez la livraison à domicile, vous devez renseigner le secteur desservi.");
+                        $fail('Comme vous offrez la livraison à domicile, vous devez renseigner le secteur desservi.');
                     }
 
-                    
-                    if (!$is_house_delivery && !is_null($this->input('deliveryZone'))) {
+                    if (! $is_house_delivery && ! is_null($this->input('deliveryZone'))) {
                         $fail("Le champs « secteur desservi pour la livraison à domicile » ne doit être utilisé que si l'option « Livraison à domicile sans contact » est sélectionnée.");
                     }
                 },
-            ]
+            ],
         ];
     }
 
@@ -82,7 +80,7 @@ class StorePlaces extends FormRequest
             'email.email' => "Votre adresse courriel est d'un format invalide. Veuillez la vérifier.",
             'url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em>.",
             'phoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
-            'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional."
+            'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
         ];
     }
 }

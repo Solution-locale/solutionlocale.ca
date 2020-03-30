@@ -17,9 +17,9 @@
               @auth
               <h4 class="text-white">Meta</h4>
               <ul class="list-unstyled">
-                @if(Auth::check() && Auth::user()->is_admin)
+                @can("access-backend")
                 <li><a href="/home" class="text-white">Administration</a></li>
-                @endif
+                @endcan
               </ul>
               @endauth
             </div>
