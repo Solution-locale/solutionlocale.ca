@@ -47,4 +47,6 @@ Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCa
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
+Route::get('/entreprise/json/{place:slug}', 'PlaceController@showJson')->name('places.showjson');
+Route::get('/carte', 'MapController@show')->name('map.show');
 Route::get('/', 'PublicController@index')->name('public.index');
