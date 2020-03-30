@@ -7,6 +7,7 @@
 - Added region and place name to `<title>` (by @carpentierma ).
 - Places submission now uses own fields to input rather than Algolia that is, sometimes, unreliable.
 - Updated information text on place submission page.
+- Changed seeder to reflect latest changes in some database informations.
 
 # 1.15.1 (2020-03-29)
 - Corrected permission needed to show link to backend
