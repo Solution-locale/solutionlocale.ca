@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Ajouter une nouvelle catégorie</div>
+                    <div class="card-header">Modifier {{ $category->name }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -21,7 +21,6 @@
                                 'category' => new App\Category,
                                 'btn_text' => 'Envoyer'
                             ])
-
                         </form>
                     </div>
                 </div>
