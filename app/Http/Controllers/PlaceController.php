@@ -29,7 +29,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -49,7 +49,7 @@ class PlaceController extends Controller
      */
     public function store(StorePlaces $request)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -70,6 +70,7 @@ class PlaceController extends Controller
             'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);
@@ -98,6 +99,7 @@ class PlaceController extends Controller
             'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
+            'hide_address' => $request->boolean('hideAddress'),
         ]);
 
         $place->categories()->sync($request->categories);
@@ -115,11 +117,11 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        if (! $place->is_approved && Gate::denies('do-admin')) {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
             abort(403);
         }
 
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             $place->increment('views');
         }
 
@@ -134,7 +136,7 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -150,7 +152,7 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        if (Gate::denies('do-admin')) {
+        if (Gate::denies('do-moderation')) {
             abort(401);
         }
 
@@ -160,6 +162,7 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
+        $place->hide_address = $request->boolean('hideAddress');
         $place->deliveryZone = $request->deliveryZone;
         $place->save();
 

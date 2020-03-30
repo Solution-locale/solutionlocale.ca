@@ -98,6 +98,16 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="hideAddress" class="col-md-3 col-form-label text-md-right">Adresse cachée ?</label>
+
+                            <div class="col-md-9">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" @if($place->hide_address) CHECKED @endif>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="region_id" class="col-md-3 col-form-label text-md-right">Région administrative</label>
 
                             <div class="col-md-9">
