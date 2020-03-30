@@ -14,4 +14,13 @@ class Region extends Model
     {
         return $this->hasMany(Place::class);
     }
+
+    /**
+     * Method returning the page title of the object.
+     * @return string
+     */
+    public function getPageTitle(): string 
+    {
+        return $this->name.' - '.config('app.name', '');
+    }
 }
