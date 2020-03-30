@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Place;
 use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
@@ -30,10 +31,11 @@ class Region extends Model
      * @return Illuminate\Database\Eloquent\Collection
      */
     public function searchPlacesByKeyword($q) {
-        $like = '%'.str_replace(' ', '%', $q).'%';
-        $search = 'is_approved and (name like ? or address like ? or city like ?)';
-        $bindings = [$like, $like, $like];
-        return $this->places()->whereRaw($search, $bindings)->orderBy('name')->get();
+        $regionId = $this->id;
+        $places = Place::searchByKeyword($q)->filter(function($place) use($regionId) {
+            return $place->region_id === $regionId;
+        });
+        return $places;
     }
 
     /**
