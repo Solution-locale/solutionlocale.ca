@@ -4,6 +4,7 @@
 - Removed redundent show button on show page's moderation tool.
 - Change slugs on name update.
 - Only include Google Analytics code on `production`.
+- Added region and place name to `<title>` (by @carpentierma ).
 
 # 1.15.1 (2020-03-29)
 - Corrected permission needed to show link to backend
