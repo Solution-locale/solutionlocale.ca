@@ -1,3 +1,4 @@
+window.mapboxgl = require('mapbox-gl');
 window._ = require('lodash');
 
 /**
