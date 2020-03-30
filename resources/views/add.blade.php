@@ -1,5 +1,9 @@
 @extends('layouts.public')
 
+@section('page-title')
+Nouvelle entreprise - {{ config('app.name', '') }}
+@endsection
+
 @section('content')
 <main role="main">
   <div class="album py-5 bg-light">

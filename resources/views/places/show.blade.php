@@ -1,5 +1,9 @@
 @extends('layouts.public')
 
+@section('page-title')
+{{ $place->getPageTitle() }}
+@endsection
+
 @section('content')
 <main role="main">
   <div class="album py-5 bg-light">
