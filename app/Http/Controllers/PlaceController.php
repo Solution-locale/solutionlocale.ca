@@ -129,6 +129,33 @@ class PlaceController extends Controller
     }
 
     /**
+     * Display the specified resource as JSON
+     *
+     * @param  \App\Place  $place
+     * @return \Illuminate\Http\Response
+     */
+    public function showJson(Place $place)
+    {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
+            abort(403);
+        }
+
+        if (Gate::denies('do-moderation')) {
+            $place->increment('views');
+        }
+
+        if($place->hide_address)
+        {
+            unset($place->address);
+        }
+
+        $place->categories = $place->categories->toArray();
+        $place->delivery = $place->delivery->toArray();
+
+        return $place;
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Place  $place
