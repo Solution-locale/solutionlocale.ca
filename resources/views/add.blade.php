@@ -13,15 +13,16 @@ Nouvelle entreprise - {{ config('app.name', '') }}
                 <b>Informations importantes</b>
             </div>
             <div class="card-body">
-                <h6><b>Produits essentiels uniquement</b></h6>
-                <p>Afin d'être affichés sur le site, les produits offerts doivent appartenir à l’une des catégories suivantes : Produits d’épicerie - Mets cuisinés - Repas de restaurant - Médicaments et produits de pharmacie - Hygiène et produits naturels. </p>
-                <p>Malgré les demandes, nous ne comptons pas élargir les catégories pour le moment. Notre initiative citoyenne repose sur des ressources limitées et nous nous concentrons sur les produits essentiels pour la population en isolement. Merci de votre compréhension! </p>
+                <h6><b>Commerces et services essentiels uniquement</b></h6>
+                <p>Afin d'être affichés sur le site, les produits et services offerts doivent appartenir aux catégories proposées. Cette liste est inspirée de la liste des commerces essentiels fournie par le gouvernement du Québec.</p>
+                <p>L’équipe de Solution locale se garde le droit de modifier les catégories en fonction de l’évolution de la crise de la COVID-19 au Québec.</p>
 
                 <h6><b>Approvisionnement sécuritaire</b></h6>
-                <p>Votre mode de distribution doit être 100% sans contact : paiement sans contact avec carte à puce ou en ligne, livraison ou collecte sans contact direct avec le client.</p>
+                <p>Votre mode de distribution doit être 100% sans contact : paiement sans contact avec carte à puce ou en ligne, livraison ou collecte sans contact directement avec le client.</p>
 
-                <h6><b>Commerces de proximité</b></h6>
-                <p>Notre initiative vise à soutenir les entreprises québécoises qui offre des produits locaux ou essentiels dans un souci de vitalité économique et sociale de nos municipalités régionales, dans le respect de l’environnement.</p>
+                <h6><b>Achat local</b></h6>
+                <p>Notre initiative vise à soutenir les entreprises locales dans un souci de vitalité économique et sociale de nos municipalités régionales, le tout dans le respect de l’environnement.</p>
+                <p>Notre initiative citoyenne repose sur des ressources limitées, merci de votre compréhension quant au délai de traitement des inscriptions.</p>
             </div>
         </div>
         <div class="card">

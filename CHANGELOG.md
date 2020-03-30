@@ -6,6 +6,7 @@
 - Only include Google Analytics code on `production`.
 - Added region and place name to `<title>` (by @carpentierma ).
 - Places submission now uses own fields to input rather than Algolia that is, sometimes, unreliable.
+- Updated information text on place submission page.
 
 # 1.15.1 (2020-03-29)
 - Corrected permission needed to show link to backend
