@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('page-title')</title>
 
         <meta name="description" content="Des ressources locales en contexte de distanciation sociale">
         <meta name="image" content="https://solutionlocale.ca/images/social.jpg">
@@ -62,6 +62,7 @@
             }
         </style>
 
+        @if(config("app.env") == "production")
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ config("services.google.analytics.id") }}"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -70,6 +71,7 @@
 
           gtag('config', '{{ config("services.google.analytics.id") }}');
         </script>
+        @endif
     </head>
 
     <body>

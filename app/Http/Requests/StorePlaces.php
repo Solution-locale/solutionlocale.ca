@@ -27,7 +27,6 @@ class StorePlaces extends FormRequest
         $isDeliveryTypeSet = isset($data['deliveryType']);
 
         $this->merge([
-            'addressjson' => json_decode($this->input('addressjson'), true),
             'deliveryType' => $isDeliveryTypeSet ? $this->input('deliveryType') : null,
         ]);
     }
@@ -41,8 +40,9 @@ class StorePlaces extends FormRequest
     {
         return [
             'name' => ['required'],
-            'addressjson.name' => ['required'],
-            'addressjson.city' => ['required'],
+            'address.line1' => ['required'],
+            'city' => ['required'],
+            'postalCode' => ['required', 'postal_code:CA'],
             'categories' => ['required'],
             'deliveryType' => ['required'],
             'placeType' => ['required'],
@@ -72,8 +72,8 @@ class StorePlaces extends FormRequest
     {
         return [
             'name.required' => 'Vous devez entrer le nom de votre entreprise.',
-            'addressjson.name.required' => "Il semble avoir un problème avec l'adresse donnée. Si ce problème persiste, veuillez nous contacter via notre page Facebook",
-            'addressjson.city.required' => "Il semble avoir un problème avec l'adresse donnée, spécifiquement la ville. Si ce problème persiste, veuillez nous contacter via notre page Facebook",
+            'address.line1.required' => "Vous devez renseigner l'adresse de votre entreprise.",
+            'postal_code' => "Vous devez entrer un code postal canadien valide.",
             'categories.required'  => 'Vous devez choisir une catégorie.',
             'deliveryType.required'  => 'Vous devez choisir un mode de distribution.',
             'placeType.required'  => 'Vous devez choisir un type d\'entreprise.',
