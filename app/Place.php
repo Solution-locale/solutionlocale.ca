@@ -41,4 +41,10 @@ class Place extends Model
     {
         return "{$this->address}, {$this->city}, {$this->province}, {$this->postalCode}";
     }
+
+    #SCOPES
+    public function scopeOpened($query)
+    {
+        return $query->where('is_closed', 0);
+    }
 }
