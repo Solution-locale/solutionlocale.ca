@@ -146,13 +146,26 @@ Nouvelle entreprise - {{ config('app.name', '') }}
                     <label for="inputProvince" class="col-md-3 col-form-label text-md-right">&nbsp;</label>
 
                     <div class="form-group col-md-6">
-                    <label for="inputProvince">Province</label>
-                    <input type="text" class="form-control" id="inputProvince" readonly="" value="Québec">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="inputPostalCode">Code postal *</label>
-                    <input type="text" class="form-control" id="inputPostalCode" placeholder="H0H 0H0" name="postalCode" required="" value="{{ old('postalCode') }}">
-                  </div>
+                        <label for="inputProvince">Province</label>
+                        <input type="text" class="form-control" id="inputProvince" readonly="" value="Québec">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPostalCode">Code postal *</label>
+                        <input type="text" class="form-control" id="inputPostalCode" placeholder="H0H 0H0" name="postalCode" required="" value="{{ old('postalCode') }}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="hideAddress" class="col-md-3 col-form-label text-md-right">Cacher l'adresse</label>
+
+                    <div class="col-md-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" @if(!empty(old('hideAddress'))) CHECKED @endif>
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Si votre entreprise n'a <b>pas</b> besoin d'afficher son adresse (par ex. : vente exclusivement en ligne), cochez cette case.
+                            </small>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group row">
