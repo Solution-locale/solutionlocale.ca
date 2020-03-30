@@ -16,11 +16,11 @@ class Region extends Model
     }
 
     /**
-     * Method returning the page title of the object
+     * Method returning the page title of the object.
      * @return string
      */
     public function getPageTitle(): string 
     {
-        return $this->name . ' - Région - ' . config('app.name', '');
+        return $this->name.' - '.config('app.name', '');
     }
 }

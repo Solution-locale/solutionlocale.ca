@@ -40,11 +40,12 @@ class Place extends Model
     }
 
     /**
-     * Method returning the page title of the object
+     * Method returning the page title of the object.
      * @return string
      */
     public function getPageTitle(): string 
     {
-        return $this->name . ' - Entreprise - ' . config('app.name', '');
+        $midName = @$this->region->name ? " - {$this->region->name} - " : ' - ';
+        return "{$this->name}{$midName}".config('app.name', '');
     }
 }
