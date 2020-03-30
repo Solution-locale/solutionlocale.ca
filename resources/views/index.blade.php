@@ -1,5 +1,9 @@
 @extends('layouts.public')
 
+@section('page-title')
+{{ $page_title ?? '' }}
+@endsection
+
 @section('content')
 <main role="main">
   @if(!$is_regional)

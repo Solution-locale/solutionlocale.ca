@@ -61,19 +61,17 @@ class PlaceController extends Controller
 
         $place = Place::create([
             'name' => $request->name,
-            'address' => $request->addressjson['name'],
-            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'address' => $request->address['line1'],
+            'province' => "Québec",
             'region_id' => $request->region_id,
-            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
-            'city' => $request->addressjson['city'],
-            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => ! isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
+            'subRegion' => null,
+            'city' => $request->city,
+            'countryCode' => "ca",
+            'postalCode' => $request->postalCode,
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
@@ -88,21 +86,20 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
+
         $place = Place::create([
             'name' => $request->name,
-            'address' => $request->addressjson['name'],
-            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'address' => $request->address['line1'],
+            'province' => "Québec",
             'region_id' => $request->region_id,
-            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
-            'city' => $request->addressjson['city'],
-            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => ! isset($request->addressjson['postcode']) ? null : $request->addressjson['postcode'],
+            'subRegion' => null,
+            'city' => $request->city,
+            'countryCode' => "ca",
+            'postalCode' => $request->postalCode,
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
@@ -164,6 +161,10 @@ class PlaceController extends Controller
         }
 
         $place->name = $request->name;
+        $place->address = $request->address['line1'];
+        $place->address = empty($request->address['line1']) ? null : $request->address['line1'];
+        $place->city = $request->city;
+        $place->postalCode = $request->postalCode;
         $place->region_id = $request->region_id;
         $place->phoneNumber = $request->phoneNumber;
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
