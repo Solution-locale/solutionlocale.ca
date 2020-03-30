@@ -126,33 +126,33 @@ Nouvelle entreprise - {{ config('app.name', '') }}
                 </div>
 
                 <div class="form-group row">
-                    <label for="address" class="col-md-3 col-form-label text-md-right">Adresse *</label>
+                    <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Adresse de l'entreprise *</label>
 
                     <div class="col-md-9">
-                        <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
-
-                        <div class="alert alert-info mt-3" role="alert">
-                            <p>Merci de vous assurer vous que votre adresse est complète (ex: numéro, rue et ville).</p>
-                            <p>Adresse sélectionnée: <strong id="address-value">Aucune</strong></p>
-                        </div>
-
-                        <div class="alert alert-info mt-3" role="alert">
-                            <p>Votre adresse n'a pas besoin d'être affichée ? (Commerce en ligne, etc.)</p>
-                            
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="hideAddress" type="checkbox" id="hideAddressCheckbox">
-                                <label class="form-check-label" for="hideAddressCheckbox">Cacher l'adresse du commerce</label>
-                            </div>
-                        </div>
-
-                        <input type="hidden" id="address-data" name="addressjson" />
-
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{!! $message !!}</strong>
-                            </span>
-                        @enderror
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 rue de l'achat local" name="address[line1]" required="" value="{{ old('address.line1') }}">
+                        <input type="text" class="form-control mt-2" id="inputAddress2" placeholder="Appartement, no. de porte, etc. (optionnel) " name="address[line2]" value="{{ old('address.line2') }}">
                     </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputCity" class="col-md-3 col-form-label text-md-right">Ville *</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="inputCity" placeholder="Sainte-Geneviève-de-Batiscan" name="city" required="" value="{{ old('city') }}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputProvince" class="col-md-3 col-form-label text-md-right">&nbsp;</label>
+
+                    <div class="form-group col-md-6">
+                    <label for="inputProvince">Province</label>
+                    <input type="text" class="form-control" id="inputProvince" readonly="" value="Québec">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPostalCode">Code postal *</label>
+                    <input type="text" class="form-control" id="inputPostalCode" placeholder="H0H 0H0" name="postalCode" required="" value="{{ old('postalCode') }}">
+                  </div>
                 </div>
 
                 <div class="form-group row">
