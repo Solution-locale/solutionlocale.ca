@@ -64,7 +64,7 @@
                             <div class="col-md-9">
                                 @foreach(App\DeliveryType::all() as $type)
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->types->contains($type->id)) CHECKED @endif>
+                                  <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->delivery->contains($type->id)) CHECKED @endif>
                                   <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                                 </div>
                                 @endforeach
@@ -72,29 +72,33 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-3 col-form-label text-md-right">Adresse</label>
+                            <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Adresse de l'entreprise *</label>
 
                             <div class="col-md-9">
-                                <div class="alert alert-warning mt-3" role="alert">
-                                    Il est impossible de modifier l'adresse pour l'instant. Une solution arrivera sous peu.
-                                </div>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 rue de l'achat local" name="address[line1]" required="" value="{{ $place->address }}">
+                                <input type="text" class="form-control mt-2" id="inputAddress2" placeholder="Appartement, no. de porte, etc. (optionnel) " name="address[line2]" value="{{ $place->address_2 }}">
                             </div>
+                        </div>
 
-                            {{-- <div class="col-md-9">
-                                <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
+                        <div class="form-group row">
+                            <label for="inputCity" class="col-md-3 col-form-label text-md-right">Ville *</label>
 
-                                <div class="alert alert-info mt-3" role="alert">
-                                    Adresse sélectionnée: <strong id="address-value">Aucune</strong>
-                                </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="inputCity" placeholder="Sainte-Geneviève-de-Batiscan" name="city" required="" value="{{ $place->city }}">
+                            </div>
+                        </div>
 
-                                <input type="hidden" id="address-data" name="addressData" />
+                        <div class="form-group row">
+                            <label for="inputProvince" class="col-md-3 col-form-label text-md-right">&nbsp;</label>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div> --}}
+                            <div class="form-group col-md-6">
+                                <label for="inputProvince">Province</label>
+                                <input type="text" class="form-control" id="inputProvince" readonly="" value="Québec">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputPostalCode">Code postal *</label>
+                                <input type="text" class="form-control" id="inputPostalCode" placeholder="H0H 0H0" name="postalCode" required="" value="{{ $place->postalCode }}">
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -103,6 +107,9 @@
                             <div class="col-md-9">
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" @if($place->hide_address) CHECKED @endif>
+                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                        Si votre entreprise n'a <b>pas</b> besoin d'afficher son adresse (par ex. : vente exclusivement en ligne), cochez cette case.
+                                    </small>
                                 </div>
                             </div>
                         </div>

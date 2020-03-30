@@ -30,11 +30,6 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'algolia_places' => [
-        'app_id' => env('MIX_ALGOLIA_PLACES_APP_IP'),
-        'key' => env('MIX_ALGOLIA_PLACES_KEY'),
-    ],
-
     'google' => [
         'analytics' => [
             'id' => env('GOOGLE_ANALYTICS_ID'),

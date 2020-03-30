@@ -1,5 +1,9 @@
 @extends('layouts.public')
 
+@section('page-title')
+Nouvelle entreprise - {{ config('app.name', '') }}
+@endsection
+
 @section('content')
 <main role="main">
   <div class="album py-5 bg-light">
@@ -9,15 +13,16 @@
                 <b>Informations importantes</b>
             </div>
             <div class="card-body">
-                <h6><b>Produits essentiels uniquement</b></h6>
-                <p>Afin d'être affichés sur le site, les produits offerts doivent appartenir à l’une des catégories suivantes : Produits d’épicerie - Mets cuisinés - Repas de restaurant - Médicaments et produits de pharmacie - Hygiène et produits naturels. </p>
-                <p>Malgré les demandes, nous ne comptons pas élargir les catégories pour le moment. Notre initiative citoyenne repose sur des ressources limitées et nous nous concentrons sur les produits essentiels pour la population en isolement. Merci de votre compréhension! </p>
+                <h6><b>Commerces et services essentiels uniquement</b></h6>
+                <p>Afin d'être affichés sur le site, les produits et services offerts doivent appartenir aux catégories proposées. Cette liste est inspirée de la liste des commerces essentiels fournie par le gouvernement du Québec.</p>
+                <p>L’équipe de Solution locale se garde le droit de modifier les catégories en fonction de l’évolution de la crise de la COVID-19 au Québec.</p>
 
                 <h6><b>Approvisionnement sécuritaire</b></h6>
-                <p>Votre mode de distribution doit être 100% sans contact : paiement sans contact avec carte à puce ou en ligne, livraison ou collecte sans contact direct avec le client.</p>
+                <p>Votre mode de distribution doit être 100% sans contact : paiement sans contact avec carte à puce ou en ligne, livraison ou collecte sans contact directement avec le client.</p>
 
-                <h6><b>Commerces de proximité</b></h6>
-                <p>Notre initiative vise à soutenir les entreprises québécoises qui offre des produits locaux ou essentiels dans un souci de vitalité économique et sociale de nos municipalités régionales, dans le respect de l’environnement.</p>
+                <h6><b>Achat local</b></h6>
+                <p>Notre initiative vise à soutenir les entreprises locales dans un souci de vitalité économique et sociale de nos municipalités régionales, le tout dans le respect de l’environnement.</p>
+                <p>Notre initiative citoyenne repose sur des ressources limitées, merci de votre compréhension quant au délai de traitement des inscriptions.</p>
             </div>
         </div>
         <div class="card">
@@ -122,32 +127,45 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="address" class="col-md-3 col-form-label text-md-right">Adresse *</label>
+                    <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Adresse de l'entreprise *</label>
 
                     <div class="col-md-9">
-                        <input type="search" id="address" class="form-control" placeholder="Rechercher une adresse" />
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 rue de l'achat local" name="address[line1]" required="" value="{{ old('address.line1') }}">
+                        <input type="text" class="form-control mt-2" id="inputAddress2" placeholder="Appartement, no. de porte, etc. (optionnel) " name="address[line2]" value="{{ old('address.line2') }}">
+                    </div>
+                </div>
 
-                        <div class="alert alert-info mt-3" role="alert">
-                            <p>Merci de vous assurer vous que votre adresse est complète (ex: numéro, rue et ville).</p>
-                            <p>Adresse sélectionnée: <strong id="address-value">Aucune</strong></p>
+                <div class="form-group row">
+                    <label for="inputCity" class="col-md-3 col-form-label text-md-right">Ville *</label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="inputCity" placeholder="Sainte-Geneviève-de-Batiscan" name="city" required="" value="{{ old('city') }}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputProvince" class="col-md-3 col-form-label text-md-right">&nbsp;</label>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputProvince">Province</label>
+                        <input type="text" class="form-control" id="inputProvince" readonly="" value="Québec">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPostalCode">Code postal *</label>
+                        <input type="text" class="form-control" id="inputPostalCode" placeholder="H0H 0H0" name="postalCode" required="" value="{{ old('postalCode') }}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="hideAddress" class="col-md-3 col-form-label text-md-right">Cacher l'adresse</label>
+
+                    <div class="col-md-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="hideAddress" type="checkbox" id="inlineHideAddressCheckbox" @if(!empty(old('hideAddress'))) CHECKED @endif>
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Si votre entreprise n'a <b>pas</b> besoin d'afficher son adresse (par ex. : vente exclusivement en ligne), cochez cette case.
+                            </small>
                         </div>
-
-                        <div class="alert alert-info mt-3" role="alert">
-                            <p>Votre adresse n'a pas besoin d'être affichée ? (Commerce en ligne, etc.)</p>
-                            
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="hideAddress" type="checkbox" id="hideAddressCheckbox">
-                                <label class="form-check-label" for="hideAddressCheckbox">Cacher l'adresse du commerce</label>
-                            </div>
-                        </div>
-
-                        <input type="hidden" id="address-data" name="addressjson" />
-
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{!! $message !!}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
 
