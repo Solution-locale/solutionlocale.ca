@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Ajouter une nouvelle catégorie</div>
+                    <div class="card-header">Modifier {{ $category->name }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -14,14 +14,14 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('categories.store') }}">
+                        <form method="POST" action="{{ route('category.update', $category) }}">
                             @csrf
-
+                            @method('PUT')
                             @include('categories.form', [
-                                'category' => new App\Category,
+                                'category' => $category,
+                                'categories' => $categories,
                                 'btn_text' => 'Envoyer'
                             ])
-
                         </form>
                     </div>
                 </div>

@@ -36,6 +36,18 @@ Route::middleware(['auth', 'can:access-backend'])->group(function () {
 
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
+
+    //Read
+    Route::get('/categories', 'CategoryController@index')->name('categories'); // view all category
+
+    //Update
+    Route::get('/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
+    Route::put('/category/{category}', 'CategoryController@update')->name('category.update');
+
+    //Delete
+    Route::get('/category/{category}/delete', 'CategoryController@delete')->name('category.delete');
+    Route::delete('/category/{category}', 'CategoryController@destroy')->name('category.destroy');
+
 });
 
 Auth::routes(['register' => false]);
@@ -44,6 +56,8 @@ Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('cate
 Route::get('/region/province', 'PublicController@indexProvincial')->name('public.index-provincial');
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
 Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
+Route::get('/recherche', 'PublicController@indexSearch')->name('public.index-search');
+Route::get('/recherche/{region:slug}', 'PublicController@indexSearch')->name('public.index-search-region');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
