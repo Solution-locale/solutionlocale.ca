@@ -99,12 +99,12 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
-      <div class="col-md-8 offset-md-2" id="result-actions">
+      <div class="col-md-12" id="result-actions">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-6">
             @include('layouts.places-sorter')
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 offset-md-2">
             @include('layouts.places-view-selector')
           </div>
         </div>
