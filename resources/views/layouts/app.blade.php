@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/f3c2c1b87f.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/manifest.js') }}" defer></script>
     <script src="{{ asset('js/vendor.js') }}" defer></script>
     <script src="{{ asset('js/backend.js') }}" defer></script>
