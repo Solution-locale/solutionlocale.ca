@@ -23,8 +23,8 @@ class PublicController extends Controller
     public function indexProvincial()
     {
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->get(), 
-            'is_regional' => false, 
+            'places' => Place::where('is_approved', true)->get(),
+            'is_regional' => false,
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', '')
         ]);
@@ -33,6 +33,7 @@ class PublicController extends Controller
     public function indexRegional(Region $region)
     {
         return view('index')->with([
+            'categories' => Category::all(),
             'places' => $region->places()->where('is_approved', true)->orderBy('name')->get(),
             'selectedRegion' => $region,
             'is_regional' => true,
@@ -47,6 +48,7 @@ class PublicController extends Controller
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy('name')->get();
 
         return view('index')->with([
+           'categories' => Category::all(),
             'places' => $places,
             'selectedRegion' => $region,
             'is_regional' => true,
