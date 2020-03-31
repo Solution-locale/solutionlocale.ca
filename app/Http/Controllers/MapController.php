@@ -16,10 +16,7 @@ class MapController extends Controller
      */
     public function show()
     {
-        //5 minutes caching
-        $places = Cache::remember('places-for-map', 60 * 5, function () {
-            return DB::table('places')->select('slug', 'long', 'lat')->where('is_approved', true)->get();
-        });
+        $places = DB::table('places')->select('slug', 'long', 'lat')->where('is_approved', true)->whereNotNull('long')->whereNotNull('lat')->get();
 
         return view('map.map')->with(['places' => $places]);
     }
