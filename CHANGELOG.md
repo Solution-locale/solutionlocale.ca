@@ -1,6 +1,8 @@
 # Changelog
 
 # Next
+
+# 2.1.0 (2020-03-31)
 - Added a command to change categories (associate new to old when some change is decided).
 - Added filter to places list (by carpentierma).
 - Added search (by carpentierma).
