@@ -38,12 +38,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-10">
+            <div class="col-sm-6 col-md-10">
               <div class="form-group">
                 <input type="text" class="form-control" id="q" name="q" placeholder="Nom, adresse ou ville" value="{{ $q ?? '' }}">
               </div>
             </div>
-            <div class="col-2">
+            <div class="col-sm-6 col-md-2">
               <div class="form-group align-bottom">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
               </div>

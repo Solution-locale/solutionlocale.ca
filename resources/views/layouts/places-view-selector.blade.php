@@ -1,4 +1,4 @@
-<label>Vue</label>
+<label class="d-block">Vue</label>
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary @if(request('vue', 'liste') === 'grille') active @endif">
         <a href="{{ \App\Http\Controllers\PublicController::getViewUrl('grille') }}">Grille</a>
@@ -11,3 +11,4 @@
     </label>
 </div>
 <style>.btn-secondary a { color: white; text-decoration: none; }</style>
+<div class="mb-3 d-sm-block d-md-none"></div>

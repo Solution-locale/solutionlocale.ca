@@ -1,4 +1,4 @@
-<div class="col-md-8 offset-md-2 container">
+<div class="col-md-8 offset-md-2 container table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -11,7 +11,8 @@
     @foreach($places as $place)
     <tr>
       <th scope="row">
-        <span class="font-weight-bold">{{ $place->name }}</span>
+        <a href="{{ route('places.show', ['place' => $place->slug]) }}" class="font-weight-bold d-sm-block d-md-none">{{ $place->name }}</a>
+        <span class="font-weight-bold d-none d-md-block">{{ $place->name }}</span>
       </th>
       <td>
         <span class="text-nowrap">{{ $place->city }}</span>
