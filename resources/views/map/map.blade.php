@@ -7,11 +7,15 @@ function generateSanitizedPlaceData($place)
 }
 @endphp
 
+@section('page-title')
+Carte interactive - {{ config('app.name', '') }}
+@endsection
+
 @section('styles-head')
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
 <style>
     body, html { margin: 0; padding: 0; height: 100%; }
-    main { height: calc(100% - 145px); }
+    main { height: calc(100% - 155px); margin-bottom: 15px; }
     #map-wrapper {position: relative; min-height: 500px; height: 100%; width: 100%; }
 	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
     .mapboxgl-popup {max-width:300px!important; min-width:220px;}
@@ -92,6 +96,11 @@ function generateSanitizedPlaceData($place)
             
 
             return innerHTML;
+        }
+
+        function generateLoadingHTML()
+        {
+            return '<header>Chargement...</header>';
         }
 
         $(function() {
@@ -203,6 +212,9 @@ function generateSanitizedPlaceData($place)
                             })
                         );
 
+                        // Add zoom and rotation controls to the map.
+                        map.addControl(new mapboxgl.NavigationControl());
+
                         map.on('click', 'clusters', function (e) {
                             var features = map.queryRenderedFeatures(e.point, {
                                 layers: ['clusters']
@@ -238,7 +250,7 @@ function generateSanitizedPlaceData($place)
 
                             var popup = new mapboxgl.Popup()
                                 .setLngLat(coordinates)
-                                .setHTML("loading...")
+                                .setHTML(generateLoadingHTML())
                                 .addTo(map);
 
                                 $.getJSON("/entreprise/json/"+placeJson.slug, function(emp) { 
