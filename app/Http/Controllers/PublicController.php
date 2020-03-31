@@ -70,12 +70,14 @@ class PublicController extends Controller
      */
     public function indexSearch($region=null)
     {
+        $sort = Utils::getSortColumn(request('trierpar', ''));
         $q = request('q');
         if (!$region) {
-            $places = Place::searchByKeyword($q);
+            $places = Place::searchByKeyword($q, $sort['col'], $sort['order']);
         } else {
             $region = Region::where('slug', $region)->get()->first();
-            $places = $region->searchPlacesByKeyword($q);
+            if (!$region) { return abort(404); }
+            $places = $region->searchPlacesByKeyword($q, $sort['col'], $sort['order']);
         }
 
         return view('index')->with([

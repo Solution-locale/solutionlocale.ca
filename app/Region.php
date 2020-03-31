@@ -30,9 +30,9 @@ class Region extends Model
      * @param string $q
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function searchPlacesByKeyword($q) {
+    public function searchPlacesByKeyword($q, $sortBy=null, $sortOrder=null) {
         $regionId = $this->id;
-        $places = Place::searchByKeyword($q)->filter(function($place) use($regionId) {
+        $places = Place::searchByKeyword($q, $sortBy, $sortOrder)->filter(function($place) use($regionId) {
             return $place->region_id === $regionId;
         });
         return $places;

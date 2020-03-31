@@ -54,11 +54,14 @@ class Place extends Model
      * @param string $q
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public static function searchByKeyword($q) {
+    public static function searchByKeyword($q, $sortBy=null, $sortOrder=null) {
         $like = '%'.str_replace(' ', '%', $q).'%';
         $search = 'is_approved and (name like ? or address like ? or city like ?)';
         $bindings = [$like, $like, $like];
-        return Parent::whereRaw($search, $bindings)->orderBy('name')->get();
+
+        $sortBy = $sortBy ?? 'name';
+        $sortOrder = $sortOrder ?? 'asc';
+        return Parent::whereRaw($search, $bindings)->orderBy($sortBy, $sortOrder)->get();
     }
 
     /**
