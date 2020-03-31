@@ -1,5 +1,4 @@
 <form method="get">
-    <div class="col-md-8 offset-md-2">
         <div class="form-group">    
             <label for="trierpar">Trier par</label>
             <div id="loading" class="d-none">Chargement en cours... veuillez patienter.</div>
@@ -10,5 +9,4 @@
                 <option value="livraison" @if(request('trierpar') === 'livraison') selected @endif>Offrant la livraison</option>
             </select>
         </div>
-    </div>
 </form>

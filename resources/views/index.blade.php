@@ -22,6 +22,11 @@
   <div class="album py-5 bg-light">
     <div class="container">
 
+    @if($is_regional)
+    <div class="row flex-column-reverse flex-md-row">
+      <div class="col-content col-12 col-md-7 col-lg-8">
+      @endif
+
       @if($is_regional)
       <h1 class="text-center mb-2">{{ $selectedRegion->name }}</h1>
       @endif
@@ -39,12 +44,8 @@
           <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
         </div>
-        @else
-        <div class="col-md-12 text-center mb-5 h5">
-          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
-          @foreach(App\Category::all() as $category)
-            <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
-          @endforeach
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 text-center mb-5 h5">
+        @include('layouts.places-sorter')
         </div>
         @endif
       </div>
@@ -63,11 +64,46 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
-      @include('layouts.places-sorter')
+      
 
       @foreach($places as $place)
         @include('index-place-cards', ['place' => $place])
       @endforeach
+
+      @if($is_regional)
+        </div> <!-- end col place -->
+        <div class="col-sidebar col-12 col-md-5 col-lg-4 mb-5 h5">
+          
+          <div class="mt-5">
+          @include('layouts.places-sorter')
+          </div>
+
+          <button class="btn btn-secondary d-sm-block d-md-none mb-2" type="button" data-toggle="collapse" data-target="#categoriesCollapse" aria-expanded="false" aria-controls="categoriesCollapse">
+            Afficher les catégories
+          </button>
+
+          <div class="collapse dont-collapse-sm" id="categoriesCollapse">
+          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info mb-2">Toutes les catégories <span class="badge badge-light ">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
+          <ul class="cat-list">
+            @foreach($categories as $cat)
+                <li class="d-flex {{ !empty($category) && $category->slug === $cat->slug ? 'active' : '' }}"><i class="fas fa-caret-right align-self-center"></i>
+                  <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $cat->slug]) }}" class="badge flex-grow-1">{{ $cat->name }} <span class="badge badge-light">{{ $cat->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
+                    
+                </li>
+                <ul>
+                  @foreach($cat->children as $category_children)
+                      <li class="d-flex {{ !empty($category) && $category->slug === $category_children->slug ? 'active' : '' }}"><i class="fas fa-caret-right align-self-center"></i>
+                      <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category_children->slug]) }}" class="badge flex-grow-1">{{ $category_children->name }} <span class="badge badge-light">{{ $category_children->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
+                      </li>
+                  @endforeach
+              </ul>
+            @endforeach
+          </ul>
+          </div>
+         
+      </div>
+    </div> <!-- end row -->
+    @endif
     </div>
   </div>
 </main>

@@ -1,4 +1,4 @@
-<div class="col-md-8 offset-md-2">
+<div class="col-md-12 offset-md-0 col-lg-10 offset-lg-1">
   <div class="card mb-4 shadow-sm">
     {{-- <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale"> --}}
     <div class="card-body">

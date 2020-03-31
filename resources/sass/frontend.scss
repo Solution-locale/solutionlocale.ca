@@ -1,14 +1,80 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 .categories {
-    &.tree, &.tree li {
-        list-style-type:none;
+    &.tree,
+    &.tree li {
+        list-style-type: none;
+    }
+}
+
+.cat-list {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    list-style: none;
+    li {
+        vertical-align: middle;
+
+        i {
+            color: #9c9c9c;
+            align-items: s;
+            font-size: 12px;
+        }
+        list-style: none;
+        margin-bottom: 2px;
+        a {
+            text-align: left;
+            color: $green-official;
+            font-size: 14px;
+            &:hover {
+                color: $green-official-darker;
+            }
+        }
+        &.active {
+            & > a {
+                color: $green-official-darker;
+            }
+            & > i {
+                color: $green-official-darker;
+            }
+        }
+        & > ul {
+            align-content: flex-end;
+            margin: 0;
+            padding: 0;
+            padding-top: 2px;
+            margin-left: 25px;
+            list-style: none;
+        }
+        .badge-light {
+            background-color: #e9ecef;
+        }
+
+        @media (max-width: 767px) {
+            margin: 0.5em 0px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .collapse.dont-collapse-sm {
+        display: block;
+        height: auto !important;
+        visibility: visible;
+    }
+}
+
+@media (min-width: 992px) {
+    .collapse.dont-collapse-md {
+        display: block;
+        height: auto !important;
+        visibility: visible;
     }
 }

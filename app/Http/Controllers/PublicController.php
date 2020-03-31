@@ -36,12 +36,15 @@ class PublicController extends Controller
     public function indexRegional(Region $region)
     {
         $sort = Utils::getSortColumn(request('trierpar', ''));
+        $categories = Category::where('parent_id', '=', null)->get();
         return view('index')->with([
             'places' => $region->places()->where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'is_regional' => true,
             'is_provincial' => false,
-            'page_title' => $region->getPageTitle()
+            'page_title' => $region->getPageTitle(),
+            'categories' => $categories,
+            'category' => null
         ]);
     }
 
@@ -50,14 +53,16 @@ class PublicController extends Controller
         $category = Category::where('slug', $category)->first();
         $sort = Utils::getSortColumn(request('trierpar', ''));
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
-
+        $categories = Category::where('parent_id', '=', null)->get();
         return view('index')->with([
             'places' => $places,
             'selectedRegion' => $region,
             'is_regional' => true,
             'category' => $category,
             'is_provincial' => false,
-            'page_title' => $category->getPageTitle()
+            'page_title' => $category->getPageTitle(),
+            'categories' => $categories
         ]);
     }
+
 }
