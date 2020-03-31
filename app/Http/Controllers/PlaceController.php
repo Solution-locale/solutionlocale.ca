@@ -6,7 +6,9 @@ use App\Category;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
+use Geocodio\Geocodio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -103,6 +105,16 @@ class PlaceController extends Controller
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
 
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
+
         return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
@@ -141,8 +153,7 @@ class PlaceController extends Controller
             $place->increment('views');
         }
 
-        if($place->hide_address)
-        {
+        if ($place->hide_address) {
             unset($place->address);
         }
 
@@ -197,6 +208,16 @@ class PlaceController extends Controller
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
+
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
 
         return redirect('home')->with('status', 'Place modifiée!');
     }

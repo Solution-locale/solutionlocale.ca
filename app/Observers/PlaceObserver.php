@@ -30,8 +30,9 @@ class PlaceObserver
 
     public function saved(Place $place)
     {
-        Artisan::queue('soloc:geocode', [
-            'place' => $place->id,
-        ]);
+        
+        // Artisan::queue('soloc:geocode', [
+        //     'place' => $place->id,
+        // ]);
     }
 }
