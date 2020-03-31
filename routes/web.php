@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -14,9 +15,11 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-Route::middleware(['auth', 'can:access-backend'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/user/ajout', 'UserController@create')->name('users.create')->middleware('can:do-admin');
+    Route::post('/user', 'UserController@store')->name('users.store')->middleware('can:do-admin');
     Route::get('/user/{user}', 'UserController@edit')->name('users.edit');
     Route::put('/user/{user}', 'UserController@update')->name('users.update');
 
