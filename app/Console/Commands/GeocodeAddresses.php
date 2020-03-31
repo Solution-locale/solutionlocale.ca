@@ -14,7 +14,7 @@ class GeocodeAddresses extends Command
      *
      * @var string
      */
-    protected $signature = 'soloc:geocode';
+    protected $signature = 'soloc:geocode {place?}';
 
     /**
      * The console command description.
@@ -40,9 +40,23 @@ class GeocodeAddresses extends Command
      */
     public function handle()
     {
+
+        if ($this->argument('place') === null) {
+            $this->geocodeMultiple();
+        } else {
+            $this->geocodeSingle();
+        }
+
+        $this->line("");
+        $this->line("Done!");
+    }
+
+    public function geocodeMultiple()
+    {
         $i = 1;
         $total = Place::count();
-        $places = Place::all()->each(function ($place) use (&$i, $total) {
+        
+        Place::all()->each(function ($place) use (&$i, $total) {
             
             $address = $place->complete_address.", Canada";
             $seconds = 86400; // 24 hours
@@ -58,8 +72,23 @@ class GeocodeAddresses extends Command
             $this->info("{$i}/{$total}: Refreshed Geolocation for {$place->name} ({$place->id})");
             $i++;
         });
+    }
 
-        $this->line();
-        $this->line("Done!");
+    public function geocodeSingle()
+    {
+        $place = Place::find($this->argument('place'));
+
+        $address = $place->complete_address.", Canada";
+        $seconds = 86400; // 24 hours
+
+        $response = Cache::remember($address, $seconds, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
+
+        $this->info("Refreshed Geolocation for {$place->name} ({$place->id})");
     }
 }
