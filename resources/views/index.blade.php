@@ -63,11 +63,19 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
-      @include('layouts.places-sorter')
+      <div class="col-md-8 offset-md-2">
+        <div class="row">
+          <div class="col-md-8">
+            @include('layouts.places-sorter')
+          </div>
+          <div class="col-md-4">
+            @include('layouts.places-view-selector', ['view' => $view])
+          </div>
+        </div>
+      </div>
 
-      @foreach($places as $place)
-        @include('index-place-cards', ['place' => $place])
-      @endforeach
+      @include('index-place-'.$view, ['places' => $places])
+
     </div>
   </div>
 </main>
