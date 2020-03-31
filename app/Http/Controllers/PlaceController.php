@@ -6,7 +6,7 @@ use App\Category;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
-use Geocodio\Geocodio;
+use Geocodio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
