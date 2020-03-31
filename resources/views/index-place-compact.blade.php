@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th scope="col" style="width: 41.6%" class="col-place-name">Entreprise</th>
-      <th scope="col" style="width: 41.6%" class="col-place-location">Ville (Région)</th>
+      <th scope="col" style="width: 41.6%" class="col-place-location">Adresse</th>
       <th scope="col" style="width: 16.8%" class="col-place-action">Action</th>
     </tr>
   </thead>
@@ -15,8 +15,7 @@
         <span class="font-weight-bold d-none d-md-block place-name">{{ $place->name }}</span>
       </th>
       <td class="col-place-location">
-        <span class="text-nowrap">{{ $place->city }}</span>
-        <span class="text-nowrap">({{ $place->region->name }})</span>
+        <span class="text-nowrap">{{ $place->complete_address }}</span>
       </td>
       <td class="col-place-action">
         <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">Voir</a>
