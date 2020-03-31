@@ -11,12 +11,12 @@ class ModerationController extends Controller
 {
     public function index()
     {
-        return view('moderation.index');
+        return view('approvals.index');
     }
 
     public function show(Region $region)
     {
-        return view('moderation.show')->with(['queue' => $region->places()->where('is_approved', false)->get(), 'region' => $region]);
+        return view('approvals.show')->with(['queue' => $region->places()->where('is_approved', false)->get(), 'region' => $region]);
     }
 
     public function store(Place $place)
@@ -24,19 +24,19 @@ class ModerationController extends Controller
         $place->is_approved = true;
         $place->save();
 
-        return redirect()->route('moderation.show', ['region' => $place->region->slug])->with('status', 'Fiche approuvée!');
+        return redirect()->route('approvals.show', ['region' => $place->region->slug])->with('status', 'Fiche approuvée!');
     }
 
     // display the destroy page.
     public function delete(Place $place)
     {
-        return view('moderation.delete')->with(['place' => $place]);
+        return view('places.delete')->with(['place' => $place]);
     }
 
     public function destroy(Place $place)
     {
         $place->delete();
 
-        return redirect()->route('moderation.show', ['region' => $place->region->slug])->with('status', 'Fiche détruite!');
+        return redirect()->route('approvals.show', ['region' => $place->region->slug])->with('status', 'Fiche détruite!');
     }
 }

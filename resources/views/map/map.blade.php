@@ -90,7 +90,7 @@ Carte interactive - {{ config('app.name', '') }}
                 {
                     innerHTML += '<a href="tel:'+place.phoneNumber+'"  class="flex-grow-1" title="Téléphone"><i class="fas fa-phone"></i></a>';
                 }
-                innerHTML += '<a href="/entreprise/'+place.slug+'"  class="flex-grow-1" title="Fiche de l\'entreprise"><i class="fas fa-address-card"></i></a>';
+                innerHTML += '<a href="/places/'+place.slug+'"  class="flex-grow-1" title="Fiche de l\'entreprise"><i class="fas fa-address-card"></i></a>';
             innerHTML += '</div>';
 
 
@@ -253,7 +253,7 @@ Carte interactive - {{ config('app.name', '') }}
                                 .setHTML(generateLoadingHTML())
                                 .addTo(map);
 
-                                $.getJSON("/entreprise/json/"+placeJson.slug, function(emp) {
+                                $.getJSON("/places/json/"+placeJson.slug, function(emp) {
                                     popup.setHTML(generatePlaceHTML(emp));
                                 });
                         });

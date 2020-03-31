@@ -5,7 +5,7 @@
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
 
         @can('do-moderation')
-        <a class="nav-link" href="{{ route("moderation.index") }}">Modération de fiches</a>
+        <a class="nav-link" href="{{ route("approvals.index") }}">Modération de fiches</a>
         @endcan
 
         @can('do-admin')

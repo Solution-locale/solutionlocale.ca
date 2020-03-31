@@ -109,7 +109,7 @@ class PlaceController extends Controller
         $place->lat = $response->location->lat;
         $place->save();
 
-        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
+        return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
     /**

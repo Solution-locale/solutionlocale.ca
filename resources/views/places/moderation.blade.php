@@ -20,14 +20,14 @@
                                     <a href="{{ route('places.edit', ['place' => $place]) }}">Modifier la fiche</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('moderation.delete', ['place' => $place]) }}">Détruire la fiche</a>
+                                    <a href="{{ route('places.delete', ['place' => $place]) }}">Détruire la fiche</a>
                                 </li>
                             </ul>
                         </li>
                         @endforeach
                     </ul>
                 </div>
-                
+
             </div>
             @endforeach
         </div>

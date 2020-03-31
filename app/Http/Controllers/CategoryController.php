@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $categories = Category::where('active','=',1)->get();
 
-        return view('categories.index', compact('categories'));
+        return view('byCategory')->with(['places' => $category->places]);
     }
 
     /**
@@ -104,7 +104,7 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()
-            ->route('categories')
+            ->route('categories.index')
             ->with('saved.message', __('app.confirmation.update',[
                 'title'  =>  request("name")
             ]));
