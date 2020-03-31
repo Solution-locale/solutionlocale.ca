@@ -13,8 +13,9 @@ class PublicController extends Controller
 {
     public function index()
     {
+        $sort = Utils::getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->get()->random(5),
+            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get()->random(5),
             'is_regional' => false,
             'is_provincial' => false,
             'page_title' => config('app.name', '')
@@ -23,8 +24,9 @@ class PublicController extends Controller
 
     public function indexProvincial()
     {
+        $sort = Utils::getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->get(), 
+            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
             'is_regional' => false, 
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', '')
@@ -33,8 +35,9 @@ class PublicController extends Controller
 
     public function indexRegional(Region $region)
     {
+        $sort = Utils::getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => $region->places()->where('is_approved', true)->orderBy('name')->get(),
+            'places' => $region->places()->where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'is_regional' => true,
             'is_provincial' => false,

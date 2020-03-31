@@ -73,6 +73,6 @@
 </main>
 @endsection
 
-@section('js')
+@section('scripts-body')
   <script src="{{ asset('js/places-sorter.js') }}"></script>
 @endsection
