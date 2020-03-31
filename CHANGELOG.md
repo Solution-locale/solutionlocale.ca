@@ -4,6 +4,7 @@
 - Added maps! (by @desjarlaisdumaishugo)
 - Added an artisan command to loop through database to geocode address.
 - Added an observer event to geocode newly added or updated place.
+- Added Horizon to manage queues.
 
 # 1.16.0 (2020-03-30)
 - Removed redundent show button on show page's moderation tool.
