@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Place;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class PlaceObserver
@@ -25,5 +26,12 @@ class PlaceObserver
             $existing = Place::where('slug', $slug)->count();
             $place->slug = $existing == 0 ? $slug : "{$slug}-{$random}";
         }
+    }
+
+    public function saved(Place $place)
+    {
+        Artisan::queue('soloc:geocode', [
+            'place' => $place->id,
+        ]);
     }
 }
