@@ -56,5 +56,29 @@ class Place extends Model
     public function scopeOpened($query)
     {
         return $query->where('is_closed', 0);
+
+    /**
+     * Method for search places by keywords.
+     * @param string $q
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public static function searchByKeyword($q, $sortBy=null, $sortOrder=null) {
+        $like = '%'.str_replace(' ', '%', $q).'%';
+        $search = 'is_approved and (name like ? or address like ? or city like ?)';
+        $bindings = [$like, $like, $like];
+
+        $sortBy = $sortBy ?? 'name';
+        $sortOrder = $sortOrder ?? 'asc';
+        return Parent::whereRaw($search, $bindings)->orderBy($sortBy, $sortOrder)->get();
+    }
+
+    /**
+     * Method for counting places corresponding some keywords.
+     * @param string $q
+     * @return int
+     */
+    public static function countByKeyword($q) {
+        $places = self::searchByKeyword($q);
+        return count($places);
     }
 }
