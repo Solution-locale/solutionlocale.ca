@@ -1,5 +1,12 @@
 # Changelog
 
+# 2.0.0 (2020-03-30)
+- Added maps! (by @desjarlaisdumaishugo)
+- Added an artisan command to loop through database to geocode address.
+- Added an observer event to geocode newly added or updated place.
+- Added Horizon to manage queues.
+- Categories multiple level (by @onathanlaf).
+
 # 1.16.0 (2020-03-30)
 - Removed redundent show button on show page's moderation tool.
 - Change slugs on name update.
