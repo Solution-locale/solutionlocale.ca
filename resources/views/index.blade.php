@@ -63,10 +63,16 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
+      @include('layouts.places-sorter')
+
       @foreach($places as $place)
         @include('index-place-cards', ['place' => $place])
       @endforeach
     </div>
   </div>
 </main>
+@endsection
+
+@section('scripts-body')
+  <script src="{{ asset('js/places-sorter.js') }}"></script>
 @endsection
