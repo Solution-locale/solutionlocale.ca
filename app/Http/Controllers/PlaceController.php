@@ -40,7 +40,9 @@ class PlaceController extends Controller
 
     public function createPublic()
     {
-        return view('add');
+        $categories = Category::where('parent_id', '=', null)->get();
+
+        return view("add", compact('categories'));
     }
 
     /**

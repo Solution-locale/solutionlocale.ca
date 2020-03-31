@@ -9,7 +9,8 @@ class CategoryObserver
 {
     public function created(Category $category)
     {
-        $category->slug = Str::slug($category->name);
+        $slug = Str::slug($category->name);
+        $category->slug = $slug;
         $random = Str::random(5);
         $existing = Category::where('slug', $slug)->count();
 
