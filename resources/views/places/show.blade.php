@@ -73,7 +73,7 @@
             </p>
           </div>
           <div class="card-footer">
-            Si vous trouvez une erreur, ou désirez effectuer une modification, <a href="https://www.facebook.com/Solutionlocale/" target="_blank">contactez-nous par Facebook</a>!
+            Si vous trouvez une erreur, ou désirez effectuer une modification, <a href="{{ route("places.report", $place->slug) }}">contactez-nous par ce formulaire</a>!
           </div>
         </div>
       </div>

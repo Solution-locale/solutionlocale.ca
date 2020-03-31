@@ -2,6 +2,23 @@
 
 @section('content')
 <div class="container">
+
+    <div class="row row-cols-1 row-cols-md-1">
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Signalements</h5>
+                    <p class="card-text">
+                        Il y a <b>{{ App\Report::where('archived', false)->get()->count() }}</b> signalement(s) en attente de modération.
+                    </p>
+                    <p class="card-text">
+                        <a class="btn btn-outline-primary" href="{{ route("moderation.showReports") }}" role="button">Accéder aux signalements à modérer</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-2">
         @foreach(App\Region::all() as $region)
         <div class="col mb-4">

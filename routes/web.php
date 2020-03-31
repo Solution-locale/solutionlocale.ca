@@ -24,6 +24,8 @@ Route::middleware(['auth', 'can:access-backend'])->group(function () {
     Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
 
     Route::get('/moderation', 'ModerationController@index')->name('moderation.index');
+    Route::get('/moderation/reports', 'ModerationController@showReports')->name('moderation.showReports');
+    Route::post('/moderation/reports/{report:id}/archive', 'ModerationController@archiveReport')->name('moderation.archiveReport');
     Route::get('/moderation/{region:slug}', 'ModerationController@show')->name('moderation.show');
     Route::get('/moderation/place/{place:slug}/approbation', 'ModerationController@store')->name('moderation.approve');
     Route::get('/moderation/places/{place:slug}/enlever', 'ModerationController@delete')->name('moderation.delete');
@@ -60,7 +62,9 @@ Route::get('/recherche', 'PublicController@indexSearch')->name('public.index-sea
 Route::get('/recherche/{region:slug}', 'PublicController@indexSearch')->name('public.index-search-region');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
+Route::post('/entreprise/ajout/report/{place:slug}', 'PlaceController@storePublicReport')->name('places.store-public-report')->middleware(ProtectAgainstSpam::class);
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
+Route::get('/entreprise/report/{place:slug}', 'PlaceController@report')->name('places.report');
 Route::get('/entreprise/json/{place:slug}', 'PlaceController@showJson')->name('places.showjson');
 Route::get('/carte', 'MapController@show')->name('map.show');
 Route::get('/', 'PublicController@index')->name('public.index');

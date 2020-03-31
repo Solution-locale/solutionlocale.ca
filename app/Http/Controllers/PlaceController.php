@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\StorePlaces;
+use App\Http\Requests\StoreReport;
 use App\Place;
 use App\Region;
+use App\Report;
 use Geocodio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -118,6 +120,34 @@ class PlaceController extends Controller
         $place->save();
 
         return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
+    }
+
+    public function storePublicReport(StoreReport $request, Place $place)
+    {
+        $report = Report::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'reason' => $request->reason,
+            'place_id' => $place->id,
+        ]);
+        $report->save();
+
+        return redirect('/entreprise/report/'.$place->slug)->with('status', 'Bien reçu!');
+    }
+
+    /**
+     * Display the report page for a place
+     *
+     * @param  \App\Place  $place
+     * @return \Illuminate\Http\Response
+     */
+    public function report(Place $place)
+    {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
+            abort(403);
+        }
+
+        return view('places.report')->with(['place' => $place]);
     }
 
     /**
