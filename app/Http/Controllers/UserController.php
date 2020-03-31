@@ -54,11 +54,12 @@ class UserController extends Controller
 
         $user->assignRole($roles);
 
-        // Send password reset link
-        Password::sendResetLink(['email' => $user->email]);
+        // Create password reset link
+        $token = app('auth.password.broker')->createToken($user);
+        $url = route('password.reset', ['token' => $token]);
 
         return redirect()->route('users.create')
-            ->with('status', 'Utilisateur créé. Courriel de réinitialisation du mot de passe envoyé.');
+            ->with('status', "Utilisateur créé. L'URL de réinitialisation du mot de passe est : $url");
     }
 
     /**
