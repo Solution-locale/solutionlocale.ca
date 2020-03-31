@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e065ff1fe05839cbcda6daca2ebfd9e7",
+    "content-hash": "3b84d08fe9f346a52f690479508ec81e",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -1071,6 +1071,64 @@
                 "fixtures"
             ],
             "time": "2019-12-12T13:22:17+00:00"
+        },
+        {
+            "name": "geocodio/geocodio-library-php",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Geocodio/geocodio-library-php.git",
+                "reference": "8e0a843737df1be1e8f6aabfba097b533b8edc12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Geocodio/geocodio-library-php/zipball/8e0a843737df1be1e8f6aabfba097b533b8edc12",
+                "reference": "8e0a843737df1be1e8f6aabfba097b533b8edc12",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.2",
+                "symfony/var-dumper": "^4.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Geocodio\\GeocodioServiceProvider"
+                    ],
+                    "aliases": {
+                        "Geocodio": "Geocodio\\GeocodioFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Geocodio\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Hansen",
+                    "email": "hello@geocod.io",
+                    "homepage": "https://www.geocod.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "geocod.io geocoding API library",
+            "homepage": "https://github.com/geocodio/geocodio-library-php",
+            "keywords": [
+                "geocodio",
+                "geocodio-library-php"
+            ],
+            "time": "2019-10-02T15:31:35+00:00"
         },
         {
             "name": "giggsey/libphonenumber-for-php",

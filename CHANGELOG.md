@@ -2,6 +2,7 @@
 
 # Next
 - Added maps! (by @desjarlaisdumaishugo)
+- Added an artisan command to loop through database to geocode address.
 
 # 1.16.0 (2020-03-30)
 - Removed redundent show button on show page's moderation tool.
