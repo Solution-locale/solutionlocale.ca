@@ -13,6 +13,7 @@
       <p class="lead text-muted">Une initiative citoyenne, en collaboration<br>avec plusieurs partenaires locaux</p>
       <p>
         <a href="{{ route('places.create-public') }}" class="btn btn-primary my-2">Inscrivez une entreprise</a>
+        <a href="{{ route('map.show') }}" class="btn btn-primary my-2"><i class="fas fa-map-marker-alt"></i> Voir la carte interactive</a>
       </p>
     </div>
   </section>
@@ -92,10 +93,16 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
+      @include('layouts.places-sorter')
+
       @foreach($places as $place)
         @include('index-place-cards', ['place' => $place])
       @endforeach
     </div>
   </div>
 </main>
+@endsection
+
+@section('scripts-body')
+  <script src="{{ asset('js/places-sorter.js') }}"></script>
 @endsection

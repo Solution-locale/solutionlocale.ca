@@ -64,7 +64,7 @@
                             <div class="col-md-9">
                                 @foreach(App\DeliveryType::all() as $type)
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->types->contains($type->id)) CHECKED @endif>
+                                  <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->delivery->contains($type->id)) CHECKED @endif>
                                   <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                                 </div>
                                 @endforeach

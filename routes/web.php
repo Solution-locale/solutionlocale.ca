@@ -36,6 +36,18 @@ Route::middleware(['auth', 'can:access-backend'])->group(function () {
 
     Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
     Route::post('/categorie', 'CategoryController@store')->name('categories.store');
+
+    //Read
+    Route::get('/categories', 'CategoryController@index')->name('categories'); // view all category
+
+    //Update
+    Route::get('/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
+    Route::put('/category/{category}', 'CategoryController@update')->name('category.update');
+
+    //Delete
+    Route::get('/category/{category}/delete', 'CategoryController@delete')->name('category.delete');
+    Route::delete('/category/{category}', 'CategoryController@destroy')->name('category.destroy');
+
 });
 
 Auth::routes(['register' => false]);
@@ -49,4 +61,6 @@ Route::get('/recherche/{region:slug}', 'PublicController@indexSearch')->name('pu
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
+Route::get('/entreprise/json/{place:slug}', 'PlaceController@showJson')->name('places.showjson');
+Route::get('/carte', 'MapController@show')->name('map.show');
 Route::get('/', 'PublicController@index')->name('public.index');
