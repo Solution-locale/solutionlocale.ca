@@ -66,4 +66,6 @@ Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.st
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
 Route::get('/entreprise/json/{place:slug}', 'PlaceController@showJson')->name('places.showjson');
 Route::get('/carte', 'MapController@show')->name('map.show');
+Route::get('/mrc/json', 'RcmController@listJson')->name('rcm.list-json');
+Route::get('/mrc/json/{region}', 'RcmController@listJson')->name('rcm.list-json-region');
 Route::get('/', 'PublicController@index')->name('public.index');
