@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $categories = Category::where('active','=',1)->get();
 
-        return view('byCategory')->with(['places' => $category->places]);
+        return view('categories.index')->with(['categories' => $categories]);
     }
 
     /**

@@ -27,7 +27,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('categories') }}">
+                <a class="dropdown-item" href="{{ route('categories.index') }}">
                     Liste
                 </a>
                 <a class="dropdown-item" href="{{ route('categories.create') }}">
