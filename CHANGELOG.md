@@ -3,6 +3,7 @@
 # Next
 - Added a command to change categories (associate new to old when some change is decided).
 - Added filter to places list (by carpentierma).
+- Added search (by carpentierma).
 
 # 2.0.0 (2020-03-30)
 - Added maps! (by @desjarlaisdumaishugo)
