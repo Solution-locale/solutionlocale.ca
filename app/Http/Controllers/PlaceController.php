@@ -6,7 +6,9 @@ use App\Category;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
+use Geocodio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -38,7 +40,9 @@ class PlaceController extends Controller
 
     public function createPublic()
     {
-        return view('add');
+        $categories = Category::where('parent_id', '=', null)->get();
+
+        return view("add", compact('categories'));
     }
 
     /**
@@ -55,19 +59,17 @@ class PlaceController extends Controller
 
         $place = Place::create([
             'name' => $request->name,
-            'address' => $request->addressjson['name'],
-            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'address' => $request->address['line1'],
+            'province' => "Québec",
             'region_id' => $request->region_id,
-            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
-            'city' => $request->addressjson['city'],
-            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => ! isset($request->addressjson['postalCode']) ? null : $request->addressjson['postalCode'],
+            'subRegion' => null,
+            'city' => $request->city,
+            'countryCode' => "ca",
+            'postalCode' => $request->postalCode,
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
@@ -82,21 +84,20 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
+
         $place = Place::create([
             'name' => $request->name,
-            'address' => $request->addressjson['name'],
-            'province' => ! isset($request->addressjson['administrative']) ? 'Québec' : $request->addressjson['administrative'],
+            'address' => $request->address['line1'],
+            'province' => "Québec",
             'region_id' => $request->region_id,
-            'subRegion' => ! isset($request->addressjson['county']) ? $request->addressjson['city'] : $request->addressjson['county'],
-            'city' => $request->addressjson['city'],
-            'countryCode' => ! isset($request->addressjson['countryCode']) ? 'ca' : $request->addressjson['countryCode'],
-            'postalCode' => ! isset($request->addressjson['postcode']) ? null : $request->addressjson['postcode'],
+            'subRegion' => null,
+            'city' => $request->city,
+            'countryCode' => "ca",
+            'postalCode' => $request->postalCode,
             'phoneNumber' => $request->phoneNumber,
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
-            'long' => ! isset($request->addressjson['latlng']['lng']) ? null : $request->addressjson['latlng']['lng'],
-            'lat' => ! isset($request->addressjson['latlng']['lat']) ? null : $request->addressjson['latlng']['lat'],
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
@@ -105,6 +106,16 @@ class PlaceController extends Controller
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
+
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
 
         return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
@@ -126,6 +137,32 @@ class PlaceController extends Controller
         }
 
         return view('places.show')->with(['place' => $place]);
+    }
+
+    /**
+     * Display the specified resource as JSON
+     *
+     * @param  \App\Place  $place
+     * @return \Illuminate\Http\Response
+     */
+    public function showJson(Place $place)
+    {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
+            abort(403);
+        }
+
+        if (Gate::denies('do-moderation')) {
+            $place->increment('views');
+        }
+
+        if ($place->hide_address) {
+            unset($place->address);
+        }
+
+        $place->categories = $place->categories->toArray();
+        $place->delivery = $place->delivery->toArray();
+
+        return $place;
     }
 
     /**
@@ -157,6 +194,10 @@ class PlaceController extends Controller
         }
 
         $place->name = $request->name;
+        $place->address = $request->address['line1'];
+        $place->address = empty($request->address['line1']) ? null : $request->address['line1'];
+        $place->city = $request->city;
+        $place->postalCode = $request->postalCode;
         $place->region_id = $request->region_id;
         $place->phoneNumber = $request->phoneNumber;
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
@@ -169,6 +210,16 @@ class PlaceController extends Controller
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
+
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
 
         return redirect('home')->with('status', 'Place modifiée!');
     }

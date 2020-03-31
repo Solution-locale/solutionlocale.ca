@@ -1,8 +1,21 @@
 # Changelog
 
-# Next
+# 2.0.0 (2020-03-30)
+- Added maps! (by @desjarlaisdumaishugo)
+- Added an artisan command to loop through database to geocode address.
+- Added an observer event to geocode newly added or updated place.
+- Added Horizon to manage queues.
+- Categories multiple level (by @onathanlaf).
+
+# 1.16.0 (2020-03-30)
 - Removed redundent show button on show page's moderation tool.
 - Change slugs on name update.
+- Only include Google Analytics code on `production`.
+- Added region and place name to `<title>` (by @carpentierma ).
+- Places submission now uses own fields to input rather than Algolia that is, sometimes, unreliable.
+- Updated information text on place submission page.
+- Changed seeder to reflect latest changes in some database informations.
+- Fixed delivery type not correctly showing when editing a place.
 
 # 1.15.1 (2020-03-29)
 - Corrected permission needed to show link to backend

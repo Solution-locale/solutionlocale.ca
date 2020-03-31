@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.categories {
+    &.tree, &.tree li {
+        list-style-type:none;
+    }
+}

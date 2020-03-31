@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/f3c2c1b87f.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/manifest.js') }}" defer></script>
     <script src="{{ asset('js/vendor.js') }}" defer></script>
     <script src="{{ asset('js/backend.js') }}" defer></script>
@@ -23,6 +24,7 @@
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     @yield('header_css')
 
+    @if(config("app.env") == "production")
      <script async src="https://www.googletagmanager.com/gtag/js?id={{ config("services.google.analytics.id") }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -31,6 +33,7 @@
 
       gtag('config', '{{ config("services.google.analytics.id") }}');
     </script>
+    @endif
 </head>
 <body>
     <div id="app">
