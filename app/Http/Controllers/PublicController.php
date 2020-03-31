@@ -70,6 +70,7 @@ class PublicController extends Controller
             'is_regional' => false,
             'is_provincial' => false,
             'page_title' => config('app.name', ''),
+            'is_search' => false,
             'view' => $view,
         ]);
     }
@@ -83,6 +84,7 @@ class PublicController extends Controller
             'is_regional' => false, 
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
+            'is_search' => false,
             'view' => $view,
         ]);
     }
@@ -97,6 +99,7 @@ class PublicController extends Controller
             'is_regional' => true,
             'is_provincial' => false,
             'page_title' => $region->getPageTitle(),
+            'is_search' => false,
             'view' => $view,
         ]);
     }
@@ -115,7 +118,34 @@ class PublicController extends Controller
             'category' => $category,
             'is_provincial' => false,
             'page_title' => $category->getPageTitle(),
+            'is_search' => false,
             'view' => $view,
         ]);
     }
+
+    /**
+     * Method for searching places.
+     */
+    public function indexSearch($region=null)
+    {
+        $sort = Utils::getSortColumn(request('trierpar', ''));
+        $q = request('q');
+        if (!$region) {
+            $places = Place::searchByKeyword($q, $sort['col'], $sort['order']);
+        } else {
+            $region = Region::where('slug', $region)->get()->first();
+            if (!$region) { return abort(404); }
+            $places = $region->searchPlacesByKeyword($q, $sort['col'], $sort['order']);
+        }
+
+        return view('index')->with([
+            'places' => $places,
+            'is_regional' => false,
+            'is_provincial' => false,
+            'page_title' => "{$q} - ".config('app.name', ''),
+            'is_search' => true,
+            'q' => $q,
+        ]);
+    }
+
 }

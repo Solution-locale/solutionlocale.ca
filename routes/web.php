@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -14,9 +15,11 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-Route::middleware(['auth', 'can:access-backend'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/user/ajout', 'UserController@create')->name('users.create')->middleware('can:do-admin');
+    Route::post('/user', 'UserController@store')->name('users.store')->middleware('can:do-admin');
     Route::get('/user/{user}', 'UserController@edit')->name('users.edit');
     Route::put('/user/{user}', 'UserController@update')->name('users.update');
 
@@ -56,6 +59,8 @@ Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('cate
 Route::get('/region/province', 'PublicController@indexProvincial')->name('public.index-provincial');
 Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
 Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
+Route::get('/recherche', 'PublicController@indexSearch')->name('public.index-search');
+Route::get('/recherche/{region:slug}', 'PublicController@indexSearch')->name('public.index-search-region');
 Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
 Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
 Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');

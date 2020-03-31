@@ -17,9 +17,9 @@
               @auth
               <h4 class="text-white">Meta</h4>
               <ul class="list-unstyled">
-                @can("access-backend")
+                @auth
                 <li><a href="/home" class="text-white">Administration</a></li>
-                @endcan
+                @endauth
               </ul>
               @endauth
             </div>
