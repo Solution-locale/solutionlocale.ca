@@ -1,4 +1,7 @@
 <form method="get">
+    @if ($is_search)
+    <input type="hidden" name="q" id="q" value="{{ $q }}">
+    @endif
     <div class="form-group">    
         <label for="trierpar">Trier par</label>
         <div id="loading" class="d-none">Chargement en cours... veuillez patienter.</div>

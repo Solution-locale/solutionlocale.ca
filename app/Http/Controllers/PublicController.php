@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Place;
 use App\Region;
-use App\Utils\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -38,13 +37,13 @@ class PublicController extends Controller
      * @param: string $in
      * @return: string
      */
-    private function getView($in) {
+    private function getViewTemplate($in) {
         $in = preg_replace('/[^a-z]/', '', strtolower($in));
-        $view = 'cards';
+        $view = 'index-place-cards';
         if ($in === 'grille') {
-            return 'grid';
+            return 'index-place-grid';
         } else if ($in === 'compact') {
-            return 'compact';
+            return 'index-place-compact';
         }
         return $view;
     }
@@ -63,7 +62,7 @@ class PublicController extends Controller
 
     public function index()
     {
-        $view = $this->getView(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get()->random(5),
@@ -71,13 +70,13 @@ class PublicController extends Controller
             'is_provincial' => false,
             'page_title' => config('app.name', ''),
             'is_search' => false,
-            'view' => $view,
+            'viewTemplate' => $viewTemplate,
         ]);
     }
 
     public function indexProvincial()
     {
-        $view = $this->getView(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
@@ -85,13 +84,13 @@ class PublicController extends Controller
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
             'is_search' => false,
-            'view' => $view,
+            'viewTemplate' => $viewTemplate,
         ]);
     }
 
     public function indexRegional(Region $region)
     {
-        $view = $this->getView(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'places' => $region->places()->where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
@@ -100,13 +99,13 @@ class PublicController extends Controller
             'is_provincial' => false,
             'page_title' => $region->getPageTitle(),
             'is_search' => false,
-            'view' => $view,
+            'viewTemplate' => $viewTemplate,
         ]);
     }
 
     public function indexRegionalCategories(Region $region, $category)
     {
-        $view = $this->getView(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
         $category = Category::where('slug', $category)->first();
         $sort = $this->getSortColumn(request('trierpar', ''));
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
@@ -119,7 +118,7 @@ class PublicController extends Controller
             'is_provincial' => false,
             'page_title' => $category->getPageTitle(),
             'is_search' => false,
-            'view' => $view,
+            'viewTemplate' => $viewTemplate,
         ]);
     }
 
@@ -128,7 +127,8 @@ class PublicController extends Controller
      */
     public function indexSearch($region=null)
     {
-        $sort = Utils::getSortColumn(request('trierpar', ''));
+        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $sort = $this->getSortColumn(request('trierpar', ''));
         $q = request('q');
         if (!$region) {
             $places = Place::searchByKeyword($q, $sort['col'], $sort['order']);
@@ -145,6 +145,7 @@ class PublicController extends Controller
             'page_title' => "{$q} - ".config('app.name', ''),
             'is_search' => true,
             'q' => $q,
+            'viewTemplate' => $viewTemplate,
         ]);
     }
 

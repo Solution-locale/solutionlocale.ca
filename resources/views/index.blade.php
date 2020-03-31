@@ -99,12 +99,12 @@
             @include('layouts.places-sorter')
           </div>
           <div class="col-md-4">
-            @include('layouts.places-view-selector', ['view' => $view])
+            @include('layouts.places-view-selector')
           </div>
         </div>
       </div>
 
-      @include('index-place-'.$view, ['places' => $places])
+      @include($viewTemplate, ['places' => $places])
 
     </div>
   </div>
