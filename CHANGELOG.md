@@ -3,6 +3,8 @@
 # Next
 - Refactored permissions based on `spatie/permissions` (by @alex-okidoo).
 - Added possibility to add user from the interface, and send them a password reset link (by @alex-okidoo).
+- Fixed typos.
+- Added other view options (by @carpentierma).
 
 # 2.1.0 (2020-03-31)
 - Added a command to change categories (associate new to old when some change is decided).
