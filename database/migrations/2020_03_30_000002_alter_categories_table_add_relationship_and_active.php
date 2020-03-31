@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterPlacesTableAddViews extends Migration
+class AlterCategoriesTableAddRelationshipAndActive extends Migration
 {
     /**
      * Run the migrations.
@@ -22,11 +22,6 @@ class AlterPlacesTableAddViews extends Migration
             $table->unsignedBigInteger('parent_id')
                 ->after('active')
                 ->nullable();
-
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
 
             $table->foreign('parent_id')
                 ->references('id')

@@ -14,7 +14,7 @@
         public function rules()
         {
             return [
-                'name'      => ['required'],
+                'name'      => 'required',
                 'parent_id' => 'exists:categories,id'
             ];
         }
@@ -23,7 +23,7 @@
         {
             return [
                 'name.required' => 'Vous devez entrer un nom de catégorie.',
-                'parent_id.exists' => 'Vous devez entrer une catégorie existante.',
+                'parent_id.exists' => 'Vous devez entrer une catégorie existante.'
             ];
         }
     }

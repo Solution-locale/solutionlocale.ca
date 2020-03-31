@@ -14,11 +14,12 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="/categorie">
+                        <form method="POST" action="{{ route('category.update', $category) }}">
                             @csrf
-
-                            @include('forms.category', [
-                                'category' => new App\Category,
+                            @method('PUT')
+                            @include('categories.form', [
+                                'category' => $category,
+                                'categories' => $categories,
                                 'btn_text' => 'Envoyer'
                             ])
                         </form>

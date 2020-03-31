@@ -14,10 +14,10 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="/categorie">
+                        <form method="POST" action="{{ route('categories.store') }}">
                             @csrf
 
-                            @include('forms.category', [
+                            @include('categories.form', [
                                 'category' => new App\Category,
                                 'btn_text' => 'Envoyer'
                             ])

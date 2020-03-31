@@ -19,9 +19,9 @@ class CategoryController extends Controller
             abort(401);
         }
 
-        $category = Category::all()->where('active','=',1);
+        $categories = Category::where('active','=',1)->get();
 
-        return view('byCategory')->with(['places' => $category->places]);
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -34,8 +34,8 @@ class CategoryController extends Controller
         if (Gate::denies('do-admin')) {
             abort(401);
         }
-
-        return view('categories.create');
+        $categories = Category::where('active','=',1)->get();
+        return view("categories.create", compact('categories'));
     }
 
     /**
@@ -71,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        $categories = Category::where('active','=',1)->get();
+        return view('categories.edit', compact('category', 'categories'));
     }
 
     /**
@@ -83,18 +84,17 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Category $category, StoreCategories $request)
+    public function update (Category $category, StoreCategories $request)
     {
-        $category->update(request([
-            'name',
-            'parent_id'
-        ]));
+
+        $category->name = $request['name'];
+        $category->parent_id = $request['parent_id'];
+
+        $category->save();
 
         return redirect()
-            ->route('categories')
-            ->with('saved.message', __('app.confirmation.update',[
-                'title'  =>  request("name")
-            ]));
+            ->route('home')
+            ->with('status', request("name") . ' à été modifier avec succès');
     }
 
     public function delete (Category $category)
@@ -111,7 +111,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->update(['active' => 0]);
+        $category->active = 0;
+        $category->save();
 
         return redirect()
             ->route('categories')
