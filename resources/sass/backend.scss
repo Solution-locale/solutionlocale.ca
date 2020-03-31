@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.modal.show {
+    position: relative;
+    display: block;
+}

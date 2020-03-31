@@ -6,7 +6,10 @@ use App\Http\Filters\PlaceFilter;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
+use Geocodio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
@@ -44,7 +47,9 @@ class PlaceController extends Controller
 
     public function createPublic()
     {
-        return view('add');
+        $categories = Category::where('parent_id', '=', null)->get();
+
+        return view("add", compact('categories'));
     }
 
     /**
@@ -109,6 +114,15 @@ class PlaceController extends Controller
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
 
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
 
         return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
@@ -130,6 +144,32 @@ class PlaceController extends Controller
         }
 
         return view('places.show')->with(['place' => $place]);
+    }
+
+    /**
+     * Display the specified resource as JSON
+     *
+     * @param  \App\Place  $place
+     * @return \Illuminate\Http\Response
+     */
+    public function showJson(Place $place)
+    {
+        if (! $place->is_approved && Gate::denies('do-moderation')) {
+            abort(403);
+        }
+
+        if (Gate::denies('do-moderation')) {
+            $place->increment('views');
+        }
+
+        if ($place->hide_address) {
+            unset($place->address);
+        }
+
+        $place->categories = $place->categories->toArray();
+        $place->delivery = $place->delivery->toArray();
+
+        return $place;
     }
 
     /**
@@ -177,6 +217,16 @@ class PlaceController extends Controller
         $place->categories()->sync($request->categories);
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
+
+        $address = "{$place->complete_address}, Canada";
+
+        $response = Cache::remember($address, 86400, function () use ($address) {
+            return Geocodio::geocode($address)->results[0];
+        });
+
+        $place->long = $response->location->lng;
+        $place->lat = $response->location->lat;
+        $place->save();
 
         return redirect('home')->with('status', 'Place modifiée!');
     }
