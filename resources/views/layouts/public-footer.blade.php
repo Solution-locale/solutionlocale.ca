@@ -3,6 +3,6 @@
     <p class="float-right">
       <a href="#">Retour en haut</a>
     </p>
-    <p>Une invitiative citoyenne ❤️</p>
+    <p>Une initiative citoyenne ❤️</p>
   </div>
 </footer>

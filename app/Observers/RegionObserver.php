@@ -9,7 +9,8 @@ class RegionObserver
 {
     public function created(Region $region)
     {
-        $region->slug = Str::slug($region->name);
+        $slug = Str::slug($region->name);
+        $region->slug = $slug;
         $random = Str::random(5);
         $existing = Region::where('slug', $slug)->count();
 
