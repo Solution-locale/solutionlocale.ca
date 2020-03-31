@@ -1,4 +1,4 @@
-<div class="col-md-8 offset-md-2">
+<div class="col-md-12">
   <div class="row">
   @foreach($places as $place)
     <div class="col-md-4">

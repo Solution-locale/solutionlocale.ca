@@ -1,4 +1,4 @@
-<label class="d-block">Vue</label>
+<label class="d-block">Mode d'affichage</label>
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary @if(request('vue', 'liste') === 'grille') active @endif">
         <a href="{{ \App\Http\Controllers\PublicController::getViewUrl('grille') }}">Grille</a>
