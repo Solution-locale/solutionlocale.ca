@@ -27,7 +27,8 @@
         "maatwebsite/excel": "^3.1",
         "propaganistas/laravel-phone": "^4.2",
         "spatie/laravel-backup": "^6.8",
-        "spatie/laravel-honeypot": "^2.1"
+        "spatie/laravel-honeypot": "^2.1",
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

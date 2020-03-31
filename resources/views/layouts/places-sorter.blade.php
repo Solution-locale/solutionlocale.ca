@@ -1,4 +1,7 @@
 <form method="get">
+    @if ($is_search)
+    <input type="hidden" name="q" id="q" value="{{ $q }}">
+    @endif
     <div class="col-md-8 offset-md-2">
         <div class="form-group">    
             <label for="trierpar">Trier par</label>

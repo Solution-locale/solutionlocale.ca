@@ -1,10 +1,21 @@
 # About authorization
 
-## User permission
-User can have permissions that gives them access to different part of the platform.
+## User roles
+User can have roles that gives them access to different part of the platform. It is important to always check for permission(s), not role(s). See [here](https://docs.spatie.be/laravel-permission/v3/best-practices/roles-vs-permissions) for the full explanation.
 
-- User can `do-admin` is `is_admin` is set to true on their `user` model. This permission should be used for anything that is admin related (ex. : add categories).
-- User can `do-moderation` is `is_moderator` is set to true on their `user` model. This permission should be used to give user access to moderation tools.
-- User can `access-backend` if `is_moderator` or `is_admin` is set to true on their `user` model. This permission is checked on the `HomeController` and in the backend routes as middleware.
+## Permissions
 
-If a user has `is_super_admin` set to true on their `user` model, it gives them any and all permissions possible. This is checked _after_ every other permissions in `AuthServiceProvider`.
+- `do-admin`: This permission should be used for anything that is admin related (ex. : add categories)
+- `do-moderation`: This permission should be used to give access to moderation tools.
+
+## Roles and their permissions
+
+`admin` role:
+- `do-admin`
+- `do-moderation`
+
+`moderator` role:
+- `do-moderation`
+
+`super_admin` role:
+- **Super_admin role implicitly has every possible permissions**
