@@ -14,7 +14,7 @@ class AlterTablePlacesAddRcmCol extends Migration
     public function up()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->integer('rcm_id')->after('views')->nullable();
+            $table->integer('rcm_id')->after('region_id')->nullable();
         });
     }
 
