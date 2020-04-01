@@ -65,6 +65,7 @@ class StorePlaces extends FormRequest
                     }
                 },
             ],
+            'rcm_id' => ['required'],
         ];
     }
 
