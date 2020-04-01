@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Category::observe(\App\Observers\CategoryObserver::class);
         \App\Place::observe(\App\Observers\PlaceObserver::class);
         \App\Region::observe(\App\Observers\RegionObserver::class);
+        \App\Rcm::observe(\App\Observers\RCMObserver::class);
     }
 }
