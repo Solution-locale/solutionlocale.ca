@@ -165,6 +165,44 @@
                                 @enderror
                             </div>
                         </div>
+
+                        @can('super_admin')
+                        <div class="form-group row">
+                            <label for="long" class="col-md-3 col-form-label text-md-right">Géoloc longitude</label>
+
+                            <div class="col-md-9">
+                                <input id="long" type="text" class="form-control @error('long') is-invalid @enderror" name="long" value="{{ $place->long }}" autocomplete="long" autofocus>
+
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Seuls les utilisateurs ayant l'accès <code>super_admin</code> peuvent modifier et voir cette valeur.
+                                </small>
+
+                                @error('long')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lat" class="col-md-3 col-form-label text-md-right">Géoloc latitude</label>
+
+                            <div class="col-md-9">
+                                <input id="lat" type="text" class="form-control @error('lat') is-invalid @enderror" name="lat" value="{{ $place->lat }}" autocomplete="lat" autofocus>
+
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Seuls les utilisateurs ayant l'accès <code>super_admin</code> peuvent modifier et voir cette valeur.
+                                </small>
+
+                                @error('lat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endcan
                         
                         <div class="form-group row">
                             <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tél.</label>

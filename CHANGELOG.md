@@ -1,7 +1,8 @@
 # Changelog
 
 # Next
-- Added RCM selection on place submission.
+- Added RCM selection on place submission. (don't forget to seed on prod!).
+- Super admins can edit places' geolocalisation information manually.
 
 # 2.2.1 (2020-04-01)
 - Moved default listing view to config file.
