@@ -11,3 +11,9 @@
     position: relative;
     display: block;
 }
+
+.categories {
+    &.tree, &.tree li {
+        list-style-type:none;
+    }
+}

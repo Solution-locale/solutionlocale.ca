@@ -5,6 +5,7 @@
 - Fixed old categories returning `500`. Now redirects to index with a `308` code.
 - Fixed link on business name in compact view.
 - Refactored permissions and gate checks (by @alex-okidoo).
+- Fixed categories display in place edit.
 
 # 2.2.0 (2020-03-31)
 - Refactored permissions based on `spatie/permissions` (by @alex-okidoo).

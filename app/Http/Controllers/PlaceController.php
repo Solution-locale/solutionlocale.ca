@@ -165,7 +165,11 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        return view('places.edit')->with(['place' => $place]);
+
+        return view('places.edit')->with([
+            'place' => $place,
+            'categories' => Category::where('parent_id', '=', null)->get(),
+        ]);
     }
 
     /**

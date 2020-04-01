@@ -33,15 +33,49 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="categories" class="col-md-3 col-form-label text-md-right">Catégories</label>
-
+                            <label for="categories" class="col-md-3 col-form-label text-md-right">
+                                Catégorie *
+                            </label>
                             <div class="col-md-9">
-                                @foreach(App\Category::all() as $categorie)
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}" @if($place->categories->contains($categorie->id)) CHECKED @endif>
-                                  <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
+                                    <ul class="categories tree">
+                                        @foreach($categories as $category)
+                                            <li>
+                                                <input class="form-check-input"
+                                                       name="categories[]"
+                                                       type="checkbox"
+                                                       id="inlineCategoryCheckbox{{ $category->id }}"
+                                                       value="{{ $category->id }}"
+                                                       @if($place->categories->contains($category->id)) CHECKED @endif>
+                                                <label class="form-check-label"
+                                                       for="inlineCategoryCheckbox{{ $category->id }}">
+                                                    {{ $category->name }}
+                                                </label>
+                                                <ul>
+                                                    @foreach($category->children as $category_children)
+                                                        <li>
+                                                            <input class="form-check-input"
+                                                                   name="categories[]"
+                                                                   type="checkbox"
+                                                                   id="inlineCategoryCheckbox{{ $category_children->id }}"
+                                                                   value="{{ $category_children->id }}"
+                                                                   @if($place->categories->contains($category_children->id)) CHECKED @endif>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCategoryCheckbox{{ $category_children->id }}">
+                                                                {{ $category_children->name }}
+                                                            </label>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                                @endforeach
+                                @error('categories')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{!! $message !!}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
