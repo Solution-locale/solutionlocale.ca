@@ -1,8 +1,1 @@
-$(document).ready(function() {
-    $("select#trierpar").change(function() {
-        var $form = $(this).parents('form');
-        $(this).addClass('d-none');
-        $form.find('#loading').removeClass('d-none');
-        $form.submit();
-    });
-});
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{39:function(n,o,e){n.exports=e(40)},40:function(n,o){$(document).ready((function(){$("select#trierpar").change((function(){var n=$(this).parents("form");$(this).addClass("d-none"),n.find("#loading").removeClass("d-none"),n.submit()}))}))}},[[39,0]]]);

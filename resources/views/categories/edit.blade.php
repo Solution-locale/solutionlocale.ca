@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('category.update', $category) }}">
+                        <form method="POST" action="{{ route('categories.update', $category) }}">
                             @csrf
                             @method('PUT')
                             @include('categories.form', [

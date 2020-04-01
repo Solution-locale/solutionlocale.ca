@@ -130,16 +130,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.133.47",
+            "version": "3.134.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "706082d6a0e53c7656eca61866b456178112daf6"
+                "reference": "aefab57896b558634d24342bdc3c6814e8e533f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/706082d6a0e53c7656eca61866b456178112daf6",
-                "reference": "706082d6a0e53c7656eca61866b456178112daf6",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/aefab57896b558634d24342bdc3c6814e8e533f6",
+                "reference": "aefab57896b558634d24342bdc3c6814e8e533f6",
                 "shasum": ""
             },
             "require": {
@@ -210,7 +210,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-03-30T18:15:57+00:00"
+            "time": "2020-04-01T18:14:23+00:00"
         },
         {
             "name": "axlon/laravel-postal-code-validation",

@@ -15,9 +15,9 @@
             <div class="btn-group" role="group" aria-label="Basic example">
               <a class="btn btn-outline-primary" href="{{ route("places.edit", $place->slug) }}" role="button" target="_blank">✏️</a>
               @if(!$place->is_approved)
-              <a class="btn btn-outline-primary" href="{{ route('moderation.approve', ['place' => $place->slug]) }}" role="button">✅</a>
+              <a class="btn btn-outline-primary" href="{{ route('approvals.create', ['place' => $place->slug]) }}" role="button">✅</a>
               @endif
-              <a class="btn btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
+              <a class="btn btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
 
             <h4>
               @foreach($place->categories as $category)
-              <span class="badge badge-secondary">{{ $category->name }}</span> 
+              <span class="badge badge-secondary">{{ $category->name }}</span>
               @endforeach
             </h4>
 

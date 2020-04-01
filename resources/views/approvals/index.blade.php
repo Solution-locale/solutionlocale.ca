@@ -12,7 +12,7 @@
                         Il y a <b>{{ $region->places()->where('is_approved', false)->count() }}</b> fiche(s) en attente de modération dans cette région.
                     </p>
                     <p class="card-text">
-                        <a class="btn btn-outline-primary" href="{{ route("moderation.show", $region->slug) }}" role="button">Accéder aux fiches à modérer</a>
+                        <a class="btn btn-outline-primary" href="{{ route("approvals.show", $region->slug) }}" role="button">Accéder aux fiches à modérer</a>
                     </p>
                 </div>
             </div>

@@ -15,7 +15,7 @@
         {
             return [
                 'name'      => 'required',
-                'parent_id' => 'exists:categories,id'
+                'parent_id' => 'nullable|exists:categories,id'
             ];
         }
 

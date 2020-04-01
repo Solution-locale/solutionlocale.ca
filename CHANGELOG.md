@@ -1,5 +1,12 @@
 # Changelog
 
+# 2.2.1 (2020-04-01)
+- Moved default listing view to config file.
+- Fixed old categories returning `500`. Now redirects to index with a `308` code.
+- Fixed link on business name in compact view.
+- Refactored permissions and gate checks (by @alex-okidoo).
+- Fixed categories display in place edit.
+
 # 2.2.0 (2020-03-31)
 - Refactored permissions based on `spatie/permissions` (by @alex-okidoo).
 - Added possibility to add user from the interface, and send them a password reset link (by @alex-okidoo).

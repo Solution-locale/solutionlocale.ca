@@ -37,10 +37,10 @@
                                     <a class="btn btn-outline-warning" href="{{ route("places.edit", $place->slug) }}" role="button" target="_blank">✏️</a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-success" href="{{ route('moderation.approve', ['place' => $place->slug]) }}" role="button">✅</a>
+                                    <a class="btn btn-outline-success" href="{{ route('approvals.create', ['place' => $place->slug]) }}" role="button">✅</a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
+                                    <a class="btn btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
                                 </td>
                             </tr>
                             @endforeach

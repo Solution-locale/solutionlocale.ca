@@ -10,7 +10,7 @@
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 @foreach(App\Region::all() as $region)
-                <a class="dropdown-item" href="{{ route('public.index-region', ['region' => $region->slug]) }}">
+                <a class="dropdown-item" href="{{ route('regions.index-region', ['region' => $region->slug]) }}">
                     {{ $region->name }}
                 </a>
                 @endforeach
@@ -29,7 +29,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route("home") }}">Administration</a>
-                    
+
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

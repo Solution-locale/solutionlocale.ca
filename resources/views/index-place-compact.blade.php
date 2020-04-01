@@ -11,14 +11,13 @@
     @foreach($places as $place)
     <tr>
       <th scope="row" class="col-place-name">
-        <a href="{{ route('places.show', ['place' => $place->slug]) }}" class="font-weight-bold d-sm-block d-md-none place-name-link">{{ $place->name }}</a>
-        <span class="font-weight-bold d-none d-md-block place-name">{{ $place->name }}</span>
+        <a href="{{ route('places.show', ['place' => $place->slug]) }}" class="text-dark">{{ $place->name }}</a>
       </th>
       <td class="col-place-location">
         <span class="text-nowrap">{{ $place->complete_address }}</span>
       </td>
       <td class="col-place-action">
-        <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">Voir</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">👀</a>
         @can('do-moderation')
           <a class="btn btn-sm btn-outline-primary" href="{{ route('places.edit', ['place' => $place->slug]) }}">✏️</a>
           <a class="btn btn-sm btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}">🗑</a>

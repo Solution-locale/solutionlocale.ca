@@ -62,7 +62,7 @@
                             Un astérisque (*) dénote une information obligatoire!
                         </div>
 
-                        <form method="POST" action="/entreprise/ajout">
+                        <form method="POST" action="{{ route('places.store-public') }}">
                             @csrf
                             @honeypot
 

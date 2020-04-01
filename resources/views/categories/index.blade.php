@@ -12,7 +12,7 @@
                              role="group"
                              aria-label="Actions for {{ $category->name }}">
                             <a
-                                href="{{ route('category.edit', $category) }}"
+                                href="{{ route('categories.edit', $category) }}"
                                 class="btn btn-dark"
                                 data-toggle="tooltip"
                                 data-placement="top"
@@ -20,7 +20,7 @@
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
                             <a
-                                href="{{ route('category.delete', $category) }}"
+                                href="{{ route('categories.delete', $category) }}"
                                 class="btn btn-dark btn-dangerHover"
                                 data-toggle="tooltip"
                                 data-placement="top"
