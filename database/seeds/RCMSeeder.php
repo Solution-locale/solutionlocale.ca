@@ -65,7 +65,7 @@ class RCMSeeder extends Seeder
         Rcm::create(['region_id' => 9, 'name' => "Caniapiscau"]);
         Rcm::create(['region_id' => 9, 'name' => "Minganie"]);
         Rcm::create(['region_id' => 9, 'name' => "Golf-du-Saint-Laurent"]);
-        Rcm::create(['region_id' => 6, 'name' => "Nord-du-Québec"]);
+        Rcm::create(['region_id' => 10, 'name' => "Nord-du-Québec"]);
         Rcm::create(['region_id' => 11, 'name' => "îles-de-la-Madeleine"]);
         Rcm::create(['region_id' => 11, 'name' => "Rocher-Percer"]);
         Rcm::create(['region_id' => 11, 'name' => "La Côte-de-Gaspé"]);
