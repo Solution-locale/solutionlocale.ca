@@ -34,5 +34,6 @@ class Category extends Model
     {
         return $this->name.' - '.config('app.name', '');
     }
-    public function is_parent_category($id) { return $this->parent_id === $id; }
+
+    public function is_parent_category($parent_id) { return $this->id === $parent_id; }
 }

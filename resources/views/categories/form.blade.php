@@ -25,9 +25,16 @@
 
 <div class="form-group">
     <label for="categories">Catégorie parent</label>
+
     <select class="form-control" name="parent_id">
-        @foreach($categories as $category)
-            <option value="{{$category->id}}" @if ($category->is_parent_category(old('parent_id',$category->parent_id)) === true) selected @endif>{{ $category->name }}</option>
+        <option @if ($category->parent_id === null) selected @endif disabled></option>
+        @foreach($categories as $categoryItem)
+            <option value="{{$categoryItem->id}}"
+                @if ($categoryItem->is_parent_category($category->parent_id))
+                    selected
+                @endif>
+                {{ $categoryItem->name }}
+            </option>
         @endforeach
     </select>
 </div>

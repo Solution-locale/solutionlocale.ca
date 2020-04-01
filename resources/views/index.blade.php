@@ -33,8 +33,8 @@
       @endif
 
       @if(isset($category))
-      <h2 class="text-center mb-5">{{ $category->name }}</h1>
-      @endif      
+      <h2 class="text-center mb-5">{{ $category->name }}</h2>
+      @endif
 
       <form method="get" id="search-place-form" action="{{ route('public.index-search') }}">
         <div class="col-md-8 offset-md-2">
@@ -78,9 +78,11 @@
         @else
         <div class="col-md-12 text-center mb-5 h5">
           <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
-          @foreach(App\Category::all() as $category)
-            <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
-          @endforeach
+            @foreach($categories as $category)
+                @if ($category->places()->where('region_id', $selectedRegion->id)->count() > 0)
+                    <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
+                @endif
+            @endforeach
         </div>
         @endif
       </div>
@@ -99,12 +101,12 @@
       <h3 class="mb-4 text-center">Quelques exemples</h3>
       @endif
 
-      <div class="col-md-8 offset-md-2" id="result-actions">
+      <div class="col-md-12" id="result-actions">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-6">
             @include('layouts.places-sorter')
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 offset-md-2">
             @include('layouts.places-view-selector')
           </div>
         </div>
