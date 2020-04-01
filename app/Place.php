@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     protected $fillable = [
-        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone', 'hide_address',
+        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id',
     ];
 
     protected $hidden = [
@@ -17,6 +17,10 @@ class Place extends Model
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function rcm() {
+        return $this->belongsTo(Rcm::class);
     }
 
     public function categories()

@@ -76,7 +76,6 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
-
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->address['line1'],
@@ -93,6 +92,7 @@ class PlaceController extends Controller
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
+            'rcm_id' => $request->rcm_id,
         ]);
 
         $place->categories()->sync($request->categories);
