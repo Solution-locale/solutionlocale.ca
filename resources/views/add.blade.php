@@ -295,6 +295,24 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="rcm_id" class="col-md-3 col-form-label text-md-right">
+                                    MRC *
+                                </label>
+
+                                <div class="col-md-9">
+                                    <select class="custom-select" name="rcm_id" id="rcm_id">
+                                        <option>Veuillez choisir une rgion administrative</option>
+                                    </select>
+
+                                    @error('region')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">
                                     No. de tél.
                                 </label>
@@ -409,4 +427,8 @@
             </div>
         </div>
     </main>
+@endsection
+
+@section('scripts-body')
+<script src="{{ asset('js/rcm-filler.js') }}"></script>
 @endsection
