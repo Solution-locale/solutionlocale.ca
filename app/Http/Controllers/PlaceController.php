@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\StorePlaces;
 use App\Http\Requests\StoreReport;
+use App\Notifications\PlaceReportReceived;
 use App\Place;
 use App\Region;
 use App\Report;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 
 class PlaceController extends Controller
 {
@@ -131,6 +133,9 @@ class PlaceController extends Controller
             'place_id' => $place->id,
         ]);
         $report->save();
+
+        Notification::route('slack', config('services.slack.moderators_channel'))
+        ->notify(new PlaceReportReceived($report));
 
         return redirect('/entreprise/report/'.$place->slug)->with('status', 'Bien reçu!');
     }

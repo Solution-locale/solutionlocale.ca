@@ -36,4 +36,9 @@ return [
         ],
     ],
 
+    'slack' => [
+        'hackers_channel' => env('SLACK_WEBHOOK_FOR_HACKERS_CHANNEL', ''),
+        'moderators_channel' => env('SLACK_WEBHOOK_FOR_MODERATION_CHANNEL', ''),
+    ],
+
 ];
