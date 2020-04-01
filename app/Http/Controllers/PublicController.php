@@ -59,6 +59,11 @@ class PublicController extends Controller
     {
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $category = Category::where('slug', $category)->first();
+
+        if (is_null($category)) {
+            return redirect('/', 308)->with('status', 'Cette catégorie est introuvable ou a peut-être récemment été changée. Merci de réessayer !');
+        }
+        
         $sort = $this->getSortColumn(request('trierpar', ''));
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
 

@@ -2,6 +2,7 @@
 
 # Next
 - Moved default listing view to config file.
+- Fixed old categories returning `500`. Now redirects to index with a `308` code.
 
 # 2.2.0 (2020-03-31)
 - Refactored permissions based on `spatie/permissions` (by @alex-okidoo).

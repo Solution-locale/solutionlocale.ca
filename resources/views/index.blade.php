@@ -12,6 +12,11 @@
 
 @section('content')
 <main role="main">
+  @if (session('status'))
+  <div class="alert alert-danger mt-3 text-center col-md-8 offset-md-2" role="alert">
+      <b>{{ session('status') }}</b>
+  </div>
+  @endif
   @if(!$is_regional)
   <section class="jumbotron text-center">
     <div class="container">
