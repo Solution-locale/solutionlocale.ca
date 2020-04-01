@@ -5,7 +5,7 @@
 */
 
 @media print {
-    .jumbotron {
+    .btn, .jumbotron {
         display: none;
     },
     #content, #page {

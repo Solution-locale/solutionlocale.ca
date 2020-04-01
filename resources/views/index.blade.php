@@ -5,9 +5,7 @@
 @endsection
 
 @section('styles-head')
-  @if(request('vue', '') === 'compact')
     <link href="{{ asset('css/index-print.css') }}" rel="stylesheet">
-  @endif
 @endsection
 
 @section('content')
