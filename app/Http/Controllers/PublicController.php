@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Gate;
 
 class PublicController extends Controller
 {
-    const DEFAULT_VIEW = 'liste';
 
     public function index()
     {
-        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get()->random(5),
+            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get()->random(6),
             'is_regional' => false,
             'is_provincial' => false,
             'page_title' => config('app.name', ''),
@@ -28,7 +27,7 @@ class PublicController extends Controller
 
     public function indexProvincial()
     {
-        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
@@ -42,7 +41,7 @@ class PublicController extends Controller
 
     public function indexRegional(Region $region)
     {
-        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'categories' => Category::all(),
@@ -58,7 +57,7 @@ class PublicController extends Controller
 
     public function indexRegionalCategories(Region $region, $category)
     {
-        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $category = Category::where('slug', $category)->first();
         $sort = $this->getSortColumn(request('trierpar', ''));
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
@@ -81,7 +80,7 @@ class PublicController extends Controller
      */
     public function indexSearch($region = null)
     {
-        $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
+        $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         $q = request('q');
         if (!$region) {

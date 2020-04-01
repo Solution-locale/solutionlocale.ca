@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Moved default listing view to config file.
+
 # 2.2.0 (2020-03-31)
 - Refactored permissions based on `spatie/permissions` (by @alex-okidoo).
 - Added possibility to add user from the interface, and send them a password reset link (by @alex-okidoo).
