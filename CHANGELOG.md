@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added RCM selection on place submission.
+
 # 2.2.1 (2020-04-01)
 - Moved default listing view to config file.
 - Fixed old categories returning `500`. Now redirects to index with a `308` code.
