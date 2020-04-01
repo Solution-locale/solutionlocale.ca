@@ -5,6 +5,9 @@
 */
 
 @media print {
+    .jumbotron {
+        display: none;
+    },
     #content, #page {
         width: 100%;
         margin: 0;

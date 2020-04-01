@@ -93,6 +93,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', self::DEFAULT_VIEW));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
+            'categories' => Category::all(),
             'places' => $region->places()->where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'is_regional' => true,
@@ -111,6 +112,7 @@ class PublicController extends Controller
         $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
 
         return view('index')->with([
+           'categories' => Category::all(),
             'places' => $places,
             'selectedRegion' => $region,
             'is_regional' => true,
