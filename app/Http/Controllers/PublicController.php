@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Place;
 use App\Region;
+use App\Utils\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 

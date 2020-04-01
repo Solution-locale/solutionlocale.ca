@@ -41,7 +41,7 @@
       <h2 class="text-center mb-5">{{ $category->name }}</h2>
       @endif
 
-      <form method="get" id="search-place-form" action="{{ route('public.index-search') }}">
+      <form method="get" id="search-place-form" action="{{ route('recherche.index') }}">
         <div class="col-md-8 offset-md-2">
           <div class="row">
             <div class="col-12">
@@ -67,25 +67,25 @@
       @if($is_search)
         <div class="col-md-12 text-center mb-5 h5">
           <h3 class="mb-4">Filtrer par région</h3>
-          <a href="{{ route("public.index-search") }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::countByKeyword($q) }}</span></a>
+          <a href="{{ route("recherche.index") }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::countByKeyword($q) }}</span></a>
           @foreach(App\Region::all() as $region)
-          <a href="{{ route("public.index-search-region", ['region' => $region->slug]) }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->countPlacesByKeyword($q) }}</span></a>
+          <a href="{{ route("recherche.index-region", ['region' => $region->slug]) }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->countPlacesByKeyword($q) }}</span></a>
           @endforeach
         </div>
         @elseif(!$is_regional)
         <div class="col-md-12 text-center mb-5 h5">
           <h3 class="mb-4">Filtrer par région</h3>
-          <a href="{{ route("public.index-provincial") }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route("regions.index-provincial") }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
           @foreach(App\Region::all() as $region)
-          <a href="{{ route("public.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route("regions.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
         </div>
         @else
         <div class="col-md-12 text-center mb-5 h5">
-          <a href="{{ route('public.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route('regions.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
             @foreach($categories as $category)
                 @if ($category->places()->where('region_id', $selectedRegion->id)->count() > 0)
-                    <a href="{{ route("public.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
+                    <a href="{{ route("regions.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>
                 @endif
             @endforeach
         </div>

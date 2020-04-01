@@ -2,7 +2,7 @@
     @if ($is_search)
     <input type="hidden" name="q" id="q" value="{{ $q }}">
     @endif
-    <div class="form-group">    
+    <div class="form-group">
         <label for="trierpar">Trier par</label>
         <div id="loading" class="d-none">Chargement en cours... veuillez patienter.</div>
         <select class="form-control" id="trierpar" name="trierpar">

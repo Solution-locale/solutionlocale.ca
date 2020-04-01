@@ -31,10 +31,6 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        if (Gate::denies('do-moderation')) {
-            abort(401);
-        }
-
         return view('places.create');
     }
 
@@ -53,10 +49,6 @@ class PlaceController extends Controller
      */
     public function store(StorePlaces $request)
     {
-        if (Gate::denies('do-moderation')) {
-            abort(401);
-        }
-
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->address['line1'],
@@ -117,7 +109,7 @@ class PlaceController extends Controller
         $place->lat = $response->location->lat;
         $place->save();
 
-        return redirect('/entreprise/ajout')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
+        return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
     /**
@@ -173,10 +165,6 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        if (Gate::denies('do-moderation')) {
-            abort(401);
-        }
-
         return view('places.edit')->with(['place' => $place]);
     }
 
@@ -189,10 +177,6 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        if (Gate::denies('do-moderation')) {
-            abort(401);
-        }
-
         $place->name = $request->name;
         $place->address = $request->address['line1'];
         $place->address = empty($request->address['line1']) ? null : $request->address['line1'];
