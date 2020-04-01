@@ -1,7 +1,7 @@
 # Changelog
 
-# Next
-- Added RCM selection on place submission. (don't forget to seed on prod!).
+# 2.3.1 (2020-04-01)
+- Added RCM selection on place submission. 
 - Super admins can edit places' geolocalisation information manually.
 
 # 2.2.1 (2020-04-01)
