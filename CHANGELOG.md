@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.3.1 (2020-04-01)
+- Added RCM selection on place submission. 
+- Super admins can edit places' geolocalisation information manually.
+
 # 2.2.1 (2020-04-01)
 - Moved default listing view to config file.
 - Fixed old categories returning `500`. Now redirects to index with a `308` code.

@@ -76,7 +76,6 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
-
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->address['line1'],
@@ -93,6 +92,7 @@ class PlaceController extends Controller
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
+            'rcm_id' => $request->rcm_id,
         ]);
 
         $place->categories()->sync($request->categories);
@@ -181,9 +181,16 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        $coordinate_changed = ($request->lat != $place->lat || $request->long != $place->long);
+        $address_changed = (
+            $request->address['line1'] != $place->address ||
+            $request->city != $place->city ||
+            $request->postalCode != $place->postalCode
+        );
+
         $place->name = $request->name;
         $place->address = $request->address['line1'];
-        $place->address = empty($request->address['line1']) ? null : $request->address['line1'];
+        $place->address_2 = empty($request->address['line2']) ? null : $request->address['line2'];
         $place->city = $request->city;
         $place->postalCode = $request->postalCode;
         $place->region_id = $request->region_id;
@@ -199,15 +206,21 @@ class PlaceController extends Controller
         $place->delivery()->sync($request->deliveryType);
         $place->types()->sync($request->placeType);
 
-        $address = "{$place->complete_address}, Canada";
+        if ($coordinate_changed && auth()->user()->can("super_admin")) {
+            $place->lat = $request->lat;
+            $place->long = $request->long;
+            $place->save();
+        } elseif ($address_changed && !$coordinate_changed) { // verified because we want to save as much API call as we can
+            $address = "{$place->complete_address}, Canada";
 
-        $response = Cache::remember($address, 86400, function () use ($address) {
-            return Geocodio::geocode($address)->results[0];
-        });
+            $response = Cache::remember($address, 86400, function () use ($address) {
+                return Geocodio::geocode($address)->results[0];
+            });
 
-        $place->long = $response->location->lng;
-        $place->lat = $response->location->lat;
-        $place->save();
+            $place->long = $response->location->lng;
+            $place->lat = $response->location->lat;
+            $place->save();
+        }
 
         return redirect('home')->with('status', 'Place modifiée!');
     }
