@@ -20,7 +20,7 @@
         <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">👀</a>
         @can('do-moderation')
           <a class="btn btn-sm btn-outline-primary" href="{{ route('places.edit', ['place' => $place->slug]) }}">✏️</a>
-          <a class="btn btn-sm btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}">🗑</a>
+          <a class="btn btn-sm btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}">🗑</a>
         @endcan
       </td>
     </tr>

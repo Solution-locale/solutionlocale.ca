@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Fixed wrong link for deletion in compact list.
+
 # 2.3.0 (2020-04-01)
 - Added RCM selection on place submission. 
 - Super admins can edit places' geolocalisation information manually.
