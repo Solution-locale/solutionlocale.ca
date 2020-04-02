@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added a field for Facebook URL.
+
 # 2.3.1 (2020-04-02)
 - Fixed wrong link for deletion in compact list.
 - Fixed delete button not working in compact.

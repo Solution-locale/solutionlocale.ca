@@ -390,14 +390,31 @@
                                            class="form-control @error('url') is-invalid @enderror"
                                            name="url"
                                            value="{{ old('url') }}"
+                                           placeholder="Ex.: https://solutionlocale.ca" 
                                            autocomplete="url" autofocus>
 
-                                    <div class="alert alert-secondary mt-3" role="alert">
-                                        Vous pouvez entrer n'importe quelle adresse web,
-                                        <strong>incluant celle de votre page Facebook</strong>!
-                                    </div>
-
                                     @error('url')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="facebook_url" class="col-md-3 col-form-label text-md-right">
+                                    Adresse de page Facebook
+                                </label>
+
+                                <div class="col-md-9">
+                                    <input id="facebook_url" type="text"
+                                           class="form-control @error('facebook_url') is-invalid @enderror"
+                                           name="facebook_url"
+                                           value="{{ old('facebook_url') }}"
+                                           placeholder="Ex.: https://www.facebook.com/Solutionlocale/" 
+                                           autocomplete="facebook_url" autofocus>
+
+                                    @error('facebook_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{!! $message !!}</strong>
                                         </span>

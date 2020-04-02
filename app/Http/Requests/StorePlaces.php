@@ -49,6 +49,7 @@ class StorePlaces extends FormRequest
             'region_id' => ['required'],
             'email' => ['nullable', 'email'],
             'url' => ['nullable', 'url'],
+            'facebook_url' => ['nullable', 'url'],
             'hide_address' => ['boolean'],
             'phoneNumber' => ['nullable', 'phone:CA'],
             'additionnalPhoneNumber' => ['nullable', 'phone:CA'],
@@ -80,6 +81,7 @@ class StorePlaces extends FormRequest
             'placeType.required'  => 'Vous devez choisir un type d\'entreprise.',
             'email.email' => "Votre adresse courriel est d'un format invalide. Veuillez la vérifier.",
             'url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em>.",
+            'facebook_url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em>.",
             'phoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
             'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
         ];
