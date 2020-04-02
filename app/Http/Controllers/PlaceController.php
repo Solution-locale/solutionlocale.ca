@@ -76,6 +76,7 @@ class PlaceController extends Controller
 
     public function storePublic(StorePlaces $request)
     {
+
         $place = Place::create([
             'name' => $request->name,
             'address' => $request->address['line1'],
@@ -89,6 +90,7 @@ class PlaceController extends Controller
             'additionnalPhoneNumber' => $request->additionnalPhoneNumber,
             'email' => $request->email,
             'url' => $request->url,
+            'facebook_url' => $request->facebook_url,
             'instructions' => $request->instructions,
             'deliveryZone' => $request->deliveryZone,
             'hide_address' => $request->boolean('hideAddress'),
@@ -198,6 +200,7 @@ class PlaceController extends Controller
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
         $place->url = $request->url;
+        $place->facebook_url = $request->facebook_url;
         $place->hide_address = $request->boolean('hideAddress');
         $place->deliveryZone = $request->deliveryZone;
         $place->save();

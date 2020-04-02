@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     protected $fillable = [
-        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id',
+        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'facebook_url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id',
     ];
 
     protected $hidden = [
@@ -19,7 +19,8 @@ class Place extends Model
         return $this->belongsTo(Region::class);
     }
 
-    public function rcm() {
+    public function rcm()
+    {
         return $this->belongsTo(Rcm::class);
     }
 
@@ -58,14 +59,15 @@ class Place extends Model
      * @param string $q
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public static function searchByKeyword($q, $sortBy=null, $sortOrder=null) {
+    public static function searchByKeyword($q, $sortBy = null, $sortOrder = null)
+    {
         $like = '%'.str_replace(' ', '%', $q).'%';
         $search = 'is_approved and (name like ? or address like ? or city like ?)';
         $bindings = [$like, $like, $like];
 
         $sortBy = $sortBy ?? 'name';
         $sortOrder = $sortOrder ?? 'asc';
-        return Parent::whereRaw($search, $bindings)->orderBy($sortBy, $sortOrder)->get();
+        return parent::whereRaw($search, $bindings)->orderBy($sortBy, $sortOrder)->get();
     }
 
     /**
@@ -73,7 +75,8 @@ class Place extends Model
      * @param string $q
      * @return int
      */
-    public static function countByKeyword($q) {
+    public static function countByKeyword($q)
+    {
         $places = self::searchByKeyword($q);
         return count($places);
     }
