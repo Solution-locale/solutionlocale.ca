@@ -34,6 +34,11 @@ return [
         'analytics' => [
             'id' => env('GOOGLE_ANALYTICS_ID'),
         ],
+        'places' => [
+            'api' => [
+                'key' => env('GOOGLE_PLACES_API_KEY', false)
+            ],
+        ],
     ],
 
 ];
