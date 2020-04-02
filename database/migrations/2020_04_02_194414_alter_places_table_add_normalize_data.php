@@ -15,7 +15,7 @@ class AlterPlacesTableAddNormalizeData extends Migration
     {
         Schema::table('places', function (Blueprint $table) {
             $table->timestamp('normalized_at')->after('views')->nullable();
-            $table->string("plus_code", 15)->nullable();
+            $table->string("plus_code", 15)->after('facebook_url')->nullable();
         });
     }
 

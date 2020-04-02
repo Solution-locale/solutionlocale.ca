@@ -16,6 +16,11 @@ class NormalizePlacesWithGoogle extends Command
      * @var string
      */
     protected $signature = 'soloc:normalize
+                            {--G|plus_code : Will set the Google Plus Code for maps found on normalization.}
+                            {--A|latitude :  Will set the latitude found on normalization.}
+                            {--O|longitude : Will set the longitude found on normalization.}
+                            {--C|city : Will set the city found on normalization.}
+                            {--P|postal_code : Will set the postal code found on normalization.}
                             {--limit= : Limit processing to X number of places for testing.}
                             {--single_place= : Will run for only a single place that you specify ID of.}';
 
@@ -24,7 +29,7 @@ class NormalizePlacesWithGoogle extends Command
      *
      * @var string
      */
-    protected $description = 'try to normalize data with the Google Place API';
+    protected $description = 'Tries to normalize data with the Google Place API. If no option is set, it will not change anything.';
 
     /**
      * Create a new command instance.
@@ -72,12 +77,36 @@ class NormalizePlacesWithGoogle extends Command
 
         $google_geocoding = new GoogleGeocoding($place);
         $google_geocoding->init()->collectAllData();
+        $changed = false;
 
-        $place->plus_code = $google_geocoding->getPlusCode();
-        $place->lat = $google_geocoding->getGeographyData()['lat'];
-        $place->long = $google_geocoding->getGeographyData()['long'];
-        $place->normalized_at = Carbon::now("America/Montreal");
+        if ($this->option('plus_code')) {
+            $place->plus_code = $google_geocoding->getPlusCode();
+            $changed = true;
+        }
 
-        $place->save();
+        if ($this->option('latitude')) {
+            $place->lat = $google_geocoding->getGeographyData()['lat'];
+            $changed = true;
+        }
+
+        if ($this->option('longitude')) {
+            $place->long = $google_geocoding->getGeographyData()['long'];
+            $changed = true;
+        }
+
+        if ($this->option('city')) {
+            $place->city = $google_geocoding->getCity();
+            $changed = true;
+        }
+
+        if ($this->option('postal_code')) {
+            $place->postalCode = $google_geocoding->getPostalCode();
+            $changed = true;
+        }
+
+        if ($changed) {
+            $place->normalized_at = Carbon::now();
+            $place->save();
+        }
     }
 }
