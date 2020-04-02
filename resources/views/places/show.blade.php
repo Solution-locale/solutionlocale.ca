@@ -82,7 +82,7 @@
 
             @if(!empty($place->facebook_url))
             <p class="card-text">
-              <b>Page Facebook: </b> <a href="{{ $place->url }}" target="_blank">{{ $place->facebook_url }}</a>
+              <b>Page Facebook: </b> <a href="{{ $place->facebook_url }}" target="_blank">{{ $place->facebook_url }}</a>
             </p>
             @endif
 
