@@ -56,17 +56,35 @@
               </p>
             @endif
 
+            @if(!empty($place->phoneNumber))
             <p class="card-text">
-              <b>Téléphone: </b> {{ $place->phoneNumber }}
+              <b>Téléphone: </b> <a href="tel:{{ $place->phoneNumber }}">{{ $place->phoneNumber }}</a>
             </p>
+            @endif
 
+            @if(!empty($place->additionnalPhoneNumber))
             <p class="card-text">
-              <b>Courriel: </b> {{ $place->email }}
+              <b>Téléphone: </b> <a href="tel:{{ $place->additionnalPhoneNumber }}">{{ $place->additionnalPhoneNumber }}</a>
             </p>
+            @endif
 
+            @if(!empty($place->email))
+            <p class="card-text">
+              <b>Courriel: </b> <a href="mailto:{{ $place->email }}">{{ $place->email }}</a>
+            </p>
+            @endif
+
+            @if(!empty($place->url))
             <p class="card-text">
               <b>Site web: </b> <a href="{{ $place->url }}" target="_blank">{{ $place->url }}</a>
             </p>
+            @endif
+
+            @if(!empty($place->facebook_url))
+            <p class="card-text">
+              <b>Page Facebook: </b> <a href="{{ $place->url }}" target="_blank">{{ $place->facebook_url }}</a>
+            </p>
+            @endif
 
             <p class="card-text text-right">
               Nombre de vue sur la fiche: {{ $place->views }}
