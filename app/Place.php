@@ -14,6 +14,10 @@ class Place extends Model
         'long', 'lat',
     ];
 
+    protected $dates = [
+        'normalized_at',
+    ];
+
     public function region()
     {
         return $this->belongsTo(Region::class);
