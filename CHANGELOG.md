@@ -3,6 +3,7 @@
 # 2.4.0 (2020-04-01)
 - Added a field for Facebook URL.
 - Raised the password reset link validation token lifetime to 24h.
+- Added a command to normalize with Google Geocoding API.
 
 # 2.3.1 (2020-04-02)
 - Fixed wrong link for deletion in compact list.
