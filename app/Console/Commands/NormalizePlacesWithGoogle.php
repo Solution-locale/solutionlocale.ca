@@ -3,9 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Place;
-use App\Services\GoogleAPI;
-use GoogleMaps\GoogleMaps;
-use Google_Client;
+use App\Services\GoogleGeocoding;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 
@@ -17,7 +16,8 @@ class NormalizePlacesWithGoogle extends Command
      * @var string
      */
     protected $signature = 'soloc:normalize
-                            {--limit= : Limit processing to X number of places for testing.}';
+                            {--limit= : Limit processing to X number of places for testing.}
+                            {--single_place= : Will run for only a single place that you specify ID of.}';
 
     /**
      * The console command description.
@@ -43,34 +43,41 @@ class NormalizePlacesWithGoogle extends Command
      */
     public function handle()
     {
+        if ($this->option('single_place') !== null) {
+            $this->normalize(Place::find($this->option('single_place')));
 
-        if (!config("services.google.places.api.key")) {
-            $this->error("You did not specify any required API key in your environment file.");
+            $this->info("Done!");
             exit;
         }
 
-        if ($this->option('limit') === null) {
-            $normalize = Place::all();
-        } else {
-            $normalize = Place::orderByRaw('RAND()')->take($this->option('limit'))->get();
-        }
-
-        $normalize->each(function ($place) {
-            $this->line("Normalizing data for place ID({$place->id})");
-
-            $google_geocoding_response = Cache::rememberForever("google_geocoding_for_q={$place->complete_address}", function () use ($place) {
-                $response = \GoogleMaps::load('geocoding')
-                        ->setParam([
-                            'address' => $place->complete_address
-                        ])
-                        ->get();
-
-                return json_decode($response);
+        if ($this->option('limit') !== null) {
+            Place::whereNotNull('normalized_at')->orderByRaw('RAND()')->take($this->option('limit'))->get()->each(function ($place) {
+                $this->normalize($place);
             });
 
-            dd($google_geocoding_response);
+            $this->info("Done!");
+            exit;
+        }
+
+        Place::whereNotNull('normalized_at')->get()->each(function ($place) {
+            $this->normalize($place);
         });
 
-        dd($response);
+        $this->info("Done!");
+    }
+
+    private function normalize($place)
+    {
+        $this->line("Normalizing data for place ID({$place->id})");
+
+        $google_geocoding = new GoogleGeocoding($place);
+        $google_geocoding->init()->collectAllData();
+
+        $place->plus_code = $google_geocoding->getPlusCode();
+        $place->lat = $google_geocoding->getGeographyData()['lat'];
+        $place->long = $google_geocoding->getGeographyData()['long'];
+        $place->normalized_at = Carbon::now("America/Montreal");
+
+        $place->save();
     }
 }
