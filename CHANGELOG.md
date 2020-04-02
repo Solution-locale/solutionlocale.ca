@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 2.4.0 (2020-04-01)
 - Added a field for Facebook URL.
 - Raised the password reset link validation token lifetime to 24h.
 
