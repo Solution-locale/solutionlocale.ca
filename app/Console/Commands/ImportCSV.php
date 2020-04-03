@@ -13,7 +13,8 @@ class ImportCSV extends Command
      *
      * @var string
      */
-    protected $signature = 'import:csv';
+    protected $signature = 'import:csv
+                            {filename : CSV file to import from stotage}';
 
     /**
      * The console command description.
@@ -39,6 +40,6 @@ class ImportCSV extends Command
      */
     public function handle()
     {
-        Excel::import(new PlacesImport, 'import-19mars2020.csv');
+        Excel::import(new PlacesImport, $this->argument('filename')); // /storage/app/{filename}
     }
 }
