@@ -94,31 +94,49 @@
                                 <div class="col-md-9">
                                     <div class="form-check form-check-inline">
                                         <ul class="categories tree">
-                                            @foreach($categories as $category)
+                                            @foreach($categories as $category_first_level)
                                                 <li>
                                                     <input class="form-check-input"
                                                            name="categories[]"
                                                            type="checkbox"
-                                                           id="inlineCategoryCheckbox{{ $category->id }}"
-                                                           value="{{ $category->id }}"
-                                                           @if(!empty(old('categories')) && in_array($category->id, old('categories'))) CHECKED @endif>
+                                                           id="inlineCategoryCheckbox{{ $category_first_level->id }}"
+                                                           value="{{ $category_first_level->id }}"
+                                                           @if(!empty(old('categories')) && in_array($category_first_level->id, old('categories'))) CHECKED @endif>
                                                     <label class="form-check-label"
-                                                           for="inlineCategoryCheckbox{{ $category->id }}">
-                                                        {{ $category->name }}
+                                                           for="inlineCategoryCheckbox{{ $category_first_level->id }}">
+                                                        {{ $category_first_level->name }}
                                                     </label>
                                                     <ul>
-                                                        @foreach($category->children as $category_children)
+                                                        @foreach($category_first_level->children as $category_second_level)
                                                             <li>
                                                                 <input class="form-check-input"
                                                                        name="categories[]"
                                                                        type="checkbox"
-                                                                       id="inlineCategoryCheckbox{{ $category_children->id }}"
-                                                                       value="{{ $category_children->id }}"
-                                                                       @if(!empty(old('categories')) && in_array($category_children->id, old('categories'))) CHECKED @endif>
+                                                                       id="inlineCategoryCheckbox{{ $category_second_level->id }}"
+                                                                       value="{{ $category_second_level->id }}"
+                                                                       @if(!empty(old('categories')) && in_array($category_second_level->id, old('categories'))) CHECKED @endif>
                                                                 <label class="form-check-label"
-                                                                       for="inlineCategoryCheckbox{{ $category_children->id }}">
-                                                                    {{ $category_children->name }}
+                                                                       for="inlineCategoryCheckbox{{ $category_second_level->id }}">
+                                                                    {{ $category_second_level->name }}
                                                                 </label>
+                                                                @if(config('soloc.show-third-level-category-in-forms'))
+                                                                <ul>
+                                                                  @foreach($category_second_level->children as $category_third_level)
+                                                                      <li>
+                                                                          <input class="form-check-input"
+                                                                                 name="categories[]"
+                                                                                 type="checkbox"
+                                                                                 id="inlineCategoryCheckbox{{ $category_third_level->id }}"
+                                                                                 value="{{ $category_third_level->id }}"
+                                                                                 @if(!empty(old('categories')) && in_array($category_third_level->id, old('categories'))) CHECKED @endif>
+                                                                          <label class="form-check-label"
+                                                                                 for="inlineCategoryCheckbox{{ $category_third_level->id }}">
+                                                                              {{ $category_third_level->name }}
+                                                                          </label>
+                                                                      </li>
+                                                                  @endforeach
+                                                                </ul>
+                                                                @endif
                                                             </li>
                                                         @endforeach
                                                     </ul>

@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Added possibility of 3rd level category when adding and editing places.
+
 # 2.5.0 (2020-04-02)
 - Shows facebook link on place page.
 - Added link to corresponding elements of place page.
