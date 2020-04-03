@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.6.0 (2020-04-03)
+- Added possibility of 3rd level category when adding and editing places.
+- Fixed limit option on command to normalize with Google API.
+
 # 2.5.0 (2020-04-02)
 - Shows facebook link on place page.
 - Added link to corresponding elements of place page.

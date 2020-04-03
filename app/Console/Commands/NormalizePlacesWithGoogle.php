@@ -6,7 +6,6 @@ use App\Place;
 use App\Services\GoogleGeocoding;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
 
 class NormalizePlacesWithGoogle extends Command
 {
@@ -56,9 +55,13 @@ class NormalizePlacesWithGoogle extends Command
         }
 
         if ($this->option('limit') !== null) {
-            Place::whereNotNull('normalized_at')->orderByRaw('RAND()')->take($this->option('limit'))->get()->each(function ($place) {
-                $this->normalize($place);
-            });
+            Place::whereNull('normalized_at')
+                ->orderByRaw('RAND()')
+                ->take($this->option('limit'))
+                ->get()
+                ->each(function ($place) {
+                    $this->normalize($place);
+                });
 
             $this->info("Done!");
             exit;

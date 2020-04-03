@@ -44,7 +44,7 @@ class GoogleGeocoding
     public function init()
     {
         if ($this->should_cache) {
-            $this->response = Cache::rememberForever("google_geocoding_for_q={$this->place->complete_address}", function () {
+            $this->response = Cache::rememberForever("google_geocoding_for_place_id={$this->place->id}", function () {
                 return $this->executeRequest();
             });
 
