@@ -1,5 +1,10 @@
 # Changelog
 
+# 2.7.0 (2020-04-06)
+- Forces at least one mean of contact for places (by @PierrePaul).
+- Work on opening / closing places (by @rachids).
+- Added a team page.
+
 # 2.6.0 (2020-04-03)
 - Added possibility of 3rd level category when adding and editing places.
 - Fixed limit option on command to normalize with Google API.

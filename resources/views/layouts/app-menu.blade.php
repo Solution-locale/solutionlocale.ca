@@ -56,6 +56,9 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('places.index') }}">
+                    Liste des places
+                </a>
                 <a class="dropdown-item" href="{{ route('places.create') }}">
                     Ajout
                 </a>

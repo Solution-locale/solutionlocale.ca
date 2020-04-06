@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Filters\PlaceFilter;
 use App\Http\Requests\StorePlaces;
 use App\Place;
 use App\Region;
@@ -16,12 +17,19 @@ class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param \App\Http\Filters\PlaceFilter
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PlaceFilter $request)
     {
-        //
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $places = Place::filter($request)->get();
+        $regions = Region::all()->pluck('name', 'id');
+
+        return view('places.index', compact('places', 'regions'));
     }
 
     /**

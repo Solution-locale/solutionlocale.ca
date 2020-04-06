@@ -17,7 +17,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get()->random(6),
+            'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
             'is_regional' => false,
             'is_provincial' => false,
             'page_title' => config('app.name', ''),
@@ -31,7 +31,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
-            'places' => Place::where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
+            'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'is_regional' => false,
             'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
@@ -46,7 +46,7 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('index')->with([
             'categories' => Category::all(),
-            'places' => $region->places()->where('is_approved', true)->orderBy($sort['col'], $sort['order'])->get(),
+            'places' => $region->places()->where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'is_regional' => true,
             'is_provincial' => false,
@@ -66,7 +66,12 @@ class PublicController extends Controller
         }
         
         $sort = $this->getSortColumn(request('trierpar', ''));
-        $places = $category->places()->where('is_approved', true)->where('places.region_id', $region->id)->orderBy($sort['col'], $sort['order'])->get();
+        $places = $category->places()
+                    ->where('is_approved', true)
+                    ->where('places.region_id', $region->id)
+                    ->where('is_closed', false)
+                    ->orderBy($sort['col'], $sort['order'])
+                    ->get();
 
         return view('index')->with([
            'categories' => Category::all(),
@@ -108,6 +113,11 @@ class PublicController extends Controller
             'q' => $q,
             'viewTemplate' => $viewTemplate,
         ]);
+    }
+
+    public function teamPage()
+    {
+        return view("team");
     }
 
     /**

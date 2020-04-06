@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     //User
-    Route::prefix('/users')->name('users.')->group(function() {
+    Route::prefix('/users')->name('users.')->group(function () {
         //Create
         Route::get('/user/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
         Route::post('/user', 'UserController@store')->name('store')->middleware('can:do-admin');
@@ -33,14 +33,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //Distribution
-Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin'])->group(function() {
+Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin'])->group(function () {
     //Create
     Route::get('/ajout', 'DeliveryTypeController@create')->name('create');
     Route::post('/', 'DeliveryTypeController@store')->name('store');
 });
 
 //Moderation
-Route::prefix('/approbations')->name('approvals.')->group(function() {
+Route::prefix('/approbations')->name('approvals.')->group(function () {
     //Read
     Route::get('/', 'ModerationController@index')->name('index');
     Route::get('/regions/{region:slug}', 'ModerationController@show')->name('show');
@@ -50,8 +50,10 @@ Route::prefix('/approbations')->name('approvals.')->group(function() {
 });
 
 //Places
-Route::prefix('/places')->name('places.')->group(function(){
-    Route::middleware(['auth', 'can:do-moderation'])->group(function() {
+Route::prefix('/places')->name('places.')->group(function () {
+    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
+        // Route::get('/places', 'PlaceController@index')->name('index');
+      
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');
         Route::post('/', 'PlaceController@store')->name('store');
@@ -63,6 +65,11 @@ Route::prefix('/places')->name('places.')->group(function(){
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
         Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
+      
+      
+        // Open / close places
+        Route::get('/{place:slug}/ouverture', 'ModerationController@close')->name('close');
+        Route::post('/{place:slug}/ouverture', 'ModerationController@closing')->name('closing');
     });
 
     //Create public
@@ -75,11 +82,11 @@ Route::prefix('/places')->name('places.')->group(function(){
 });
 
 //Categories
-Route::prefix('/categories')->name('categories.')->group(function(){
+Route::prefix('/categories')->name('categories.')->group(function () {
     //Read
     Route::get('/', 'CategoryController@index')->name('index'); // view all categories
 
-    Route::middleware(['auth', 'can:do-moderation'])->group(function() {
+    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
         //Create
         Route::get('/ajout', 'CategoryController@create')->name('create');
         Route::post('/', 'CategoryController@store')->name('store');
@@ -94,24 +101,24 @@ Route::prefix('/categories')->name('categories.')->group(function(){
     });
 });
 
-
-Route::prefix('/regions')->name('regions.')->group(function() {
+Route::prefix('/regions')->name('regions.')->group(function () {
     //Read
     Route::get('/province', 'PublicController@indexProvincial')->name('index-provincial');
     Route::get('/{region:slug}', 'PublicController@indexRegional')->name('index-region');
     Route::get('/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('index-region-category');
 });
 
-Route::prefix('/recherche')->name('recherche.')->group(function() {
+Route::prefix('/recherche')->name('recherche.')->group(function () {
     //Read
     Route::get('/', 'PublicController@indexSearch')->name('index');
     Route::get('/{region:slug}', 'PublicController@indexSearch')->name('index-region');
-
 });
 
-Route::prefix('/carte')->name('map.')->group(function() {
+Route::prefix('/carte')->name('map.')->group(function () {
     Route::get('/', 'MapController@show')->name('show');
 });
+
+Route::get('/equipe-et-partenaires', 'PublicController@teamPage')->name('team');
 
 Route::get('/mrc/json', 'RcmController@listJson')->name('rcm.list-json');
 Route::get('/mrc/json/{region}', 'RcmController@listJson')->name('rcm.list-json-region');
