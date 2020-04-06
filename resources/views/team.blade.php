@@ -10,7 +10,7 @@
     <div class="container">
         <h1 class="text-center mb-5">Équipe et partenaires</h1>
 
-        <h2 class="text-center mb-3">Citoyens à l'origine de l’initiative</h2>
+        <h2 class="text-center mb-3">Citoyennes et citoyens à l'origine de l’initiative</h2>
 
         <div class="row text-center">
             <div class="col-xl-3 col-sm-6 mb-5">
