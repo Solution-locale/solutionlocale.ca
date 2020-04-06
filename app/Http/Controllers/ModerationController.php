@@ -29,19 +29,11 @@ class ModerationController extends Controller
 
     public function close(Place $place)
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         return view("moderation.close")->with(['place' => $place]);
     }
 
     public function closing(Place $place, Request $request)
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         $place->is_closed = $request->get('is_closed');
         $place->save();
 

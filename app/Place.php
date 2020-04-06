@@ -65,6 +65,7 @@ class Place extends Model
     public function scopeOpened($query)
     {
         return $query->where('is_closed', 0);
+    }
 
     /**
      * Method for search places by keywords.

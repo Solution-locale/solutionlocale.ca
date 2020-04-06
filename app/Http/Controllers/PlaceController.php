@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Filters\PlaceFilter;
 use App\Http\Requests\StorePlaces;
 use App\Place;
