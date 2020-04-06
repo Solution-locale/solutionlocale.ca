@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
+    use Filterable;
+
     protected $fillable = [
         'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'facebook_url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id', 'plus_code'
     ];
@@ -47,7 +50,7 @@ class Place extends Model
     {
         return "{$this->address}, {$this->city}, {$this->province}, {$this->postalCode}";
     }
-
+  
     /**
      * Method returning the page title of the object.
      * @return string
@@ -57,6 +60,11 @@ class Place extends Model
         $midName = @$this->region->name ? " - {$this->region->name} - " : ' - ';
         return "{$this->name}{$midName}".config('app.name', '');
     }
+
+    #SCOPES
+    public function scopeOpened($query)
+    {
+        return $query->where('is_closed', 0);
 
     /**
      * Method for search places by keywords.

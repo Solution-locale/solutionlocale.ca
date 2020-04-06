@@ -52,6 +52,8 @@ Route::prefix('/approbations')->name('approvals.')->group(function() {
 //Places
 Route::prefix('/places')->name('places.')->group(function(){
     Route::middleware(['auth', 'can:do-moderation'])->group(function() {
+        Route::get('/places', 'PlaceController@index')->name('places.index');
+      
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');
         Route::post('/', 'PlaceController@store')->name('store');
@@ -63,6 +65,11 @@ Route::prefix('/places')->name('places.')->group(function(){
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
         Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
+      
+      
+        // Open / close places
+        Route::get('/{place:slug}/fermer', 'ModerationController@close')->name('close');
+        Route::post('/{place:slug}/fermer', 'ModerationController@closing')->name('closing');
     });
 
     //Create public
@@ -93,7 +100,6 @@ Route::prefix('/categories')->name('categories.')->group(function(){
         Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
     });
 });
-
 
 Route::prefix('/regions')->name('regions.')->group(function() {
     //Read

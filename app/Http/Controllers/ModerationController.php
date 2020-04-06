@@ -27,6 +27,27 @@ class ModerationController extends Controller
         return redirect()->route('approvals.show', ['region' => $place->region->slug])->with('status', 'Fiche approuvée!');
     }
 
+    public function close(Place $place)
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        return view("moderation.close")->with(['place' => $place]);
+    }
+
+    public function closing(Place $place, Request $request)
+    {
+        if (Gate::denies('do-admin')) {
+            abort(401);
+        }
+
+        $place->is_closed = $request->get('is_closed');
+        $place->save();
+
+        return redirect(route('places.index'))->with('status', "{$place->name} a été correctement modifié.");
+    }
+
     // display the destroy page.
     public function delete(Place $place)
     {
