@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Fixed page title in social share meta.
+
 # 2.7.2 (2020-04-06)
 - Added an option for different social media images in public template.
 - Changed social media image for team page.

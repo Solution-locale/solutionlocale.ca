@@ -8,11 +8,11 @@
         <meta name="description" content="Des ressources locales en contexte de distanciation sociale">
         <meta name="image" content="@yield('social-image', '/images/social.jpg')">
 
-        <meta itemprop="name" content="Solution locale">
+        <meta itemprop="name" content="@yield('page-title')">
         <meta itemprop="description" content="Des ressources locales en contexte de distanciation sociale">
         <meta itemprop="image" content="@yield('social-image', '/images/social.jpg')">
 
-        <meta name="og:title" content="Solution locale">
+        <meta name="og:title" content="@yield('page-title')">
         <meta name="og:description" content="Des ressources locales en contexte de distanciation sociale">
         <meta name="og:image" content="@yield('social-image', '/images/social.jpg')">
         <meta name="og:url" content="https://solutionlocale.ca">
