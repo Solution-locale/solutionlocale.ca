@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('page-title')
-{{ $page_title ?? '' }}
+Équipe et partenaires
 @endsection
 
 @section('content')
