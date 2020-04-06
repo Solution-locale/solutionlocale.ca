@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Forces at least one mean of contact for places (by @PierrePaul).
+
 # 2.6.0 (2020-04-03)
 - Added possibility of 3rd level category when adding and editing places.
 - Fixed limit option on command to normalize with Google API.
