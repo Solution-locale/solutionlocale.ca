@@ -27,14 +27,11 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
     */
     public function collection(Collection $rows)
     {
-        $this->testcat = collect();
+
         foreach ($rows as $key => $row) {
             if ($key != 0) { // heading row
-                $categories = collect([]);
-                for ($i=1; $i <= 9; $i++) {  // 9 == total of subcategory_X fields
-                    $index_name = "subcategory_{$i}";
-                    $row[$index_name] !== null ? $categories->push($this->category_correspondence[$index_name]) : null;
-                }
+                $categories = $this->formatCategories($row);
+                $types = $this->formatDeliveryType($row['deliverytype_id']);
 
                 $place = new Place();
 
@@ -57,17 +54,53 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
                 $place->deliveryZone = $row['deliveryzone'];
                 $place->is_approved = true;
 
-                $this->testcat->push($this->formatDeliveryType($row['deliverytype_id']));
-
-                // dd($categories, $place);
+                $place->save();
+                
+                $place->categories()->sync($categories);
+                $place->delivery()->sync($types);
+                $place->types()->sync([1]);
             }
         }
-        dd($this->testcat->flatten()->unique());
+    }
+
+    private function formatCategories($row)
+    {
+        $categories = collect([14]); //14 == producteurs agroalimentaires
+        for ($i=1; $i <= 9; $i++) {  // 9 == total of subcategory_X fields
+            $index_name = "subcategory_{$i}";
+            $row[$index_name] !== null ? $categories->push($this->category_correspondence[$index_name]) : null;
+        }
+
+        return $categories;
     }
 
     private function formatDeliveryType($value)
     {
-        return Str::of($value)->trim()->explode(PHP_EOL);
-        // dd($value);
+
+        return Str::of($value)
+                    ->trim()
+                    ->explode(PHP_EOL)
+                    ->flatten()
+                    ->map(function ($item) {
+                        switch ($item) {
+                            case 'Cueillette sans contact':
+                                return 1;
+
+                            case 'Cueillette sans contact sur rendez-vous':
+                                return 1;
+
+                            case 'Cuillette sans contact sur rendez-vous':
+                                return 1;
+
+                            case 'Ventre directe':
+                                return 1;
+
+                            case 'Livraison à domicile sans contact':
+                                return 2;
+
+                            case 'Livraison par la poste':
+                                return 3;
+                        }
+                    });
     }
 }
