@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 2.7.0 (2020-04-06)
 - Forces at least one mean of contact for places (by @PierrePaul).
 - Work on opening / closing places (by @rachids).
 - Added a team page.
