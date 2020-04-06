@@ -24,7 +24,7 @@
             <div class="col-xl-3 col-sm-6 mb-5">
                 <div class="bg-white rounded shadow-sm py-5 px-4"><img src="/images/equipe/bio-sDesmeules.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">Stéphanie Desmeules</h5>
-                    <span class="small text-muted">Architecte paysagiste, Attachée politique et recherchiste en environnement</span><br>
+                    <span class="small text-muted">Architecte paysagiste, attachée politique et recherchiste en environnement</span><br>
                     <span class="small text-uppercase text-muted">Saint-Denis-de-Brompton</span>
                 </div>
             </div>
