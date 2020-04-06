@@ -22,10 +22,6 @@ class PlaceController extends Controller
      */
     public function index(PlaceFilter $request)
     {
-        if (Gate::denies('do-admin')) {
-            abort(401);
-        }
-
         $places = Place::filter($request)->get();
         $regions = Region::all()->pluck('name', 'id');
 
