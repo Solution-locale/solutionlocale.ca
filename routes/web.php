@@ -118,6 +118,8 @@ Route::prefix('/carte')->name('map.')->group(function () {
     Route::get('/', 'MapController@show')->name('show');
 });
 
+Route::get('/equipe-et-partenaires', 'PublicController@teamPage')->name('team');
+
 Route::get('/mrc/json', 'RcmController@listJson')->name('rcm.list-json');
 Route::get('/mrc/json/{region}', 'RcmController@listJson')->name('rcm.list-json-region');
 Route::get('/', 'PublicController@index')->name('public.index');

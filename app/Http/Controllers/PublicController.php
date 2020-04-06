@@ -115,6 +115,11 @@ class PublicController extends Controller
         ]);
     }
 
+    public function teamPage()
+    {
+        return view("team");
+    }
+
     /**
      * Method retourning sorting info according to an user input.
      * @param: string $in Column on which the user want to sort.
