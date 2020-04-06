@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('page-title')
-Équipe et partenaires
+Équipe et partenaires - Solution locale
 @endsection
 
 @section('social-image', '/images/equipe/social.png')
