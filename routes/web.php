@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -14,57 +15,110 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-Route::middleware(['auth', 'can:access-backend'])->group(function () {
+Auth::routes(['register' => false]);
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/user/{user}', 'UserController@edit')->name('users.edit');
-    Route::put('/user/{user}', 'UserController@update')->name('users.update');
+    //User
+    Route::prefix('/users')->name('users.')->group(function() {
+        //Create
+        Route::get('/user/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
+        Route::post('/user', 'UserController@store')->name('store')->middleware('can:do-admin');
 
-    Route::get('/distribution/ajout', 'DeliveryTypeController@create')->name('deliveryTypes.create');
-    Route::post('/distribution', 'DeliveryTypeController@store')->name('deliveryTypes.store');
+        //Update
+        Route::get('/user/{user}', 'UserController@edit')->name('edit');
+        Route::put('/user/{user}', 'UserController@update')->name('update');
+    });
+});
 
-    Route::get('/moderation', 'ModerationController@index')->name('moderation.index');
-    Route::get('/moderation/{region:slug}', 'ModerationController@show')->name('moderation.show');
-    Route::get('/moderation/place/{place:slug}/approbation', 'ModerationController@store')->name('moderation.approve');
-    Route::get('/moderation/places/{place:slug}/enlever', 'ModerationController@delete')->name('moderation.delete');
-    Route::post('/moderation/places/{place:slug}/enlever', 'ModerationController@destroy')->name('moderation.destroy');
-    Route::get('/moderation/places/{place:slug}/fermer', 'ModerationController@close')->name('moderation.close');
-    Route::post('/moderation/places/{place:slug}/fermer', 'ModerationController@closing')->name('moderation.closing');
+//Distribution
+Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin'])->group(function() {
+    //Create
+    Route::get('/ajout', 'DeliveryTypeController@create')->name('create');
+    Route::post('/', 'DeliveryTypeController@store')->name('store');
+});
 
-    Route::get('/places', 'PlaceController@index')->name('places.index');
-    Route::get('/places/ajout', 'PlaceController@create')->name('places.create');
-    Route::post('/places', 'PlaceController@store')->name('places.store');
-    Route::get('/places/{place:slug}/modifier', 'PlaceController@edit')->name('places.edit');
-    Route::put('/places/{place:slug}', 'PlaceController@update')->name('places.update');
-
-    Route::get('/categorie/ajout', 'CategoryController@create')->name('categories.create');
-    Route::post('/categorie', 'CategoryController@store')->name('categories.store');
-
+//Moderation
+Route::prefix('/approbations')->name('approvals.')->group(function() {
     //Read
-    Route::get('/categories', 'CategoryController@index')->name('categories'); // view all category
+    Route::get('/', 'ModerationController@index')->name('index');
+    Route::get('/regions/{region:slug}', 'ModerationController@show')->name('show');
 
-    //Update
-    Route::get('/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
-    Route::put('/category/{category}', 'CategoryController@update')->name('category.update');
+    //Create
+    Route::get('/{place:slug}', 'ModerationController@store')->name('create');
+});
 
-    //Delete
-    Route::get('/category/{category}/delete', 'CategoryController@delete')->name('category.delete');
-    Route::delete('/category/{category}', 'CategoryController@destroy')->name('category.destroy');
+//Places
+Route::prefix('/places')->name('places.')->group(function(){
+    Route::middleware(['auth', 'can:do-moderation'])->group(function() {
+        Route::get('/places', 'PlaceController@index')->name('places.index');
+      
+        //Create
+        Route::get('/ajout', 'PlaceController@create')->name('create');
+        Route::post('/', 'PlaceController@store')->name('store');
+
+        //Update
+        Route::get('/{place:slug}/modifier', 'PlaceController@edit')->name('edit');
+        Route::put('/{place:slug}', 'PlaceController@update')->name('update');
+
+        //Delete
+        Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
+        Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
+      
+      
+        // Open / close places
+        Route::get('/{place:slug}/fermer', 'ModerationController@close')->name('close');
+        Route::post('/{place:slug}/fermer', 'ModerationController@closing')->name('closing');
+    });
+
+    //Create public
+    Route::get('/ajout', 'PlaceController@createPublic')->name('create-public');
+    Route::post('/', 'PlaceController@storePublic')->name('store-public');
+
+    //Read public
+    Route::get('/{place:slug}', 'PlaceController@show')->name('show');
+    Route::get('/json/{place:slug}', 'PlaceController@showJson')->name('json.show');
+});
+
+//Categories
+Route::prefix('/categories')->name('categories.')->group(function(){
+    //Read
+    Route::get('/', 'CategoryController@index')->name('index'); // view all categories
+
+    Route::middleware(['auth', 'can:do-moderation'])->group(function() {
+        //Create
+        Route::get('/ajout', 'CategoryController@create')->name('create');
+        Route::post('/', 'CategoryController@store')->name('store');
+
+        //Update
+        Route::get('/{category}/edit', 'CategoryController@edit')->name('edit');
+        Route::put('/{category}', 'CategoryController@update')->name('update');
+
+        //Delete
+        Route::get('/{category}/delete', 'CategoryController@delete')->name('delete');
+        Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
+    });
+});
+
+Route::prefix('/regions')->name('regions.')->group(function() {
+    //Read
+    Route::get('/province', 'PublicController@indexProvincial')->name('index-provincial');
+    Route::get('/{region:slug}', 'PublicController@indexRegional')->name('index-region');
+    Route::get('/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('index-region-category');
+});
+
+Route::prefix('/recherche')->name('recherche.')->group(function() {
+    //Read
+    Route::get('/', 'PublicController@indexSearch')->name('index');
+    Route::get('/{region:slug}', 'PublicController@indexSearch')->name('index-region');
 
 });
 
-Auth::routes(['register' => false]);
-Route::get('/categorie/{category:slug}', 'CategoryController@index')->name('categories.index');
+Route::prefix('/carte')->name('map.')->group(function() {
+    Route::get('/', 'MapController@show')->name('show');
+});
 
-Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
-Route::get('/region/province', 'PublicController@indexProvincial')->name('public.index-provincial');
-Route::get('/region/{region:slug}', 'PublicController@indexRegional')->name('public.index-region');
-Route::get('/region/{region:slug}/{category}', 'PublicController@indexRegionalCategories')->name('public.index-region-category');
-Route::get('/recherche', 'PublicController@indexSearch')->name('public.index-search');
-Route::get('/recherche/{region:slug}', 'PublicController@indexSearch')->name('public.index-search-region');
-Route::get('/entreprise/ajout', 'PlaceController@createPublic')->name('places.create-public');
-Route::post('/entreprise/ajout', 'PlaceController@storePublic')->name('places.store-public')->middleware(ProtectAgainstSpam::class);
-Route::get('/entreprise/{place:slug}', 'PlaceController@show')->name('places.show');
-Route::get('/entreprise/json/{place:slug}', 'PlaceController@showJson')->name('places.showjson');
-Route::get('/carte', 'MapController@show')->name('map.show');
+Route::get('/mrc/json', 'RcmController@listJson')->name('rcm.list-json');
+Route::get('/mrc/json/{region}', 'RcmController@listJson')->name('rcm.list-json-region');
 Route::get('/', 'PublicController@index')->name('public.index');

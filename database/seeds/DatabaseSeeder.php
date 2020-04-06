@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             DeliveryTypeSeeder::class,
             PlaceTypesSeeder::class,
             RegionsSeeder::class,
+            RolesSeeder::class
         ]);
     }
 }

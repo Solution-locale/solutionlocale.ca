@@ -62,13 +62,13 @@
                             Un astérisque (*) dénote une information obligatoire!
                         </div>
 
-                        <form method="POST" action="/entreprise/ajout">
+                        <form method="POST" action="{{ route('places.store-public') }}">
                             @csrf
                             @honeypot
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-3 col-form-label text-md-right">
-                                    Nom *
+                                    Nom de l'entreprise *
                                 </label>
                                 <div class="col-md-9">
                                     <input id="name" type="text"
@@ -94,31 +94,49 @@
                                 <div class="col-md-9">
                                     <div class="form-check form-check-inline">
                                         <ul class="categories tree">
-                                            @foreach($categories as $category)
+                                            @foreach($categories as $category_first_level)
                                                 <li>
                                                     <input class="form-check-input"
                                                            name="categories[]"
                                                            type="checkbox"
-                                                           id="inlineCategoryCheckbox{{ $category->id }}"
-                                                           value="{{ $category->id }}"
-                                                           @if(!empty(old('categories')) && in_array($category->id, old('categories'))) CHECKED @endif>
+                                                           id="inlineCategoryCheckbox{{ $category_first_level->id }}"
+                                                           value="{{ $category_first_level->id }}"
+                                                           @if(!empty(old('categories')) && in_array($category_first_level->id, old('categories'))) CHECKED @endif>
                                                     <label class="form-check-label"
-                                                           for="inlineCategoryCheckbox{{ $category->id }}">
-                                                        {{ $category->name }}
+                                                           for="inlineCategoryCheckbox{{ $category_first_level->id }}">
+                                                        {{ $category_first_level->name }}
                                                     </label>
                                                     <ul>
-                                                        @foreach($category->children as $category_children)
+                                                        @foreach($category_first_level->children as $category_second_level)
                                                             <li>
                                                                 <input class="form-check-input"
                                                                        name="categories[]"
                                                                        type="checkbox"
-                                                                       id="inlineCategoryCheckbox{{ $category_children->id }}"
-                                                                       value="{{ $category_children->id }}"
-                                                                       @if(!empty(old('categories')) && in_array($category_children->id, old('categories'))) CHECKED @endif>
+                                                                       id="inlineCategoryCheckbox{{ $category_second_level->id }}"
+                                                                       value="{{ $category_second_level->id }}"
+                                                                       @if(!empty(old('categories')) && in_array($category_second_level->id, old('categories'))) CHECKED @endif>
                                                                 <label class="form-check-label"
-                                                                       for="inlineCategoryCheckbox{{ $category_children->id }}">
-                                                                    {{ $category_children->name }}
+                                                                       for="inlineCategoryCheckbox{{ $category_second_level->id }}">
+                                                                    {{ $category_second_level->name }}
                                                                 </label>
+                                                                @if(config('soloc.show-third-level-category-in-forms'))
+                                                                <ul>
+                                                                  @foreach($category_second_level->children as $category_third_level)
+                                                                      <li>
+                                                                          <input class="form-check-input"
+                                                                                 name="categories[]"
+                                                                                 type="checkbox"
+                                                                                 id="inlineCategoryCheckbox{{ $category_third_level->id }}"
+                                                                                 value="{{ $category_third_level->id }}"
+                                                                                 @if(!empty(old('categories')) && in_array($category_third_level->id, old('categories'))) CHECKED @endif>
+                                                                          <label class="form-check-label"
+                                                                                 for="inlineCategoryCheckbox{{ $category_third_level->id }}">
+                                                                              {{ $category_third_level->name }}
+                                                                          </label>
+                                                                      </li>
+                                                                  @endforeach
+                                                                </ul>
+                                                                @endif
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -295,6 +313,29 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="rcm_id" class="col-md-3 col-form-label text-md-right">
+                                    MRC *
+                                </label>
+
+                                <div class="col-md-9">
+                                    <select class="custom-select" name="rcm_id" id="rcm_id">
+                                        <option>Veuillez d'abord choisir une rgion administrative</option>
+                                        @foreach(App\Rcm::all() as $rcm)
+                                            <option data-region="{{ $rcm->region_id }}" value="{{ $rcm->id }}" @if(old('rcm_id') === $rcm->id) SELETED @endif>
+                                                {{ $rcm->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('region')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">
                                     No. de tél.
                                 </label>
@@ -367,14 +408,31 @@
                                            class="form-control @error('url') is-invalid @enderror"
                                            name="url"
                                            value="{{ old('url') }}"
+                                           placeholder="Ex.: https://solutionlocale.ca" 
                                            autocomplete="url" autofocus>
 
-                                    <div class="alert alert-secondary mt-3" role="alert">
-                                        Vous pouvez entrer n'importe quelle adresse web,
-                                        <strong>incluant celle de votre page Facebook</strong>!
-                                    </div>
-
                                     @error('url')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="facebook_url" class="col-md-3 col-form-label text-md-right">
+                                    Adresse de page Facebook
+                                </label>
+
+                                <div class="col-md-9">
+                                    <input id="facebook_url" type="text"
+                                           class="form-control @error('facebook_url') is-invalid @enderror"
+                                           name="facebook_url"
+                                           value="{{ old('facebook_url') }}"
+                                           placeholder="Ex.: https://www.facebook.com/Solutionlocale/" 
+                                           autocomplete="facebook_url" autofocus>
+
+                                    @error('facebook_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{!! $message !!}</strong>
                                         </span>
@@ -409,4 +467,8 @@
             </div>
         </div>
     </main>
+@endsection
+
+@section('scripts-body')
+<script src="{{ asset('js/rcm-filler.js') }}"></script>
 @endsection

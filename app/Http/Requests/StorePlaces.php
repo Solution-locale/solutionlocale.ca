@@ -47,10 +47,11 @@ class StorePlaces extends FormRequest
             'deliveryType' => ['required'],
             'placeType' => ['required'],
             'region_id' => ['required'],
-            'email' => ['nullable', 'email'],
-            'url' => ['nullable', 'url'],
+            'email' => ['nullable', 'email', 'required_without_all:url,phoneNumber'],
+            'url' => ['nullable', 'url', 'required_without_all:email,phoneNumber'],
+            'facebook_url' => ['nullable', 'url'],
             'hide_address' => ['boolean'],
-            'phoneNumber' => ['nullable', 'phone:CA'],
+            'phoneNumber' => ['nullable', 'phone:CA', 'required_without_all:url,email'],
             'additionnalPhoneNumber' => ['nullable', 'phone:CA'],
             'deliveryZone' => [
                 function ($attribute, $value, $fail) {
@@ -65,6 +66,7 @@ class StorePlaces extends FormRequest
                     }
                 },
             ],
+            'rcm_id' => ['required'],
         ];
     }
 
@@ -79,8 +81,13 @@ class StorePlaces extends FormRequest
             'placeType.required'  => 'Vous devez choisir un type d\'entreprise.',
             'email.email' => "Votre adresse courriel est d'un format invalide. Veuillez la vérifier.",
             'url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em>.",
+            'facebook_url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em>.",
             'phoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
             'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
+            'url.required_without_all' => "Le champ <em>Adresse web</em> est obligatoire si vous n'avez pas remplis le champs <em>No. de tél.</em> ou le champs <em>Courriel</em>.",
+            'phoneNumber.required_without_all' => "Le champ <em>No. de tél.</em> est obligatoire si vous n'avez pas remplis le champs <em>Adresse web</em> ou le champs <em>Courriel</em>.",
+            'email.required_without_all' => "Le champ <em>Courriel</em> est obligatoire si vous n'avez pas remplis le champs <em>Adresse web</em> ou le champs <em>No. de tél.</em>.",
+            'rcm_id.required' => "Le champ MRC est obligatoire.",
         ];
     }
 }

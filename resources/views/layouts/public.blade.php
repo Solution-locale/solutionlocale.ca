@@ -7,11 +7,11 @@
 
         <meta name="description" content="Des ressources locales en contexte de distanciation sociale">
         <meta name="image" content="https://solutionlocale.ca/images/social.jpg">
-        
+
         <meta itemprop="name" content="Solution locale">
         <meta itemprop="description" content="Des ressources locales en contexte de distanciation sociale">
         <meta itemprop="image" content="https://solutionlocale.ca/images/social.jpg">
-        
+
         <meta name="og:title" content="Solution locale">
         <meta name="og:description" content="Des ressources locales en contexte de distanciation sociale">
         <meta name="og:image" content="https://solutionlocale.ca/images/social.jpg">
@@ -60,7 +60,7 @@
             @media (min-width: 768px) {
                 .bd-placeholder-img-lg {
                       font-size: 3.5rem;
-                } 
+                }
             }
         </style>
 
@@ -84,7 +84,7 @@
         @include("layouts.public-footer")
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        
+
         {{-- <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script> --}}
         @yield('scripts-body')
     </body>

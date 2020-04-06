@@ -5,7 +5,7 @@
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
 
         @can('do-moderation')
-        <a class="nav-link" href="{{ route("moderation.index") }}">Modération de fiches</a>
+        <a class="nav-link" href="{{ route("approvals.index") }}">Modération de fiches</a>
         @endcan
 
         @can('do-admin')
@@ -27,7 +27,21 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('categories.index') }}">
+                    Liste
+                </a>
                 <a class="dropdown-item" href="{{ route('categories.create') }}">
+                    Ajout
+                </a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Utilisateurs<span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('users.create') }}">
                     Ajout
                 </a>
             </div>

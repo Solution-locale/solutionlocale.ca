@@ -10,8 +10,9 @@
                 <div class="card-body">
                     <p>Vous êtes sur le point de détruire la fiche de <a href="{{ route('places.show', ['place' => $place]) }}" class="text-dark">{{ $place->name }}</a>.</p>
                     <p><b>Cette action est irréversible</b>. Si vous êtes certain de se que vous faites, cliquez sur le bouton ci-dessous!</p>
-                    <form method="POST" action="{{ route('moderation.destroy', ['place' => $place->slug]) }}">
+                    <form method="POST" action="{{ route('places.destroy', ['place' => $place->slug]) }}">
                         @csrf
+                        @method('delete')
 
                         <div class="form-group row">
                             <span class="col-md-5"></span>

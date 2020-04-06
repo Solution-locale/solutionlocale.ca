@@ -1,4 +1,5 @@
-<div class="col-md-8 offset-md-2">
+@foreach($places as $place)
+<div class="col-md-12">
   <div class="card mb-4 shadow-sm">
     {{-- <img src="/images/solutionlocale-placeholder.png" class="bd-placeholder-img card-img-top" alt="Solution locale"> --}}
     <div class="card-body">
@@ -22,10 +23,11 @@
           <a class="btn btn-sm btn-outline-secondary" href="{{ route('places.show', ['place' => $place->slug]) }}">Plus de détails</a>
           @can('do-moderation')
           <a class="btn btn-sm btn-outline-primary" href="{{ route('places.edit', ['place' => $place->slug]) }}">✏️</a>
-          <a class="btn btn-sm btn-outline-danger" href="{{ route('moderation.delete', ['place' => $place->slug]) }}">🗑</a>
+          <a class="btn btn-sm btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}">🗑</a>
           @endcan
         </div>
       </div>
     </div>
   </div>
 </div>
+@endforeach

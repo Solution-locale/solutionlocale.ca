@@ -18,7 +18,7 @@
                         <li>Nombre de catégories: {{ App\Category::count() }}</li>
                         <li>Nombre de d'entreprises: {{ App\Place::count() }}</li>
                         @if(App\Place::where('is_approved', false)->get()->isNotEmpty())
-                        <li>En attente d'approvation: {{ App\Place::where('is_approved', false)->count() }}.</li>
+                        <li>En attente d'approbation: {{ App\Place::where('is_approved', false)->count() }}.</li>
                         @endif
                     </ul>
                 </div>

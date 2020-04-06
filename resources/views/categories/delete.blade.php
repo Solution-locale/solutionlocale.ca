@@ -13,13 +13,13 @@
                             <p>Voulez-vous vraiment supprimer &laquo; {{ $category->name }} &raquo; </p>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('category.destroy', $category) }}" method="POST">
+                            <form action="{{ route('categories.destroy', $category) }}" method="POST">
                                 @csrf
                                 @method('delete')
 
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
-                            <a href="{{ route('categories') }}" class="btn btn-secondary">Annuler</a>
+                            <a href="{{ route('categories.index') }}" class="btn btn-secondary">Annuler</a>
                         </div>
                     </div>
                 </div>

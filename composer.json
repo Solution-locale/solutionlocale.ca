@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "alexpechkarev/google-maps": "7.0",
         "algolia/algoliasearch-client-php": "^2.6",
         "axlon/laravel-postal-code-validation": "^2.1",
         "doctrine/dbal": "^2.10",
@@ -27,7 +28,8 @@
         "maatwebsite/excel": "^3.1",
         "propaganistas/laravel-phone": "^4.2",
         "spatie/laravel-backup": "^6.8",
-        "spatie/laravel-honeypot": "^2.1"
+        "spatie/laravel-honeypot": "^2.1",
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

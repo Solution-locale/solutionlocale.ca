@@ -33,15 +33,65 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="categories" class="col-md-3 col-form-label text-md-right">Catégories</label>
-
+                            <label for="categories" class="col-md-3 col-form-label text-md-right">
+                                Catégorie *
+                            </label>
                             <div class="col-md-9">
-                                @foreach(App\Category::all() as $categorie)
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}" @if($place->categories->contains($categorie->id)) CHECKED @endif>
-                                  <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
+                                    <ul class="categories tree">
+                                        @foreach($categories as $category_first_level)
+                                            <li>
+                                                <input class="form-check-input"
+                                                       name="categories[]"
+                                                       type="checkbox"
+                                                       id="inlineCategoryCheckbox{{ $category_first_level->id }}"
+                                                       value="{{ $category_first_level->id }}"
+                                                       @if($place->categories->contains($category_first_level->id)) CHECKED @endif>
+                                                <label class="form-check-label"
+                                                       for="inlineCategoryCheckbox{{ $category_first_level->id }}">
+                                                    {{ $category_first_level->name }}
+                                                </label>
+                                                <ul>
+                                                    @foreach($category_first_level->children as $category_second_level)
+                                                        <li>
+                                                            <input class="form-check-input"
+                                                                   name="categories[]"
+                                                                   type="checkbox"
+                                                                   id="inlineCategoryCheckbox{{ $category_second_level->id }}"
+                                                                   value="{{ $category_second_level->id }}"
+                                                                   @if($place->categories->contains($category_second_level->id)) CHECKED @endif>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCategoryCheckbox{{ $category_second_level->id }}">
+                                                                {{ $category_second_level->name }}
+                                                            </label>
+                                                            <ul>
+                                                              @foreach($category_second_level->children as $category_third_level)
+                                                                  <li>
+                                                                      <input class="form-check-input"
+                                                                             name="categories[]"
+                                                                             type="checkbox"
+                                                                             id="inlineCategoryCheckbox{{ $category_third_level->id }}"
+                                                                             value="{{ $category_third_level->id }}"
+                                                                             @if($place->categories->contains($category_third_level->id)) CHECKED @endif>
+                                                                      <label class="form-check-label"
+                                                                             for="inlineCategoryCheckbox{{ $category_third_level->id }}">
+                                                                          {{ $category_third_level->name }}
+                                                                      </label>
+                                                                  </li>
+                                                              @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                                @endforeach
+                                @error('categories')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{!! $message !!}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -131,6 +181,44 @@
                                 @enderror
                             </div>
                         </div>
+
+                        @can('super_admin')
+                        <div class="form-group row">
+                            <label for="long" class="col-md-3 col-form-label text-md-right">Géoloc longitude</label>
+
+                            <div class="col-md-9">
+                                <input id="long" type="text" class="form-control @error('long') is-invalid @enderror" name="long" value="{{ $place->long }}" autocomplete="long" autofocus>
+
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Seuls les utilisateurs ayant l'accès <code>super_admin</code> peuvent modifier et voir cette valeur.
+                                </small>
+
+                                @error('long')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lat" class="col-md-3 col-form-label text-md-right">Géoloc latitude</label>
+
+                            <div class="col-md-9">
+                                <input id="lat" type="text" class="form-control @error('lat') is-invalid @enderror" name="lat" value="{{ $place->lat }}" autocomplete="lat" autofocus>
+
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Seuls les utilisateurs ayant l'accès <code>super_admin</code> peuvent modifier et voir cette valeur.
+                                </small>
+
+                                @error('lat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endcan
                         
                         <div class="form-group row">
                             <label for="phoneNumber" class="col-md-3 col-form-label text-md-right">No. de tél.</label>
@@ -178,7 +266,7 @@
                             <label for="url" class="col-md-3 col-form-label text-md-right">Adresse web</label>
 
                             <div class="col-md-9">
-                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ $place->url }}" autocomplete="url" autofocus>
+                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ $place->url }}" autocomplete="url" placeholder="Ex.: https://solutionlocale.ca"  autofocus>
 
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">
@@ -187,6 +275,27 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                                <label for="facebook_url" class="col-md-3 col-form-label text-md-right">
+                                    Adresse de page Facebook
+                                </label>
+
+                                <div class="col-md-9">
+                                    <input id="facebook_url" type="text"
+                                           class="form-control @error('facebook_url') is-invalid @enderror"
+                                           name="facebook_url"
+                                           value="{{ $place->facebook_url }}"
+                                           placeholder="Ex.: https://www.facebook.com/Solutionlocale/" 
+                                           autocomplete="facebook_url" autofocus>
+
+                                    @error('facebook_url')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                         <div class="form-group row">
                             <label for="deliveryZone" class="col-md-3 col-form-label text-md-right">Secteur desservi pour la livraison</label>

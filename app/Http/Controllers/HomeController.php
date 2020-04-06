@@ -24,10 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('access-backend')) {
-            abort(401);
-        }
-
         return view('home');
     }
 }
