@@ -89,7 +89,7 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
                             case 'Cueillette sans contact sur rendez-vous':
                                 return 1;
 
-                            case 'Cuillette sans contact sur rendez-vous':
+                            case 'Cuillette sans contact':
                                 return 1;
 
                             case 'Ventre directe':
