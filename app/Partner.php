@@ -11,7 +11,7 @@ class Partner extends Model
         'name',
     ];
 
-    public function comments()
+    public function places()
     {
         return $this->hasMany(Place::class);
     }
