@@ -4,6 +4,8 @@
 Équipe et partenaires
 @endsection
 
+@section('social-image', '/images/equipe/social.png')
+
 @section('content')
 <main role="main">
   <div class="album py-5 bg-light">

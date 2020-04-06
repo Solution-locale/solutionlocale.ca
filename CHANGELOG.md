@@ -1,6 +1,10 @@
 # Changelog
 
-# 2.7.0 (2020-04-06)
+# Next
+- Added an option for different social media images in public template.
+- Changed social media image for team page.
+
+# 2.7.1 (2020-04-06)
 - Tweaks in team member page.
 
 # 2.7.0 (2020-04-06)
