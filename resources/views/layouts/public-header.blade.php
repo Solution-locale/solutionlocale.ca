@@ -9,6 +9,10 @@
               <p class="text-white"><em>Solution locale</em> n'est pas responsable des méthodes d’échange utilisées par les commerces et mise sur la confiance et la solidarité des entrepreneurs et entrepreneuses à l'égard de la santé de leurs clients et clientes.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">À propos</h4>
+              <ul class="list-unstyled">
+                <li><a href="{{ route('team') }}" class="text-white">Équipe et partenaires</a></li>
+              </ul>
               <h4 class="text-white">Médias sociaux</h4>
               <ul class="list-unstyled">
                 <li><a href="https://www.facebook.com/Solutionlocale/" class="text-white" target="_blank">Facebook</a></li>
