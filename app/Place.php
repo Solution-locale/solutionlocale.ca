@@ -21,6 +21,11 @@ class Place extends Model
         'normalized_at',
     ];
 
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
+    }
+
     public function region()
     {
         return $this->belongsTo(Region::class);

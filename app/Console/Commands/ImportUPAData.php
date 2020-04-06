@@ -2,18 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Imports\PlacesImport;
+use App\Imports\PlacesUPAImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ImportCSV extends Command
+class ImportUPAData extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'import:csv
+    protected $signature = 'import:upa
                             {filename : CSV file to import from stotage}';
 
     /**
@@ -21,7 +21,7 @@ class ImportCSV extends Command
      *
      * @var string
      */
-    protected $description = 'Import CSV: heavily opiniated, don\'t use unless you know what you do!';
+    protected $description = 'Import a CSV file from the template of the UPA.';
 
     /**
      * Create a new command instance.
@@ -40,6 +40,6 @@ class ImportCSV extends Command
      */
     public function handle()
     {
-        Excel::import(new PlacesImport, $this->argument('filename')); // /storage/app/{filename}
+        Excel::import(new PlacesUPAImport, $this->argument('filename')); // /storage/app/{filename}
     }
 }

@@ -1,7 +1,8 @@
 # Changelog
 
-# Next
+# 2.8.0
 - Fixed page title in social share meta.
+- Can import data from UPA file.
 
 # 2.7.2 (2020-04-06)
 - Added an option for different social media images in public template.
