@@ -16,7 +16,13 @@ class MapController extends Controller
      */
     public function show()
     {
-        $places = DB::table('places')->select('slug', 'long', 'lat')->where('is_approved', true)->whereNotNull('long')->whereNotNull('lat')->get();
+        $places = DB::table('places')
+                    ->select('slug', 'long', 'lat')
+                    ->where('is_closed', false)
+                    ->where('is_approved', true)
+                    ->whereNotNull('long')
+                    ->whereNotNull('lat')
+                    ->get();
 
         return view('map.map')->with(['places' => $places]);
     }
