@@ -34,10 +34,10 @@ class ModerationController extends Controller
 
     public function closing(Place $place, Request $request)
     {
-        $place->is_closed = $request->get('is_closed');
+        $place->is_closed = $place->is_closed ? false : true;
         $place->save();
 
-        return redirect(route('places.index'))->with('status', "{$place->name} a été correctement modifié.");
+        return redirect(route('places.show', $place->slug))->with('status', "{$place->name} a été correctement modifié.");
     }
 
     // display the destroy page.

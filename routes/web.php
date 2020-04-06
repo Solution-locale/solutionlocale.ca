@@ -68,8 +68,8 @@ Route::prefix('/places')->name('places.')->group(function () {
       
       
         // Open / close places
-        Route::get('/{place:slug}/fermer', 'ModerationController@close')->name('close');
-        Route::post('/{place:slug}/fermer', 'ModerationController@closing')->name('closing');
+        Route::get('/{place:slug}/ouverture', 'ModerationController@close')->name('close');
+        Route::post('/{place:slug}/ouverture', 'ModerationController@closing')->name('closing');
     });
 
     //Create public
