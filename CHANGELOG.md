@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Changed icon for close and show place.
+
 # 2.8.0
 - Fixed page title in social share meta.
 - Can import data from UPA file.
