@@ -77,9 +77,7 @@ Route::prefix('/places')->name('places.')->group(function () {
     Route::post('/', 'PlaceController@storePublic')->name('store-public');
 
     // Easter egg
-    Route::get('/fee-des-dents', function () {
-        return view("places.fee-dents");
-    })->name('fee-des-dents');
+    Route::get('/fee-des-dents', 'PublicController@feeDents')->name('fee-des-dents');
 
     //Read public
     Route::get('/{place:slug}', 'PlaceController@show')->name('show');
