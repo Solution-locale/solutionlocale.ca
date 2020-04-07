@@ -76,6 +76,11 @@ Route::prefix('/places')->name('places.')->group(function () {
     Route::get('/ajout', 'PlaceController@createPublic')->name('create-public');
     Route::post('/', 'PlaceController@storePublic')->name('store-public');
 
+    // Easter egg
+    Route::get('/fee-des-dents', function () {
+        return view("places.fee-dents");
+    })->name('fee-des-dents');
+
     //Read public
     Route::get('/{place:slug}', 'PlaceController@show')->name('show');
     Route::get('/json/{place:slug}', 'PlaceController@showJson')->name('json.show');
