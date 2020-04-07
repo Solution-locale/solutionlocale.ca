@@ -171,4 +171,9 @@ class PublicController extends Controller
         $params['vue'] = $view;
         return url()->current().'?'.http_build_query($params);
     }
+
+    public function feeDents()
+    {
+        return view("places.fee-dents");
+    }
 }
