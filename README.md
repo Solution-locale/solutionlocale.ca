@@ -19,20 +19,31 @@ The web site is, at least for now, focused for a french speaking population and 
 
 ## Running the project in developper mode
 
-Run `git submodule add https://github.com/Laradock/laradock.git`
+Run `git submodule update --init --recursive'`
 
-Copy laradock-env-example into laradock/.env
+### Copy your environment variable
 
+```
+cp laradock-env-example laradock/.env
+cp .env.example .env
+```
+
+### Start project
 To run project locally in docker on your local machine, run the following commands in the project's folder
 
 ```bash
 cd laradock
 docker-compose up -d nginx mysql phpmyadmin
-docker-compose exec workspace bash
-composer install
-npm install
+docker-compose exec workspace composer install
+docker-compose exec workspace npm install
 ```
+### Migrations and seeds
 
 Then, create the solutionlocale database and run the migrations and seeds.
+
+```
+docker-compose exec workspace php artisan migrate
+docker-compose exec workspace php artisan db:seed
+```
 
 Then, the project runs at localhost on your machine. A PHPMyAdmin instance is available on port 8888.

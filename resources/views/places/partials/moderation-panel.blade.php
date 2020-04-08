@@ -8,9 +8,9 @@
       <a class="btn btn-outline-primary" href="{{ route('approvals.create', ['place' => $place->slug]) }}" role="button">✅</a>
       @endif
       @if($place->is_closed)
-        <a class="btn btn-outline-info" href="{{ route('places.close', ['place' => $place->slug]) }}" role="button"><i class="fas fa-lock-open"></i></a>
+        <a class="btn btn-outline-info" href="{{ route('places.close', ['place' => $place->slug]) }}" role="button" title="Afficher"><i class="fas fa-eye"></i></i></a>
       @else
-        <a class="btn btn-outline-info" href="{{ route('places.close', ['place' => $place->slug]) }}" role="button"><i class="fas fa-lock"></i></a>
+        <a class="btn btn-outline-info" href="{{ route('places.close', ['place' => $place->slug]) }}" role="button" title="Cacher"><i class="fas fa-eye-slash"></i></i></a>
       @endif
       <a class="btn btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}" role="button">🗑</a>
     </div>
