@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 2.9.0 (2020-04-08)
 - Changed icon for close and show place.
 - Moved about text to its own page.
 - Changed header bar, moved search to it.
@@ -8,7 +8,7 @@
 - Doesn't show all categories in listing pages.
 - Added total count to home page.
 
-# 2.8.0
+# 2.8.0 (2020-04-07)
 - Fixed page title in social share meta.
 - Can import data from UPA file.
 
