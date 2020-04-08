@@ -21,7 +21,8 @@
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <h1 class="text-center mb-4">{{ $selectedRegion->name }}</h1>
+      <h1 class="text-center mb-2">{{ $selectedRegion->name }}</h1>
+      <h6 class="text-center mb-5"><a href="{{ route("regions.index-provincial") }}">Retour à toutes les régions</a></h6>
 
       <div class="row" id="region-list">
         <div class="col-md-12 text-center mb-5 h5">
