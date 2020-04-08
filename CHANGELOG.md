@@ -3,6 +3,7 @@
 # Next
 - Changed icon for close and show place.
 - Moved about text to its own page.
+- Changed header bar, moved search to it.
 
 # 2.8.0
 - Fixed page title in social share meta.

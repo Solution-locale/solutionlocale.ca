@@ -41,28 +41,6 @@
       <h2 class="text-center mb-5">{{ $category->name }}</h2>
       @endif
 
-      <form method="get" id="search-place-form" action="{{ route('recherche.index') }}">
-        <div class="col-md-8 offset-md-2">
-          <div class="row">
-            <div class="col-12">
-              <label for="q">Rechercher</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 col-md-10">
-              <div class="form-group">
-                <input type="text" class="form-control" id="q" name="q" placeholder="Nom, adresse ou ville" value="{{ $q ?? '' }}">
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-2">
-              <div class="form-group align-bottom">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-
       <div class="row" id="region-list">
       @if($is_search)
         <div class="col-md-12 text-center mb-5 h5">
