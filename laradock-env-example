@@ -285,7 +285,7 @@ APACHE_DOCUMENT_ROOT=/var/www/
 ### MYSQL #################################################
 
 MYSQL_VERSION=8
-MYSQL_DATABASE=default
+MYSQL_DATABASE=solutionlocale
 MYSQL_USER=default
 MYSQL_PASSWORD=secret
 MYSQL_PORT=3306
