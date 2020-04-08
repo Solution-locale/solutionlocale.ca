@@ -39,7 +39,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('indexes.regional')->with([
-            'categories' => Category::all(),
+            'categories' => Category::whereNull('parent_id')->get(),
             'places' => $region->places()->where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'page_title' => $region->getPageTitle(),
@@ -65,7 +65,7 @@ class PublicController extends Controller
                     ->get();
 
         return view('indexes.categories')->with([
-           'categories' => Category::all(),
+           'categories' => $category->children,
             'places' => $places,
             'selectedRegion' => $region,
             'category' => $category,

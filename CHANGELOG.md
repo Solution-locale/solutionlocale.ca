@@ -5,6 +5,7 @@
 - Moved about text to its own page.
 - Changed header bar, moved search to it.
 - Refactored indexes template.
+- Doesn't show all categories in listing pages.
 
 # 2.8.0
 - Fixed page title in social share meta.
