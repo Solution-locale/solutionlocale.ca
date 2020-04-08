@@ -8,14 +8,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Accueil</a>
+        <li class="nav-item @if(Route::currentRouteName() == 'public.index') active @endif">
+          <a class="nav-link" href="{{ route('public.index') }}">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('about') }}">À propos</a>
+        <li class="nav-item @if(Route::currentRouteName() == 'public.about') active @endif">
+          <a class="nav-link" href="{{ route('public.about') }}">À propos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('team') }}">Équipe et partenaires</a>
+        <li class="nav-item @if(Route::currentRouteName() == 'public.team') active @endif">
+          <a class="nav-link" href="{{ route('public.team') }}">Équipe et partenaires</a>
         </li>
         <li class="nav-item">
           <a href="https://www.facebook.com/Solutionlocale/" class="nav-link" target="_blank">
