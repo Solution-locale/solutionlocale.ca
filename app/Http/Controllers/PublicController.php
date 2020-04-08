@@ -120,6 +120,11 @@ class PublicController extends Controller
         return view("team");
     }
 
+    public function aboutPage()
+    {
+        return view("about");
+    }
+
     /**
      * Method retourning sorting info according to an user input.
      * @param: string $in Column on which the user want to sort.
