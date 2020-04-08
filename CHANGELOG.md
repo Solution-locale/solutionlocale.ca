@@ -6,6 +6,7 @@
 - Changed header bar, moved search to it.
 - Refactored indexes template.
 - Doesn't show all categories in listing pages.
+- Added total count to home page.
 
 # 2.8.0
 - Fixed page title in social share meta.

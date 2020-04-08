@@ -17,6 +17,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('indexes.welcome')->with([
+            'total_places' => Place::count(),
             'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
             'page_title' => config('app.name', ''),
             'viewTemplate' => $viewTemplate,

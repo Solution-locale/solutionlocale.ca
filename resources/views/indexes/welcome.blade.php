@@ -22,6 +22,7 @@
     <div class="container">
       <h1>Répertoire de ressources locales<br>en contexte de distanciation sociale</h1>
       <p class="lead text-muted">Une initiative citoyenne, en collaboration<br>avec plusieurs partenaires locaux</p>
+      <p><strong>{{ $total_places }}</strong> entreprises loacles !</p>
       <p>
         <a href="{{ route('places.create-public') }}" class="btn btn-primary my-2">Inscrivez une entreprise</a>
         <a href="{{ route('map.show') }}" class="btn btn-primary my-2"><i class="fas fa-map-marker-alt"></i> Voir la carte interactive</a>
