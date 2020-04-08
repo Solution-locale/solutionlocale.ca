@@ -7,6 +7,7 @@ use App\Place;
 use App\Region;
 use App\Utils\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class PublicController extends Controller
@@ -16,8 +17,13 @@ class PublicController extends Controller
     {
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
+
+        $total_places = Cache::remember('total_places', 300, function () {
+            return Place::count();
+        });
+
         return view('indexes.welcome')->with([
-            'total_places' => Place::count(),
+            'total_places' => $total_places,
             'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
             'page_title' => config('app.name', ''),
             'viewTemplate' => $viewTemplate,

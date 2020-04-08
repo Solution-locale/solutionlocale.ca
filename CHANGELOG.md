@@ -1,5 +1,8 @@
 # Changelog
 
+# Next
+- Cache count of places for index to 5 minutes.
+
 # 2.9.0 (2020-04-08)
 - Changed icon for close and show place.
 - Moved about text to its own page.
