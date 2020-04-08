@@ -3,7 +3,6 @@
   @foreach($places as $place)
     <div class="col-md-4">
       <div class="card mb-3">
-        {{--<img src="/images/solutionlocale-placeholder.png" class="card-img-top" alt="{{ $place->name }}">--}}
         <div class="card-body">
           <h5 class="card-title font-weight-bold">{{ $place->name }}</h5>
           <p class="card-text">

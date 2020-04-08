@@ -1,5 +1,5 @@
 <form method="get">
-    @if ($is_search)
+    @if (Request::has('q'))
     <input type="hidden" name="q" id="q" value="{{ $q }}">
     @endif
     <div class="form-group">

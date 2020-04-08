@@ -16,12 +16,9 @@ class PublicController extends Controller
     {
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
-        return view('index')->with([
+        return view('indexes.welcome')->with([
             'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
-            'is_regional' => false,
-            'is_provincial' => false,
             'page_title' => config('app.name', ''),
-            'is_search' => false,
             'viewTemplate' => $viewTemplate,
         ]);
     }
@@ -30,12 +27,9 @@ class PublicController extends Controller
     {
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
-        return view('index')->with([
+        return view('indexes.provincial')->with([
             'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
-            'is_regional' => false,
-            'is_provincial' => true,
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
-            'is_search' => false,
             'viewTemplate' => $viewTemplate,
         ]);
     }
@@ -44,14 +38,11 @@ class PublicController extends Controller
     {
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
-        return view('index')->with([
+        return view('indexes.regional')->with([
             'categories' => Category::all(),
             'places' => $region->places()->where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
-            'is_regional' => true,
-            'is_provincial' => false,
             'page_title' => $region->getPageTitle(),
-            'is_search' => false,
             'viewTemplate' => $viewTemplate,
         ]);
     }
@@ -73,15 +64,12 @@ class PublicController extends Controller
                     ->orderBy($sort['col'], $sort['order'])
                     ->get();
 
-        return view('index')->with([
+        return view('indexes.categories')->with([
            'categories' => Category::all(),
             'places' => $places,
             'selectedRegion' => $region,
-            'is_regional' => true,
             'category' => $category,
-            'is_provincial' => false,
             'page_title' => $category->getPageTitle(),
-            'is_search' => false,
             'viewTemplate' => $viewTemplate,
         ]);
     }
@@ -104,12 +92,9 @@ class PublicController extends Controller
             $places = $region->searchPlacesByKeyword($q, $sort['col'], $sort['order']);
         }
 
-        return view('index')->with([
+        return view('indexes.search')->with([
             'places' => $places,
-            'is_regional' => false,
-            'is_provincial' => false,
             'page_title' => "{$q} - ".config('app.name', ''),
-            'is_search' => true,
             'q' => $q,
             'viewTemplate' => $viewTemplate,
         ]);
@@ -155,11 +140,11 @@ class PublicController extends Controller
     private function getViewTemplate($in)
     {
         $in = preg_replace('/[^a-z]/', '', strtolower($in));
-        $view = 'index-place-cards';
+        $view = 'indexes.view-cards';
         if ($in === 'grille') {
-            return 'index-place-grid';
+            return 'indexes.view-grid';
         } elseif ($in === 'compact') {
-            return 'index-place-compact';
+            return 'indexes.view-compact';
         }
         return $view;
     }
