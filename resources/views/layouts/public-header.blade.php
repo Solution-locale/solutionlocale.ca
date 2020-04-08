@@ -23,6 +23,13 @@
         <li class="nav-item @if(Route::currentRouteName() == 'public.about') active @endif">
           <a class="nav-link" href="{{ route('public.about') }}">À propos</a>
         </li>
+        @auth
+        <li class="nav-item">
+          <a href="{{ route('home') }}" class="nav-link">
+            <i class="fas fa-user-astronaut" style="font-size: 1.5em"></i>
+          </a>
+        </li>
+        @endauth
         <li class="nav-item">
           <a href="https://www.facebook.com/Solutionlocale/" class="nav-link" target="_blank">
             <i class="fab fa-facebook" style="font-size: 1.5em"></i>
