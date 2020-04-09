@@ -1,8 +1,9 @@
 # Changelog
 
-# Next
+# 2.9.1 (2020-04-09)
 - Cache count of places for index to 5 minutes.
 - Added a link to backend when connected.
+- Fix place count in home page counting unapproved plaecs.
 
 # 2.9.0 (2020-04-08)
 - Changed icon for close and show place.

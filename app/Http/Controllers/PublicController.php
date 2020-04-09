@@ -19,7 +19,7 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
 
         $total_places = Cache::remember('total_places', 300, function () {
-            return Place::count();
+            return Place::where('is_approved', true)->count();
         });
 
         return view('indexes.welcome')->with([
