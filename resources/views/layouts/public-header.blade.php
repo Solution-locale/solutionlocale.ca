@@ -20,6 +20,9 @@
         <li class="nav-item @if(Route::currentRouteName() == 'public.team') active @endif">
           <a class="nav-link" href="{{ route('public.team') }}">Équipe et partenaires</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://api.solutionlocale.ca" target="_blank">API</a>
+        </li>
         <li class="nav-item @if(Route::currentRouteName() == 'public.about') active @endif">
           <a class="nav-link" href="{{ route('public.about') }}">À propos</a>
         </li>
