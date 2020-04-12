@@ -33,7 +33,7 @@
                                 <td>{{ $user->roles->implode('name', ', ') }}</td>
                                 <td>{{ $user->regions->isNotEmpty() ? $user->regions->implode('name', ', ') : "Aucune" }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-warning" href="{{ route("users.edit", $user->id) }}" role="button" target="_blank">✏️</a>
+                                    <a class="btn btn-outline-warning" href="{{ route("users.edit", $user->id) }}" role="button">✏️</a>
                                 </td>
                             </tr>
                             @endforeach
