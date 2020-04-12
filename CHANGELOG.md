@@ -1,6 +1,7 @@
 # Changelog
 
 # Next
+- Command to send moderator a reminder for moderation.
 - Can link users to regions.
 - Changed error message for URLs so the dot is farther away than something they can copy paste.
 - Ajout d'une liste des commerces qui sont fermés afin de les réouvrir en modération.
