@@ -106,10 +106,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         if ($user->hasRole('super_admin') && !$request->user()->hasRole('super_admin')) {
             abort(401);
         }
-
+        
         // Filter out invalid roles
         $roles = array_intersect(Role::all()->pluck('name')->toArray(), $request->roles);
 
