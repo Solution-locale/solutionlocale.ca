@@ -81,6 +81,17 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+    public function edit(User $user)
+    {
+        return view('users.edit')->with(['user' => $user]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function editSelf()
     {
         return view('users.edit-self')->with(['user' => Auth::user()]);
@@ -93,6 +104,21 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+    public function update(Request $request, User $user)
+    {
+        // Filter out invalid roles
+        $roles = array_intersect(Role::all()->pluck('name')->toArray(), $request->roles);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $user->regions()->sync($request->regions);
+        $user->syncRoles($roles);
+
+        return redirect()->back()->with('status', 'Profil modifié!');
+    }
+
     public function updateSelf(Request $request)
     {
         $user = Auth::user();
