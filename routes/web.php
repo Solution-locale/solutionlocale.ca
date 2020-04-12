@@ -22,13 +22,18 @@ Route::middleware(['auth'])->group(function () {
 
     //User
     Route::prefix('/users')->name('users.')->group(function () {
+        Route::get('/', 'UserController@index')->name('index')->middleware('can:do-admin');
+
         //Create
-        Route::get('/user/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
-        Route::post('/user', 'UserController@store')->name('store')->middleware('can:do-admin');
+        Route::get('/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
+        Route::post('/', 'UserController@store')->name('store')->middleware('can:do-admin');
 
         //Update
-        Route::get('/user/me', 'UserController@editSelf')->name('edit-self');
-        Route::put('/user/me', 'UserController@updateSelf')->name('update-self');
+        Route::get('/me', 'UserController@editSelf')->name('edit-self');
+        Route::put('/me', 'UserController@updateSelf')->name('update-self');
+        
+        Route::get('/{user}', 'UserController@edit')->name('edit')->middleware('can:do-admin');
+        Route::put('/{user}', 'UserController@update')->name('update')->middleware('can:do-admin');
     });
 });
 
