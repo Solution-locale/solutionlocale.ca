@@ -52,7 +52,7 @@ Route::prefix('/approbations')->name('approvals.')->group(function () {
 //Places
 Route::prefix('/places')->name('places.')->group(function () {
     Route::middleware(['auth', 'can:do-moderation'])->group(function () {
-        // Route::get('/places', 'PlaceController@index')->name('index');
+        Route::get('/fermées', 'PlaceController@indexClosed')->name('closed');
       
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');

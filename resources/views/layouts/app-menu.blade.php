@@ -5,7 +5,16 @@
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
 
         @can('do-moderation')
-        <a class="nav-link" href="{{ route("approvals.index") }}">Modération de fiches</a>
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Fiches<span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route("approvals.index") }}">Modération</a>
+                <a class="dropdown-item" href="{{ route("places.closed") }}">Fiches fermées</a>
+            </div>
+        </li>
         @endcan
 
         @can('do-admin')

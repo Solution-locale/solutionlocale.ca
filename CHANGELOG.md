@@ -2,6 +2,7 @@
 
 # Next
 - Changed error message for URLs so the dot is farther away than something they can copy paste.
+- Ajout d'une liste des commerces qui sont fermés afin de les réouvrir en modération.
 
 # 2.9.1 (2020-04-09)
 - Cache count of places for index to 5 minutes.
