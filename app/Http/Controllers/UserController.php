@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUsers;
+use App\Region;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,7 @@ class UserController extends Controller
 
         $user->save();
 
+        $user->regions()->sync($request->regions);
         $user->assignRole($roles);
 
         // Create password reset link
@@ -59,7 +61,7 @@ class UserController extends Controller
         $url = route('password.reset', ['token' => $token]);
 
         return redirect()->route('users.create')
-            ->with('status', "Utilisateur créé. L'URL de réinitialisation du mot de passe est : $url");
+            ->with('status', "Utilisateur créé. L'URL de réinitialisation du mot de passe est :<br> $url");
     }
 
     /**
