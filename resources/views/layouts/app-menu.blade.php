@@ -50,6 +50,9 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('users.index') }}">
+                    Liste
+                </a>
                 <a class="dropdown-item" href="{{ route('users.create') }}">
                     Ajout
                 </a>
