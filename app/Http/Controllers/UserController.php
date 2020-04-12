@@ -81,13 +81,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function editSelf()
     {
-        if (Auth::user()->id != $user->id) {
-            abort(401);
-        }
-
-        return view('users.edit')->with(['user' => $user]);
+        return view('users.edit-self')->with(['user' => Auth::user()]);
     }
 
     /**
@@ -97,12 +93,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function updateSelf(Request $request)
     {
-        if (Auth::user()->id != $user->id) {
-            abort(401);
-        }
-
+        $user = Auth::user();
         $user->password = Hash::make($request->password);
         $user->save();
 

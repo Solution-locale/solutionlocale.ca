@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('users.update', ['user' => Auth::id()]) }}">
+                    <form method="POST" action="{{ route('users.update-self', ['user' => Auth::id()]) }}">
                         @csrf
                         @method("put")
 

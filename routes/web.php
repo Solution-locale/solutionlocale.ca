@@ -27,8 +27,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/user', 'UserController@store')->name('store')->middleware('can:do-admin');
 
         //Update
-        Route::get('/user/{user}', 'UserController@edit')->name('edit');
-        Route::put('/user/{user}', 'UserController@update')->name('update');
+        Route::get('/user/me', 'UserController@editSelf')->name('edit-self');
+        Route::put('/user/me', 'UserController@updateSelf')->name('update-self');
     });
 });
 
