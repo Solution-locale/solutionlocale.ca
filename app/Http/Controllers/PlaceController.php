@@ -28,6 +28,13 @@ class PlaceController extends Controller
         return view('places.index', compact('places', 'regions'));
     }
 
+    public function indexClosed()
+    {
+        $places = Place::where('is_closed', true)->get();
+
+        return view('places.closed', compact('places'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

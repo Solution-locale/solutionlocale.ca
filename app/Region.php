@@ -16,6 +16,11 @@ class Region extends Model
         return $this->hasMany(Place::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function rcm()
     {
         return $this->hasMany(Rcm::class);

@@ -71,6 +71,36 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="regions" class="col-md-3 col-form-label text-md-right">Région</label>
+
+                                <div class="col-md-9">
+                                    <select multiple="multiple" name="regions[]" id="regions">
+                                        @foreach(App\Region::all() as $region)
+                                            <option value="{{ $region->id }}"
+                                                @if (is_array(old('regions')))
+                                                    @foreach(old('regions') as $r)
+                                                        @if($region === $r)
+                                                            selected="selected"
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            >{{$region->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <span class="form-text text-muted" role="alert">
+                                        <strong>Aucune, ou plusieurs, régions.</strong>
+                                    </span>
+
+                                    @error('regions')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{!! $message !!}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <span class="col-md-5"></span>
 
                                 <button type="submit" class="btn btn-primary">Créer</button>

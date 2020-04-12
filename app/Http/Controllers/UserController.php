@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUsers;
+use App\Region;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.index')->with(['users' => User::all()]);
     }
 
     /**
@@ -52,6 +53,7 @@ class UserController extends Controller
 
         $user->save();
 
+        $user->regions()->sync($request->regions);
         $user->assignRole($roles);
 
         // Create password reset link
@@ -59,7 +61,7 @@ class UserController extends Controller
         $url = route('password.reset', ['token' => $token]);
 
         return redirect()->route('users.create')
-            ->with('status', "Utilisateur créé. L'URL de réinitialisation du mot de passe est : $url");
+            ->with('status', "Utilisateur créé. L'URL de réinitialisation du mot de passe est :<br> $url");
     }
 
     /**
@@ -81,11 +83,18 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (Auth::user()->id != $user->id) {
-            abort(401);
-        }
-
         return view('users.edit')->with(['user' => $user]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function editSelf()
+    {
+        return view('users.edit-self')->with(['user' => Auth::user()]);
     }
 
     /**
@@ -97,10 +106,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if (Auth::user()->id != $user->id) {
+
+        if ($user->hasRole('super_admin') && !$request->user()->hasRole('super_admin')) {
             abort(401);
         }
+        
+        // Filter out invalid roles
+        $roles = array_intersect(Role::all()->pluck('name')->toArray(), $request->roles);
 
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $user->regions()->sync($request->regions);
+        $user->syncRoles($roles);
+
+        return redirect()->back()->with('status', 'Profil modifié!');
+    }
+
+    public function updateSelf(Request $request)
+    {
+        $user = Auth::user();
         $user->password = Hash::make($request->password);
         $user->save();
 
