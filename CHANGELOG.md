@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.10.1
+- Corrected typos.
+
 # 2.10.0
 - Command to send moderator a reminder for moderation.
 - Can link users to regions.
