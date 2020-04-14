@@ -62,7 +62,7 @@ class StorePlaces extends FormRequest
                     }
 
                     if (! $is_house_delivery && ! is_null($this->input('deliveryZone'))) {
-                        $fail("Le champs « secteur desservi pour la livraison à domicile » ne doit être utilisé que si l'option « Livraison à domicile sans contact » est sélectionnée.");
+                        $fail("Le champ « secteur desservi pour la livraison à domicile » ne doit être utilisé que si l'option « Livraison à domicile sans contact » est sélectionnée.");
                     }
                 },
             ],
@@ -82,11 +82,12 @@ class StorePlaces extends FormRequest
             'email.email' => "Votre adresse courriel est d'un format invalide. Veuillez la vérifier.",
             'url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em> de votre adresse.",
             'facebook_url.url' => "Veuillez vous assurer d'avoir une adresse valide et complète, incluant les <em>http://</em> ou <em>https://</em> de votre adresse.",
-            'phoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
-            'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, inclant le code régional.",
-            'url.required_without_all' => "Le champ <em>Adresse web</em> est obligatoire si vous n'avez pas remplis le champs <em>No. de tél.</em> ou le champs <em>Courriel</em>.",
-            'phoneNumber.required_without_all' => "Le champ <em>No. de tél.</em> est obligatoire si vous n'avez pas remplis le champs <em>Adresse web</em> ou le champs <em>Courriel</em>.",
-            'email.required_without_all' => "Le champ <em>Courriel</em> est obligatoire si vous n'avez pas remplis le champs <em>Adresse web</em> ou le champs <em>No. de tél.</em>.",
+            'phoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, incluant le code régional.",
+            'additionnalPhoneNumber.phone' => "Assurez vous d'avoir un format de téléphone valide, incluant le code régional.",
+            'url.required_without_all' => "Le champ <em>Adresse web</em> est obligatoire si vous n'avez pas rempli le champ <em>No. de tél.</em> ou le champ <em>Courriel</em>.",
+            'facebook_url.required_without_all' => "Le champ <em>Adresse web</em> est obligatoire si vous n'avez pas rempli le champ <em>No. de tél.</em> ou le champ <em>Courriel</em>.",
+            'phoneNumber.required_without_all' => "Le champ <em>No. de tél.</em> est obligatoire si vous n'avez pas rempli le champ <em>Adresse web</em> ou le champ <em>Courriel</em>.",
+            'email.required_without_all' => "Le champ <em>Courriel</em> est obligatoire si vous n'avez pas rempli le champ <em>Adresse web</em> ou le champ <em>No. de tél.</em>.",
             'rcm_id.required' => "Le champ MRC est obligatoire.",
         ];
     }

@@ -50,10 +50,6 @@
                                     @foreach($errors->all() as $message)
                                         <li>{!! $message !!}</li>
                                     @endforeach
-                                    <li>
-                                        Prenez soins de renseigner de nouveau l'adresse complète de votre
-                                        entreprise.
-                                    </li>
                                 </ul>
                             </div>
                         @endif
