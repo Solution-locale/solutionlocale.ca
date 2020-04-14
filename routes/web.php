@@ -19,6 +19,7 @@ Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin/charts/daily-new-places', 'ChartsController@dailyNewPlaces')->name('charts.daily-new-places');
 
     //User
     Route::prefix('/users')->name('users.')->group(function () {
