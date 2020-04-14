@@ -58,6 +58,18 @@
                 </a>
             </div>
         </li>
+
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Statistiques<span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('charts.daily-new-places') }}">
+                    Nouvelles fiches dans le temps
+                </a>
+            </div>
+        </li>
         @endcan
 
         {{-- Removed until we can streamline and fix places creation process --}}
