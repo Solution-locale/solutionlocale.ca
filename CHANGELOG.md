@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.11.0
+- Work on graphs for stats.
+- Admin can see stats for daily new places.
+
 # 2.10.1
 - Corrected typos.
 
