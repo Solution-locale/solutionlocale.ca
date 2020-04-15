@@ -30,7 +30,13 @@
                             <tr>
                                 <th scope="row">{{ isset($activity->causer) ? $activity->causer->name : "" }}</th>
                                 <td>{{ $activity->description }}</td>
-                                <td>{{ isset($activity->subject) ? $activity->subject->name : $activity->properties['attributes']['name'] }}</td>
+                                <td>
+                                    @if(isset($activity->subject))
+                                        {{ $activity->subject->name }}
+                                    @else
+                                        {{ isset($activity->properties['attributes']['name']) ? $activity->properties['attributes']['name'] : "" }}
+                                    @endif
+                                </td>
                                 <td>
                                     @if(isset($activity->properties['old']))
                                         @foreach($activity->properties['old'] as $key => $value)
