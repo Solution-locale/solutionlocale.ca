@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.13.0 (2020-04-15)
+- Logging activities on place model.
+
 # 2.12.0 (2020-04-15)
 - Users can be notifiable.
 - Schedule moderator queue email.
