@@ -4,10 +4,17 @@ namespace App;
 
 use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Place extends Model
 {
     use Filterable;
+    use LogsActivity;
+
+    protected static $logFillable = true;
+    protected static $logName = 'moderation';
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
 
     protected $fillable = [
         'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'facebook_url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id', 'plus_code'
@@ -97,5 +104,23 @@ class Place extends Model
     {
         $places = self::searchByKeyword($q);
         return count($places);
+    }
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        switch ($eventName) {
+            case 'created':
+                $eventNameFrench = 'créée';
+                break;
+
+            case 'updated':
+                $eventNameFrench = 'mise à jour';
+                break;
+
+            case 'deleted':
+                $eventNameFrench = 'détruite';
+                break;
+        }
+        return "Cette fiche à été {$eventNameFrench}.";
     }
 }

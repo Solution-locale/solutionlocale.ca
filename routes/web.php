@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/charts/daily-new-places', 'ChartsController@dailyNewPlaces')->name('charts.daily-new-places');
 
+    Route::get('/activity-logs', 'ActivityLogController@index')->name('activity-log.index');
+    Route::get('/activity-logs/by-user/{user}', 'ActivityLogController@showUserActivity')->name('activity-log.by-user');
+
     //User
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', 'UserController@index')->name('index')->middleware('can:do-admin');

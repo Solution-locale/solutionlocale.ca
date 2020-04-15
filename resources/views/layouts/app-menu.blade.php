@@ -20,27 +20,18 @@
         @can('do-admin')
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Modes de distribution<span class="caret"></span>
+                Taxonomies<span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('deliveryTypes.create') }}">
-                    Ajout
+                    Ajout de mode de distribution
                 </a>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Catégories<span class="caret"></span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('categories.index') }}">
-                    Liste
+                    Toutes les catégories
                 </a>
                 <a class="dropdown-item" href="{{ route('categories.create') }}">
-                    Ajout
+                    Ajout d'une catégorie
                 </a>
             </div>
         </li>
@@ -67,6 +58,18 @@
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('charts.daily-new-places') }}">
                     Nouvelles fiches dans le temps
+                </a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Journaux d'activité<span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('activity-log.index') }}">
+                    Voir tout les journaux
                 </a>
             </div>
         </li>
