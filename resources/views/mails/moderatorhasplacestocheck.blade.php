@@ -1,9 +1,9 @@
 @component('mail::message')
 # Vos régions ont besoin de vous!
 
-Vous recevez ce courriel parceque vous êtes modérateur assignés à une ou plusieurs régions sur Solution Locale.
+Vous recevez ce courriel parce que vous êtes modérateur assigné à une ou plusieurs régions sur Solution Locale.
 
-Ce message est pour vous avertir qu'il y a certaines fiches dans vos régions qui demandez à être vérifié!
+Ce message est pour vous avertir qu'il y a certaines fiches dans vos régions qui demandent à être vérifiées!
 
 @foreach($moderation_queue as $region)
 - {{ $region->name }}: {{ $region->waiting_for_moderation }} fiches en attente

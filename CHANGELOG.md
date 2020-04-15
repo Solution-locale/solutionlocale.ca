@@ -1,13 +1,18 @@
 # Changelog
 
-# 2.11.0
+# 2.12.0 (2020-04-15)
+- Users can be notifiable.
+- Schedule moderator queue email.
+- Schedules are executed in local timezone.
+
+# 2.11.0 (2020-04-14)
 - Work on graphs for stats.
 - Admin can see stats for daily new places.
 
-# 2.10.1
+# 2.10.1 (2020-04-14)
 - Corrected typos.
 
-# 2.10.0
+# 2.10.0 (2020-04-12)
 - Command to send moderator a reminder for moderation.
 - Can link users to regions.
 - Changed error message for URLs so the dot is farther away than something they can copy paste.

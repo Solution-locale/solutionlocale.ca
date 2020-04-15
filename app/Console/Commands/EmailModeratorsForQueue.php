@@ -42,7 +42,7 @@ class EmailModeratorsForQueue extends Command
      */
     public function handle()
     {
-        $users = User::role('moderator')->get();
+        $users = User::role('moderator')->where('is_notifiable', true)->get();
 
         $users->each(function ($user, $key) {
             if ($user->regions->isEmpty()) {
