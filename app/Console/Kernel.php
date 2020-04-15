@@ -30,6 +30,9 @@ class Kernel extends ConsoleKernel
                 ->thursdays()
                 ->at('8:00');
 
+        $schedule->command('activitylog:clean --days=30')
+                ->daily();
+
         $schedule->command('telescope:prune --hours=72')
                 ->daily();
 
