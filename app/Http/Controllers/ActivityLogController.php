@@ -26,7 +26,7 @@ class ActivityLogController extends Controller
     public function showUserActivity(User $user)
     {
         return view('activity-log.index')->with([
-            'activities' => $user->actions,
+            'activities' => $user->actions->reverse(),
         ]);
     }
 }
