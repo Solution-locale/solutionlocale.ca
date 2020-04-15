@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach($activities as $activity)
                             <tr>
-                                <th scope="row">{{ $activity->causer->name }}</th>
+                                <th scope="row">{{ isset($activity->causer) ? $activity->causer->name : "" }}</th>
                                 <td>{{ $activity->description }}</td>
                                 <td>{{ isset($activity->subject) ? $activity->subject->name : $activities->last()->properties['attributes']['name'] }}</td>
                                 <td>
