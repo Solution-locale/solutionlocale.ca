@@ -24,6 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('soloc:moderator-queue-notification')
+                ->weekly()
+                ->mondays()
+                ->thursdays()
+                ->at('8:00');
+
         $schedule->command('telescope:prune --hours=72')
                 ->daily();
 
