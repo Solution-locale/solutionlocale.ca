@@ -104,9 +104,8 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUsers $request, User $user)
     {
-
         if ($user->hasRole('super_admin') && !$request->user()->hasRole('super_admin')) {
             abort(401);
         }
@@ -116,6 +115,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->is_notifiable = $request->has('is_notifiable');
         $user->save();
 
         $user->regions()->sync($request->regions);

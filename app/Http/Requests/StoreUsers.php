@@ -17,7 +17,8 @@ class StoreUsers extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email',
             'roles' => 'required|array',
-            'regions' => 'array|nullable'
+            'regions' => 'array|nullable',
+            'is_notifiable' => 'nullable',
         ];
     }
 }

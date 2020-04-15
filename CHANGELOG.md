@@ -1,5 +1,10 @@
 # Changelog
 
+# Next
+- Users can be notifiable.
+- Schedule moderator queue email.
+- Schedules are executed in local timezone.
+
 # 2.11.0
 - Work on graphs for stats.
 - Admin can see stats for daily new places.

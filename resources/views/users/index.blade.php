@@ -20,7 +20,8 @@
                                 <th scope="col">Nom</th>
                                 <th>Rôles</th>
                                 <th>Région(s)</th>
-                                <th>Modifier</th>
+                                <th class="text-center">Notifiable</th>
+                                <th class="text-center">Modifier</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,7 @@
                                 <th scope="row">{{ $user->name }}</th>
                                 <td>{{ $user->roles->implode('name', ', ') }}</td>
                                 <td>{{ $user->regions->isNotEmpty() ? $user->regions->implode('name', ', ') : "Aucune" }}</td>
+                                <td class="text-center">{!! $user->is_notifiable ? '<i class="far fa-bell text-success"></i>' : '<i class="far fa-bell-slash text-danger"></i>' !!}</td>
                                 <td class="text-center">
                                     <a class="btn btn-outline-warning" href="{{ route("users.edit", $user->id) }}" role="button">✏️</a>
                                 </td>

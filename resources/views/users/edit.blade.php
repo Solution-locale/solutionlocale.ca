@@ -46,6 +46,21 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="is_notifiable" class="col-md-3 col-form-label text-md-right">
+                                    Notifications courriel
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               name="is_notifiable"
+                                               type="checkbox"
+                                               id="inlineis_notifiableCheckbox"
+                                               @if($user->is_notifiable) CHECKED @endif>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="role" class="col-md-3 col-form-label text-md-right">Rôles *</label>
                                 <div class="col-md-9">
                                     <select multiple="multiple" name="roles[]" id="roles">
