@@ -15,10 +15,10 @@
                     @endif
 
                     <ul>
-                        <li>Nombre de catégories: {{ App\Category::count() }}</li>
-                        <li>Nombre de d'entreprises: {{ App\Place::count() }}</li>
+                        <li>Nombre total de fiches, peu importe le status: {{ App\Place::count() }}</li>
                         @if(App\Place::where('is_approved', false)->get()->isNotEmpty())
-                        <li>En attente d'approbation: {{ App\Place::where('is_approved', false)->count() }}.</li>
+                        <li>Total de fiches en attente d'approbation: {{ App\Place::where('is_approved', false)->whereNull('rejection_id')->count() }}.</li>
+                        <li>Total de fiches rejetées: {{ App\Place::whereNotNull('rejection_id', false)->count() }}.</li>
                         @endif
                     </ul>
                 </div>
