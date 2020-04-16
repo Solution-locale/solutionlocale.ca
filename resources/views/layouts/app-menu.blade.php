@@ -13,6 +13,7 @@
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route("approvals.index") }}">Modération</a>
                 <a class="dropdown-item" href="{{ route("places.closed") }}">Fiches fermées</a>
+                <a class="dropdown-item" href="{{ route("approvals.index-reject") }}">Fiches rejetées</a>
             </div>
         </li>
         @endcan

@@ -21,7 +21,7 @@
                                 <th scope="col">Date de l'ajout</th>
                                 <th scope="col">Voir la fiche</th>
                                 <th scope="col">Modifier la fiche</th>
-                                <th scope="col">Accepter la fiche</th>
+                                <th scope="col">Accepter / rejeter la fiche</th>
                                 <th scope="col">Détruire la fiche</th>
                             </tr>
                         </thead>
@@ -37,7 +37,8 @@
                                     <a class="btn btn-outline-warning" href="{{ route("places.edit", $place->slug) }}" role="button" target="_blank">✏️</a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-success" href="{{ route('approvals.create', ['place' => $place->slug]) }}" role="button">✅</a>
+                                    <a class="btn btn-outline-success" href="{{ route('approvals.create', ['place' => $place->slug]) }}" role="button">👍</a>
+                                    <a class="btn btn-outline-danger" href="{{ route('approvals.create-reject', ['place' => $place->slug]) }}" role="button">👎</a>
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-outline-danger" href="{{ route('places.delete', ['place' => $place->slug]) }}" role="button">🗑</a>

@@ -16,7 +16,10 @@ class ModerationController extends Controller
 
     public function show(Region $region)
     {
-        return view('approvals.show')->with(['queue' => $region->places()->where('is_approved', false)->get(), 'region' => $region]);
+        return view('approvals.show')->with([
+            'queue' => $region->places()->where('is_approved', false)->whereNull('rejection_id')->get(),
+            'region' => $region
+        ]);
     }
 
     public function store(Place $place)

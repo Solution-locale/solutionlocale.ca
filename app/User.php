@@ -40,6 +40,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function rejections()
+    {
+        return $this->belongsToMany(Rejection::class);
+    }
+
     public function regions()
     {
         return $this->belongsToMany(Region::class);

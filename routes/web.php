@@ -52,6 +52,11 @@ Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can
 Route::prefix('/approbations')->name('approvals.')->group(function () {
     //Read
     Route::get('/', 'ModerationController@index')->name('index');
+    Route::get('/rejet/', 'RejectionController@index')->name('index-reject');
+    Route::get('/rejet/{place:slug}', 'RejectionController@create')->name('create-reject');
+    Route::get('/rejet/{place:slug}/annuler', 'RejectionController@destroy')->name('cancel-rejection');
+
+    Route::post('/rejet/{place:slug}', 'RejectionController@store')->name('rejected');
     Route::get('/regions/{region:slug}', 'ModerationController@show')->name('show');
 
     //Create
