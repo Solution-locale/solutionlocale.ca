@@ -28,6 +28,11 @@ class Place extends Model
         'normalized_at',
     ];
 
+    public function rejection()
+    {
+        return $this->hasOne(Rejection::class);
+    }
+
     public function partner()
     {
         return $this->belongsTo(Partner::class);
@@ -87,7 +92,7 @@ class Place extends Model
     public static function searchByKeyword($q, $sortBy = null, $sortOrder = null)
     {
         $like = '%'.str_replace(' ', '%', $q).'%';
-        $search = 'is_approved and (name like ? or address like ? or city like ?)';
+        $search = 'is_approved and rejection_id IS NULL and (name like ? or address like ? or city like ?)';
         $bindings = [$like, $like, $like];
 
         $sortBy = $sortBy ?? 'name';

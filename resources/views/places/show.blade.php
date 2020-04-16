@@ -9,7 +9,11 @@
   <div class="album py-5 bg-light">
       <div class="col-md-10 offset-md-1">
         @can("do-moderation")
+        @if($place->rejection_id === null)
         @include("places.partials.moderation-panel")
+        @else
+        @include("places.partials.rejected-panel")
+        @endif
         @endcan
         <div class="card">
           <div class="card-header">

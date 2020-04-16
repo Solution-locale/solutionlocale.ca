@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.14.0 (2020-04-16)
+- Place rejection workflow.
+
 # 2.13.0 (2020-04-15)
 - Logging activities on place model.
 

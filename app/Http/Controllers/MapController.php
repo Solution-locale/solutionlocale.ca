@@ -20,6 +20,7 @@ class MapController extends Controller
                     ->select('slug', 'long', 'lat')
                     ->where('is_closed', false)
                     ->where('is_approved', true)
+                    ->whereNull('rejection_id')
                     ->whereNotNull('long')
                     ->whereNotNull('lat')
                     ->get();

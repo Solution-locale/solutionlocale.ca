@@ -22,7 +22,7 @@ class PlaceController extends Controller
      */
     public function index(PlaceFilter $request)
     {
-        $places = Place::filter($request)->get();
+        $places = Place::filter($request)->whereNull('rejection_id')->get();
         $regions = Region::all()->pluck('name', 'id');
 
         return view('places.index', compact('places', 'regions'));
@@ -30,7 +30,7 @@ class PlaceController extends Controller
 
     public function indexClosed()
     {
-        $places = Place::where('is_closed', true)->get();
+        $places = Place::where('is_closed', true)->whereNull('rejection_id')->get();
 
         return view('places.closed', compact('places'));
     }
@@ -134,6 +134,10 @@ class PlaceController extends Controller
     public function show(Place $place)
     {
         if (! $place->is_approved && Gate::denies('do-moderation')) {
+            abort(403);
+        }
+
+        if ($place->rejection_id !== null && Gate::denies('do-moderation')) {
             abort(403);
         }
 

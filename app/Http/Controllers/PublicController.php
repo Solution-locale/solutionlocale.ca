@@ -19,12 +19,12 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
 
         $total_places = Cache::remember('total_places', 300, function () {
-            return Place::where('is_approved', true)->count();
+            return Place::where('is_approved', true)->whereNull('rejection_id')->count();
         });
 
         return view('indexes.welcome')->with([
             'total_places' => $total_places,
-            'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
+            'places' => Place::where('is_approved', true)->whereNull('rejection_id')->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get()->random(6),
             'page_title' => config('app.name', ''),
             'viewTemplate' => $viewTemplate,
         ]);
@@ -35,7 +35,7 @@ class PublicController extends Controller
         $viewTemplate = $this->getViewTemplate(request('vue', config('soloc.places-list-default-view')));
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('indexes.provincial')->with([
-            'places' => Place::where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
+            'places' => Place::where('is_approved', true)->whereNull('rejection_id')->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'page_title' => 'Toute les régions - ' . config('app.name', ''),
             'viewTemplate' => $viewTemplate,
         ]);
@@ -47,7 +47,7 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
         return view('indexes.regional')->with([
             'categories' => Category::whereNull('parent_id')->get(),
-            'places' => $region->places()->where('is_approved', true)->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
+            'places' => $region->places()->where('is_approved', true)->whereNull('rejection_id')->where('is_closed', false)->orderBy($sort['col'], $sort['order'])->get(),
             'selectedRegion' => $region,
             'page_title' => $region->getPageTitle(),
             'viewTemplate' => $viewTemplate,
@@ -66,6 +66,7 @@ class PublicController extends Controller
         $sort = $this->getSortColumn(request('trierpar', ''));
         $places = $category->places()
                     ->where('is_approved', true)
+                    ->whereNull('rejection_id')
                     ->where('places.region_id', $region->id)
                     ->where('is_closed', false)
                     ->orderBy($sort['col'], $sort['order'])
