@@ -1,5 +1,9 @@
 # Changelog
 
+# NEXT
+- Fixed RCM not being selected back on validation errors.
+- RCM are now editable in places edit.
+
 # 2.14.0 (2020-04-16)
 - Place rejection workflow.
 

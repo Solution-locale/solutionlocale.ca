@@ -182,6 +182,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="rcm_id" class="col-md-3 col-form-label text-md-right">
+                                MRC *
+                            </label>
+
+                            <div class="col-md-9">
+                                <select class="custom-select" name="rcm_id" id="rcm_id">
+                                    @if($place->rcm === null)
+                                    <option>Veuillez d'abord choisir une rgion administrative</option>
+                                    @endif
+                                    @foreach(App\Rcm::all() as $rcm)
+                                        <option
+                                            data-region="{{ $rcm->region_id }}"
+                                            value="{{ $rcm->id }}"
+                                            @if($place->rcm !== null && $place->rcm->id === $rcm->id) SELECTED @endif>
+                                            {{ $rcm->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                @error('region')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{!! $message !!}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         @can('super_admin')
                         <div class="form-group row">
                             <label for="long" class="col-md-3 col-form-label text-md-right">Géoloc longitude</label>
@@ -322,4 +350,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts-body')
+<script src="{{ asset('js/rcm-filler.js') }}"></script>
 @endsection
