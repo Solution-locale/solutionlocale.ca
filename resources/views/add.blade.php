@@ -317,7 +317,7 @@
                                     <select class="custom-select" name="rcm_id" id="rcm_id">
                                         <option>Veuillez d'abord choisir une rgion administrative</option>
                                         @foreach(App\Rcm::all() as $rcm)
-                                            <option data-region="{{ $rcm->region_id }}" value="{{ $rcm->id }}" @if(old('rcm_id') === $rcm->id) SELETED @endif>
+                                            <option data-region="{{ $rcm->region_id }}" value="{{ $rcm->id }}" @if(old('rcm_id') === $rcm->id) SELECTED @endif>
                                                 {{ $rcm->name }}
                                             </option>
                                         @endforeach
