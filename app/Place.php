@@ -136,7 +136,7 @@ class Place extends Model
 
     public function shouldBeSearchable()
     {
-        return $this->is_approved;
+        return $this->is_approved && !$this->is_closed;
     }
 
     public function toSearchableArray()

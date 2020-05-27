@@ -24,6 +24,11 @@ return [
         'postalCode',
         'phoneNumber',
         'additionnalPhoneNumber',
+        'mrc',
+        'region',
+        'categories',
+        'delivery',
+        'types'
     ],
 
     /*
@@ -87,7 +92,7 @@ return [
     |
     */
 
-    'attributesForFaceting' => ['city', 'postalCode'],
+    'attributesForFaceting' => ['region', 'mrc', 'delivery', 'types'],
 
     /*
     |--------------------------------------------------------------------------
