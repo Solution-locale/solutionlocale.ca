@@ -5,11 +5,13 @@ namespace App;
 use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravel\Scout\Searchable;
 
 class Place extends Model
 {
     use Filterable;
     use LogsActivity;
+    use Searchable;
 
     protected static $logFillable = true;
     protected static $logName = 'moderation';
