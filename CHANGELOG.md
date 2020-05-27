@@ -1,6 +1,6 @@
 # Changelog
 
-# NEXT
+# 2.14.1 (2020-05-27)
 - Fixed RCM not being selected back on validation errors.
 - RCM are now editable in places edit.
 - Installed Scout Extended to start playing with Algolia.
