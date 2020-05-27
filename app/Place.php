@@ -30,6 +30,8 @@ class Place extends Model
         'normalized_at',
     ];
 
+    protected $touches = ['partner', 'region', 'rcm', 'delivery', 'types', 'categories'];
+
     public function rejection()
     {
         return $this->hasOne(Rejection::class);
@@ -128,6 +130,45 @@ class Place extends Model
                 $eventNameFrench = 'détruite';
                 break;
         }
+
         return "Cette fiche à été {$eventNameFrench}.";
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->is_approved;
+    }
+
+    public function toSearchableArray()
+    {
+        /**
+         * Load the categories relation so that it's
+         * available in the Laravel toArray() method
+         */
+        
+        $this->delivery;
+        $this->types;
+        $this->categories;
+
+        $array = $this->toArray();
+
+        // Applies Scout Extended default transformations:
+        $array = $this->transform($array);
+
+        // Add an extra attribute:
+        $array['mrc'] = optional($this->rcm)->name;
+        $array['region'] = optional($this->region)->name;
+        $array['partner'] = optional($this->partner)->name;
+        $array['delivery'] = $this->delivery->map(function ($data) {
+            return $data['name'];
+        })->toArray();
+        $array['types'] = $this->types->map(function ($data) {
+            return $data['name'];
+        })->toArray();
+        $array['categories'] = $this->categories->map(function ($data) {
+            return $data['name'];
+        })->toArray();
+
+        return $array;
     }
 }
