@@ -24,6 +24,11 @@ return [
         'postalCode',
         'phoneNumber',
         'additionnalPhoneNumber',
+        'mrc',
+        'region',
+        'categories',
+        'delivery',
+        'types'
     ],
 
     /*
@@ -40,7 +45,7 @@ return [
     |
     */
 
-    'customRanking' => ['desc(normalized_at)', 'desc(created_at)', 'desc(updated_at)'],
+    'customRanking' => ['desc(views)', 'desc(updated_at)'],
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +92,7 @@ return [
     |
     */
 
-    'attributesForFaceting' => ['city', 'postalCode'],
+    'attributesForFaceting' => ['region', 'mrc', 'delivery', 'types'],
 
     /*
     |--------------------------------------------------------------------------
