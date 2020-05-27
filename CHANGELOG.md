@@ -1,5 +1,8 @@
 # Changelog
 
+# NEXT
+- Tweaked search related options on model and scout for algolia.
+
 # 2.14.1 (2020-05-27)
 - Fixed RCM not being selected back on validation errors.
 - RCM are now editable in places edit.
