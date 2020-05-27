@@ -1,6 +1,6 @@
 # Changelog
 
-# NEXT
+# 2.14.2 (2020-05-27)
 - Tweaked search related options on model and scout for algolia.
 
 # 2.14.1 (2020-05-27)
