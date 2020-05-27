@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "792a51515a4b1be0148a6475ed696fb4",
+    "content-hash": "e9a8874f9757ad1e8085a1c9531f66b8",
     "packages": [
         {
             "name": "alexpechkarev/geometry-library",
@@ -193,6 +193,82 @@
                 "search"
             ],
             "time": "2020-03-09T09:11:44+00:00"
+        },
+        {
+            "name": "algolia/scout-extended",
+            "version": "v1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/scout-extended.git",
+                "reference": "1ca3d75c21f7dd8d209c044c1447cf54a7fba5c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/scout-extended/zipball/1ca3d75c21f7dd8d209c044c1447cf54a7fba5c0",
+                "reference": "1ca3d75c21f7dd8d209c044c1447cf54a7fba5c0",
+                "shasum": ""
+            },
+            "require": {
+                "algolia/algoliasearch-client-php": "^2.5.1",
+                "ext-json": "*",
+                "illuminate/console": "^6.0|^7.0",
+                "illuminate/contracts": "^6.0|^7.0",
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/filesystem": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "laravel/scout": "^8.0",
+                "php": "^7.2",
+                "riimu/kit-phpencoder": "^2.4"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.8",
+                "mockery/mockery": "^1.1",
+                "nunomaduro/larastan": "^0.5",
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpstan/phpstan": "^0.12.14",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "suggest": {
+                "ext-dom": "Required to use the HTML Splitter."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Algolia\\ScoutExtended\\ScoutExtendedServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Algolia\\ScoutExtended\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                },
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                }
+            ],
+            "description": "Scout Extended extends Laravel Scout adding algolia-specific features",
+            "keywords": [
+                "algolia",
+                "analytics",
+                "extended",
+                "laravel",
+                "places",
+                "scout",
+                "search"
+            ],
+            "time": "2020-03-03T14:27:21+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1921,6 +1997,71 @@
                 "queue"
             ],
             "time": "2020-04-14T15:42:35+00:00"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v8.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "85e018b752088057881f780e05a85c8657ff8e95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/85e018b752088057881f780e05a85c8657ff8e95",
+                "reference": "85e018b752088057881f780e05a85c8657ff8e95",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "^6.0|^7.0",
+                "illuminate/contracts": "^6.0|^7.0",
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/pagination": "^6.0|^7.0",
+                "illuminate/queue": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "algolia/algoliasearch-client-php": "^2.2",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^2.2)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2020-04-21T19:33:18+00:00"
         },
         {
             "name": "laravel/slack-notification-channel",
@@ -3989,6 +4130,57 @@
                 "uuid"
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "riimu/kit-phpencoder",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Riimu/Kit-PHPEncoder.git",
+                "reference": "7e876d25019c3f6c23321ab5ac1a55c72fcd0933"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Riimu/Kit-PHPEncoder/zipball/7e876d25019c3f6c23321ab5ac1a55c72fcd0933",
+                "reference": "7e876d25019c3f6c23321ab5ac1a55c72fcd0933",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2 || ^6.5 || ^5.7"
+            },
+            "suggest": {
+                "ext-gmp": "To convert GMP numbers into PHP code"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Riimu\\Kit\\PHPEncoder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riikka Kalliomäki",
+                    "email": "riikka.kalliomaki@gmail.com",
+                    "homepage": "http://riimu.net"
+                }
+            ],
+            "description": "Highly customizable alternative to var_export for PHP code generation",
+            "homepage": "http://kit.riimu.net",
+            "keywords": [
+                "code",
+                "encoder",
+                "export",
+                "generator",
+                "variable"
+            ],
+            "time": "2018-07-03T12:46:23+00:00"
         },
         {
             "name": "spatie/db-dumper",

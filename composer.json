@@ -11,6 +11,7 @@
         "php": "^7.2.5",
         "alexpechkarev/google-maps": "7.0",
         "algolia/algoliasearch-client-php": "^2.6",
+        "algolia/scout-extended": "^1.9",
         "axlon/laravel-postal-code-validation": "^2.1",
         "consoletvs/charts": "^6.5",
         "doctrine/dbal": "^2.10",
