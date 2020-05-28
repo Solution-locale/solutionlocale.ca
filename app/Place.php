@@ -71,7 +71,7 @@ class Place extends Model
     {
         return "{$this->address}, {$this->city}, {$this->province}, {$this->postalCode}";
     }
-  
+
     /**
      * Method returning the page title of the object.
      * @return string
@@ -79,7 +79,7 @@ class Place extends Model
     public function getPageTitle(): string
     {
         $midName = @$this->region->name ? " - {$this->region->name} - " : ' - ';
-        return "{$this->name}{$midName}".config('app.name', '');
+        return "{$this->name}{$midName}" . config('app.name', '');
     }
 
     #SCOPES
@@ -95,7 +95,7 @@ class Place extends Model
      */
     public static function searchByKeyword($q, $sortBy = null, $sortOrder = null)
     {
-        $like = '%'.str_replace(' ', '%', $q).'%';
+        $like = '%' . str_replace(' ', '%', $q) . '%';
         $search = 'is_approved and rejection_id IS NULL and (name like ? or address like ? or city like ?)';
         $bindings = [$like, $like, $like];
 
@@ -145,7 +145,7 @@ class Place extends Model
          * Load the categories relation so that it's
          * available in the Laravel toArray() method
          */
-        
+
         $this->delivery;
         $this->types;
         $this->categories;
@@ -168,7 +168,10 @@ class Place extends Model
         $array['categories'] = $this->categories->map(function ($data) {
             return $data['name'];
         })->toArray();
-        $array['_geoloc'] = ['lat' = $this->lat, "lng" =$this->long]
+        $array['_geoloc'] = [
+            'lat' => $this->lat,
+            "lng" => $this->long
+        ];
 
         return $array;
     }
