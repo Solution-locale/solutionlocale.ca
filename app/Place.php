@@ -168,6 +168,7 @@ class Place extends Model
         $array['categories'] = $this->categories->map(function ($data) {
             return $data['name'];
         })->toArray();
+        $array['_geoloc'] = ['lat' = $this->lat, "lng" =$this->long]
 
         return $array;
     }
