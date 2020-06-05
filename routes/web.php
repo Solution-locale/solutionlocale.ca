@@ -17,6 +17,10 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 Auth::routes(['register' => false]);
 
+Route::get('algolia', function () {
+    return view("algolia");
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/charts/daily-new-places', 'ChartsController@dailyNewPlaces')->name('charts.daily-new-places');
@@ -35,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
         //Update
         Route::get('/me', 'UserController@editSelf')->name('edit-self');
         Route::put('/me', 'UserController@updateSelf')->name('update-self');
-        
+
         Route::get('/{user}', 'UserController@edit')->name('edit')->middleware('can:do-admin');
         Route::put('/{user}', 'UserController@update')->name('update')->middleware('can:do-admin');
     });
@@ -67,7 +71,7 @@ Route::prefix('/approbations')->name('approvals.')->group(function () {
 Route::prefix('/places')->name('places.')->group(function () {
     Route::middleware(['auth', 'can:do-moderation'])->group(function () {
         Route::get('/fermées', 'PlaceController@indexClosed')->name('closed');
-      
+
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');
         Route::post('/', 'PlaceController@store')->name('store');
@@ -79,8 +83,8 @@ Route::prefix('/places')->name('places.')->group(function () {
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
         Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
-      
-      
+
+
         // Open / close places
         Route::get('/{place:slug}/ouverture', 'ModerationController@close')->name('close');
         Route::post('/{place:slug}/ouverture', 'ModerationController@closing')->name('closing');

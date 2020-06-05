@@ -1,9 +1,9 @@
 {
-    "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js",
     "/js/backend.js": "/js/backend.js",
     "/css/backend.css": "/css/backend.css",
     "/css/frontend.css": "/css/frontend.css",
     "/js/frontend.js": "/js/frontend.js",
-    "/js/places-sorter.js": "/js/places-sorter.js"
+    "/js/manifest.js": "/js/manifest.js",
+    "/js/places-sorter.js": "/js/places-sorter.js",
+    "/js/vendor.js": "/js/vendor.js"
 }
