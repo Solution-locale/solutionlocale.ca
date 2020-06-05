@@ -133,7 +133,7 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        if (! $place->is_approved && Gate::denies('do-moderation')) {
+        if (!$place->is_approved && Gate::denies('do-moderation')) {
             abort(403);
         }
 
@@ -156,7 +156,7 @@ class PlaceController extends Controller
      */
     public function showJson(Place $place)
     {
-        if (! $place->is_approved && Gate::denies('do-moderation')) {
+        if (!$place->is_approved && Gate::denies('do-moderation')) {
             abort(403);
         }
 
@@ -199,11 +199,9 @@ class PlaceController extends Controller
     public function update(Request $request, Place $place)
     {
         $coordinate_changed = ($request->lat != $place->lat || $request->long != $place->long);
-        $address_changed = (
-            $request->address['line1'] != $place->address ||
+        $address_changed = ($request->address['line1'] != $place->address ||
             $request->city != $place->city ||
-            $request->postalCode != $place->postalCode
-        );
+            $request->postalCode != $place->postalCode);
 
         $place->name = $request->name;
         $place->address = $request->address['line1'];
@@ -211,6 +209,7 @@ class PlaceController extends Controller
         $place->city = $request->city;
         $place->postalCode = $request->postalCode;
         $place->region_id = $request->region_id;
+        $place->rcm_id = $request->rcm_id;
         $place->phoneNumber = $request->phoneNumber;
         $place->additionnalPhoneNumber = $request->additionnalPhoneNumber;
         $place->email = $request->email;
