@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Http\Filters\PlaceFilter;
-use App\Http\Requests\StorePlaces;
+use App\User;
+use Geocodio;
 use App\Place;
 use App\Region;
-use Geocodio;
+use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use App\Http\Filters\PlaceFilter;
+use App\Http\Requests\StorePlaces;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\StorePublicPlaces;
 
 class PlaceController extends Controller
 {
@@ -85,10 +88,19 @@ class PlaceController extends Controller
         return redirect('home')->with('status', 'Place ajoutée!');
     }
 
-    public function storePublic(StorePlaces $request)
+    public function storePublic(StorePublicPlaces $request)
     {
 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        Auth::login($user, true);
+
         $place = Place::create([
+            'user_id' => $user->id,
             'name' => $request->name,
             'address' => $request->address['line1'],
             'province' => "Québec",
@@ -122,7 +134,9 @@ class PlaceController extends Controller
         $place->lat = $response->location->lat;
         $place->save();
 
-        return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
+        return redirect('accueil');
+
+        // return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
     /**
