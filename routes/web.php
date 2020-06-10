@@ -16,10 +16,6 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-Route::get('/out', function () {
-    Auth::logout();
-});
-
 Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->get('/accueil', 'CommercantController@index')->name('accueil');
