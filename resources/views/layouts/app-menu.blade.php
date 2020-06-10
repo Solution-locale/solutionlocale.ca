@@ -2,7 +2,11 @@
     <!-- Left Side Of Navbar -->
     <ul class="navbar-nav mr-auto">
         @auth
+        @if(Auth::user()->is_commercant)
+        <a class="nav-link" href="{{ route("accueil") }}">Modifier votre fiche</a>
+        @else
         <a class="nav-link" href="{{ route("home") }}">Panneau de contrôle</a>
+        @endif
 
         @can('do-moderation')
         <li class="nav-item dropdown">

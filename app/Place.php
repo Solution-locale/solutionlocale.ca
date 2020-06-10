@@ -32,6 +32,11 @@ class Place extends Model
 
     protected $touches = ['partner', 'region', 'rcm', 'delivery', 'types', 'categories'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function rejection()
     {
         return $this->hasOne(Rejection::class);

@@ -212,6 +212,10 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        if ($request->user()->is_commercant && $request->user()->place->id !== $place->id) {
+            return redirect('accueil')->with('status', 'Vous tentez de modifier une fiche qui n\'est pas la votre. Si c\'est une erreur, contactez-nous!');
+        }
+
         $coordinate_changed = ($request->lat != $place->lat || $request->long != $place->long);
         $address_changed = ($request->address['line1'] != $place->address ||
             $request->city != $place->city ||
@@ -251,6 +255,10 @@ class PlaceController extends Controller
             $place->long = $response->location->lng;
             $place->lat = $response->location->lat;
             $place->save();
+        }
+
+        if ($request->user()->is_commercant) {
+            return redirect('accueil')->with('status', 'Modifications enregistrées!');
         }
 
         return redirect('home')->with('status', 'Place modifiée!');

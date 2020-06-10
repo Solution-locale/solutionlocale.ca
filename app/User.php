@@ -42,6 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getIsCommercantAttribute()
+    {
+        return $this->roles->isEmpty();
+    }
+
+    public function place()
+    {
+        return $this->hasOne(Place::class);
+    }
+
     public function rejections()
     {
         return $this->belongsToMany(Rejection::class);

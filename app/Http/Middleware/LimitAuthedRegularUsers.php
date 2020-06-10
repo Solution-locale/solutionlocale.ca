@@ -15,7 +15,7 @@ class LimitAuthedRegularUsers
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->roles->isEmpty()) {
+        if ($request->user()->is_commercant) {
             return redirect('accueil');
         }
 

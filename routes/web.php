@@ -16,9 +16,20 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
+Route::get('/out', function () {
+    Auth::logout();
+});
+
 Auth::routes(['register' => false]);
 
-Route::middleware(['auth'])->get('/accueil', 'AccueilController@index')->name('accueil');
+Route::middleware(['auth'])->get('/accueil', 'CommercantController@index')->name('accueil');
+
+// so regular user can update their password, it' out of the bigger group with other users options
+Route::middleware(['auth'])->prefix('/users')->name('users.')->group(function () {
+    //Update self
+    Route::get('/me', 'UserController@editSelf')->name('edit-self');
+    Route::put('/me', 'UserController@updateSelf')->name('update-self');
+});
 
 Route::middleware(['auth', 'limite.commercant'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -34,10 +45,6 @@ Route::middleware(['auth', 'limite.commercant'])->group(function () {
         //Create
         Route::get('/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
         Route::post('/', 'UserController@store')->name('store')->middleware('can:do-admin');
-
-        //Update
-        Route::get('/me', 'UserController@editSelf')->name('edit-self');
-        Route::put('/me', 'UserController@updateSelf')->name('update-self');
 
         Route::get('/{user}', 'UserController@edit')->name('edit')->middleware('can:do-admin');
         Route::put('/{user}', 'UserController@update')->name('update')->middleware('can:do-admin');
@@ -68,6 +75,9 @@ Route::middleware(['limite.commercant'])->prefix('/approbations')->name('approva
 
 //Places
 Route::prefix('/places')->name('places.')->group(function () {
+    //outside of below group to accomodate update from businesses
+    Route::put('/{place:slug}', 'PlaceController@update')->name('update')->middleware(['auth']);
+
     Route::middleware(['auth', 'can:do-moderation', 'limite.commercant'])->group(function () {
         Route::get('/fermées', 'PlaceController@indexClosed')->name('closed');
 
@@ -77,7 +87,6 @@ Route::prefix('/places')->name('places.')->group(function () {
 
         //Update
         Route::get('/{place:slug}/modifier', 'PlaceController@edit')->name('edit');
-        Route::put('/{place:slug}', 'PlaceController@update')->name('update');
 
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');

@@ -3,6 +3,7 @@
 ## Next up
 
 -   Redirect authenticated users that have no roles to a page of their own.
+-   Auth'd regular user can update the places they're linked to.
 
 ## 2.14.2 (2020-05-27)
 
