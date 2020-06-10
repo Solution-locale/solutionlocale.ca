@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -17,7 +18,9 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 Auth::routes(['register' => false]);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->get('/accueil', 'AccueilController@index')->name('accueil');
+
+Route::middleware(['auth', 'limite.commercant'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/charts/daily-new-places', 'ChartsController@dailyNewPlaces')->name('charts.daily-new-places');
 
@@ -35,21 +38,21 @@ Route::middleware(['auth'])->group(function () {
         //Update
         Route::get('/me', 'UserController@editSelf')->name('edit-self');
         Route::put('/me', 'UserController@updateSelf')->name('update-self');
-        
+
         Route::get('/{user}', 'UserController@edit')->name('edit')->middleware('can:do-admin');
         Route::put('/{user}', 'UserController@update')->name('update')->middleware('can:do-admin');
     });
 });
 
 //Distribution
-Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin'])->group(function () {
+Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin', 'limite.commercant'])->group(function () {
     //Create
     Route::get('/ajout', 'DeliveryTypeController@create')->name('create');
     Route::post('/', 'DeliveryTypeController@store')->name('store');
 });
 
 //Moderation
-Route::prefix('/approbations')->name('approvals.')->group(function () {
+Route::middleware(['limite.commercant'])->prefix('/approbations')->name('approvals.')->group(function () {
     //Read
     Route::get('/', 'ModerationController@index')->name('index');
     Route::get('/rejet/', 'RejectionController@index')->name('index-reject');
@@ -65,9 +68,9 @@ Route::prefix('/approbations')->name('approvals.')->group(function () {
 
 //Places
 Route::prefix('/places')->name('places.')->group(function () {
-    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
+    Route::middleware(['auth', 'can:do-moderation', 'limite.commercant'])->group(function () {
         Route::get('/fermées', 'PlaceController@indexClosed')->name('closed');
-      
+
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');
         Route::post('/', 'PlaceController@store')->name('store');
@@ -79,8 +82,8 @@ Route::prefix('/places')->name('places.')->group(function () {
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
         Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
-      
-      
+
+
         // Open / close places
         Route::get('/{place:slug}/ouverture', 'ModerationController@close')->name('close');
         Route::post('/{place:slug}/ouverture', 'ModerationController@closing')->name('closing');
@@ -103,7 +106,7 @@ Route::prefix('/categories')->name('categories.')->group(function () {
     //Read
     Route::get('/', 'CategoryController@index')->name('index'); // view all categories
 
-    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
+    Route::middleware(['auth', 'can:do-moderation', 'limite.commercant'])->group(function () {
         //Create
         Route::get('/ajout', 'CategoryController@create')->name('create');
         Route::post('/', 'CategoryController@store')->name('store');
