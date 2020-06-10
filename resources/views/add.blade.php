@@ -459,6 +459,10 @@
                         <div class="card-header">Création de votre compte</div>
 
                         <div class="card-body">
+                            <div class="alert alert-info">
+                                En vous créant un compte, vous pourrez vous-même mettre à jour vos informations, si nécessaire.
+                            </div>
+
                             <div class="form-group row">
                                 <label for="user_name" class="col-md-4 col-form-label text-md-right">{{ __('Votre nom') }}</label>
     
