@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (!$place->is_approved)
+            <div class="alert alert-info" role="alert">
+                Votre fiche est toujours en attente de modération par nos bénévoles, il est normal que vous ne la trouviez pas sur le site principal!
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">Modifier <em>{{ $place->name }}</em></div>
 
