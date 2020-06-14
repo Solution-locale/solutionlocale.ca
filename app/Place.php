@@ -19,7 +19,7 @@ class Place extends Model
     protected static $submitEmptyLogs = false;
 
     protected $fillable = [
-        'user_id', 'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'facebook_url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id', 'plus_code', 'is_approved', 'is_closed'
+        'name', 'address', 'address_2', 'province', 'region_id', 'subRegion', 'city', 'countryCode', 'postalCode', 'phoneNumber', 'additionnalPhoneNumber', 'email', 'url', 'facebook_url', 'long', 'lat', 'deliveryZone', 'hide_address', 'rcm_id', 'plus_code', 'is_approved', 'is_closed'
     ];
 
     protected $hidden = [
@@ -31,11 +31,6 @@ class Place extends Model
     ];
 
     protected $touches = ['partner', 'region', 'rcm', 'delivery', 'types', 'categories'];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function rejection()
     {

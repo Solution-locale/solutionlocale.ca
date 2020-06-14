@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Geocodio;
-use App\Place;
-use App\Region;
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Filters\PlaceFilter;
 use App\Http\Requests\StorePlaces;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
+use App\Place;
+use App\Region;
+use Geocodio;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\StorePublicPlaces;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class PlaceController extends Controller
 {
@@ -88,19 +85,10 @@ class PlaceController extends Controller
         return redirect('home')->with('status', 'Place ajoutée!');
     }
 
-    public function storePublic(StorePublicPlaces $request)
+    public function storePublic(StorePlaces $request)
     {
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        Auth::login($user, true);
-
         $place = Place::create([
-            'user_id' => $user->id,
             'name' => $request->name,
             'address' => $request->address['line1'],
             'province' => "Québec",
@@ -134,9 +122,7 @@ class PlaceController extends Controller
         $place->lat = $response->location->lat;
         $place->save();
 
-        return redirect('accueil');
-
-        // return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
+        return redirect()->route('places.create-public')->with('status', 'Bien reçu! Si cette fiche est acceptée par les modérateurs, elle sera affichée sous peu!');
     }
 
     /**
@@ -212,10 +198,6 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        if ($request->user()->is_commercant && $request->user()->place->id !== $place->id) {
-            return redirect('accueil')->with('status', 'Vous tentez de modifier une fiche qui n\'est pas la votre. Si c\'est une erreur, contactez-nous!');
-        }
-
         $coordinate_changed = ($request->lat != $place->lat || $request->long != $place->long);
         $address_changed = ($request->address['line1'] != $place->address ||
             $request->city != $place->city ||
@@ -255,10 +237,6 @@ class PlaceController extends Controller
             $place->long = $response->location->lng;
             $place->lat = $response->location->lat;
             $place->save();
-        }
-
-        if ($request->user()->is_commercant) {
-            return redirect('accueil')->with('status', 'Modifications enregistrées!');
         }
 
         return redirect('home')->with('status', 'Place modifiée!');

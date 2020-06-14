@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -18,16 +17,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 Auth::routes(['register' => false]);
 
-Route::middleware(['auth'])->get('/accueil', 'CommercantController@index')->name('accueil');
-
-// so regular user can update their password, it' out of the bigger group with other users options
-Route::middleware(['auth'])->prefix('/users')->name('users.')->group(function () {
-    //Update self
-    Route::get('/me', 'UserController@editSelf')->name('edit-self');
-    Route::put('/me', 'UserController@updateSelf')->name('update-self');
-});
-
-Route::middleware(['auth', 'limite.commercant'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/charts/daily-new-places', 'ChartsController@dailyNewPlaces')->name('charts.daily-new-places');
 
@@ -42,20 +32,24 @@ Route::middleware(['auth', 'limite.commercant'])->group(function () {
         Route::get('/ajout', 'UserController@create')->name('create')->middleware('can:do-admin');
         Route::post('/', 'UserController@store')->name('store')->middleware('can:do-admin');
 
+        //Update
+        Route::get('/me', 'UserController@editSelf')->name('edit-self');
+        Route::put('/me', 'UserController@updateSelf')->name('update-self');
+        
         Route::get('/{user}', 'UserController@edit')->name('edit')->middleware('can:do-admin');
         Route::put('/{user}', 'UserController@update')->name('update')->middleware('can:do-admin');
     });
 });
 
 //Distribution
-Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin', 'limite.commercant'])->group(function () {
+Route::prefix('/distribution')->name('deliveryTypes.')->middleware(['auth', 'can:do-admin'])->group(function () {
     //Create
     Route::get('/ajout', 'DeliveryTypeController@create')->name('create');
     Route::post('/', 'DeliveryTypeController@store')->name('store');
 });
 
 //Moderation
-Route::middleware(['limite.commercant'])->prefix('/approbations')->name('approvals.')->group(function () {
+Route::prefix('/approbations')->name('approvals.')->group(function () {
     //Read
     Route::get('/', 'ModerationController@index')->name('index');
     Route::get('/rejet/', 'RejectionController@index')->name('index-reject');
@@ -71,24 +65,22 @@ Route::middleware(['limite.commercant'])->prefix('/approbations')->name('approva
 
 //Places
 Route::prefix('/places')->name('places.')->group(function () {
-    //outside of below group to accomodate update from businesses
-    Route::put('/{place:slug}', 'PlaceController@update')->name('update')->middleware(['auth']);
-
-    Route::middleware(['auth', 'can:do-moderation', 'limite.commercant'])->group(function () {
+    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
         Route::get('/fermées', 'PlaceController@indexClosed')->name('closed');
-
+      
         //Create
         Route::get('/ajout', 'PlaceController@create')->name('create');
         Route::post('/', 'PlaceController@store')->name('store');
 
         //Update
         Route::get('/{place:slug}/modifier', 'PlaceController@edit')->name('edit');
+        Route::put('/{place:slug}', 'PlaceController@update')->name('update');
 
         //Delete
         Route::get('/{place:slug}/enlever', 'ModerationController@delete')->name('delete');
         Route::delete('/{place:slug}', 'ModerationController@destroy')->name('destroy');
-
-
+      
+      
         // Open / close places
         Route::get('/{place:slug}/ouverture', 'ModerationController@close')->name('close');
         Route::post('/{place:slug}/ouverture', 'ModerationController@closing')->name('closing');
@@ -111,7 +103,7 @@ Route::prefix('/categories')->name('categories.')->group(function () {
     //Read
     Route::get('/', 'CategoryController@index')->name('index'); // view all categories
 
-    Route::middleware(['auth', 'can:do-moderation', 'limite.commercant'])->group(function () {
+    Route::middleware(['auth', 'can:do-moderation'])->group(function () {
         //Create
         Route::get('/ajout', 'CategoryController@create')->name('create');
         Route::post('/', 'CategoryController@store')->name('store');

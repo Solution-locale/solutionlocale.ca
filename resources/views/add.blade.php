@@ -31,36 +31,36 @@
                             quant au délai de traitement des inscriptions.</p>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        Ajout d'une entreprise au répertoire
+                    </div>
 
-                <form method="POST" action="{{ route('places.store-public') }}">
-                    @csrf
-                    @honeypot
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            Ajout d'une entreprise au répertoire
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <p>Merci de corriger les erreurs suivantes:</p>
+                                <ul>
+                                    @foreach($errors->all() as $message)
+                                        <li>{!! $message !!}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="alert alert-info">
+                            Un astérisque (*) dénote une information obligatoire!
                         </div>
 
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            @if ($errors->any())
-                                <div class="alert alert-danger" role="alert">
-                                    <p>Merci de corriger les erreurs suivantes:</p>
-                                    <ul>
-                                        @foreach($errors->all() as $message)
-                                            <li>{!! $message !!}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-
-                            <div class="alert alert-info">
-                                Un astérisque (*) dénote une information obligatoire!
-                            </div>
+                        <form method="POST" action="{{ route('places.store-public') }}">
+                            @csrf
+                            @honeypot
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-3 col-form-label text-md-right">
@@ -68,12 +68,12 @@
                                 </label>
                                 <div class="col-md-9">
                                     <input id="name" type="text"
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            name="name"
-                                            value="{{ old('name') }}"
-                                            required
-                                            autocomplete="name"
-                                            autofocus>
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           name="name"
+                                           value="{{ old('name') }}"
+                                           required
+                                           autocomplete="name"
+                                           autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -93,44 +93,44 @@
                                             @foreach($categories as $category_first_level)
                                                 <li>
                                                     <input class="form-check-input"
-                                                            name="categories[]"
-                                                            type="checkbox"
-                                                            id="inlineCategoryCheckbox{{ $category_first_level->id }}"
-                                                            value="{{ $category_first_level->id }}"
-                                                            @if(!empty(old('categories')) && in_array($category_first_level->id, old('categories'))) CHECKED @endif>
+                                                           name="categories[]"
+                                                           type="checkbox"
+                                                           id="inlineCategoryCheckbox{{ $category_first_level->id }}"
+                                                           value="{{ $category_first_level->id }}"
+                                                           @if(!empty(old('categories')) && in_array($category_first_level->id, old('categories'))) CHECKED @endif>
                                                     <label class="form-check-label"
-                                                            for="inlineCategoryCheckbox{{ $category_first_level->id }}">
+                                                           for="inlineCategoryCheckbox{{ $category_first_level->id }}">
                                                         {{ $category_first_level->name }}
                                                     </label>
                                                     <ul>
                                                         @foreach($category_first_level->children as $category_second_level)
                                                             <li>
                                                                 <input class="form-check-input"
-                                                                        name="categories[]"
-                                                                        type="checkbox"
-                                                                        id="inlineCategoryCheckbox{{ $category_second_level->id }}"
-                                                                        value="{{ $category_second_level->id }}"
-                                                                        @if(!empty(old('categories')) && in_array($category_second_level->id, old('categories'))) CHECKED @endif>
+                                                                       name="categories[]"
+                                                                       type="checkbox"
+                                                                       id="inlineCategoryCheckbox{{ $category_second_level->id }}"
+                                                                       value="{{ $category_second_level->id }}"
+                                                                       @if(!empty(old('categories')) && in_array($category_second_level->id, old('categories'))) CHECKED @endif>
                                                                 <label class="form-check-label"
-                                                                        for="inlineCategoryCheckbox{{ $category_second_level->id }}">
+                                                                       for="inlineCategoryCheckbox{{ $category_second_level->id }}">
                                                                     {{ $category_second_level->name }}
                                                                 </label>
                                                                 @if(config('soloc.show-third-level-category-in-forms'))
                                                                 <ul>
-                                                                    @foreach($category_second_level->children as $category_third_level)
-                                                                        <li>
-                                                                            <input class="form-check-input"
-                                                                                    name="categories[]"
-                                                                                    type="checkbox"
-                                                                                    id="inlineCategoryCheckbox{{ $category_third_level->id }}"
-                                                                                    value="{{ $category_third_level->id }}"
-                                                                                    @if(!empty(old('categories')) && in_array($category_third_level->id, old('categories'))) CHECKED @endif>
-                                                                            <label class="form-check-label"
-                                                                                    for="inlineCategoryCheckbox{{ $category_third_level->id }}">
-                                                                                {{ $category_third_level->name }}
-                                                                            </label>
-                                                                        </li>
-                                                                    @endforeach
+                                                                  @foreach($category_second_level->children as $category_third_level)
+                                                                      <li>
+                                                                          <input class="form-check-input"
+                                                                                 name="categories[]"
+                                                                                 type="checkbox"
+                                                                                 id="inlineCategoryCheckbox{{ $category_third_level->id }}"
+                                                                                 value="{{ $category_third_level->id }}"
+                                                                                 @if(!empty(old('categories')) && in_array($category_third_level->id, old('categories'))) CHECKED @endif>
+                                                                          <label class="form-check-label"
+                                                                                 for="inlineCategoryCheckbox{{ $category_third_level->id }}">
+                                                                              {{ $category_third_level->name }}
+                                                                          </label>
+                                                                      </li>
+                                                                  @endforeach
                                                                 </ul>
                                                                 @endif
                                                             </li>
@@ -155,13 +155,13 @@
                                     @foreach(App\PlaceType::all() as $type)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input"
-                                                    name="placeType[]"
-                                                    type="checkbox"
-                                                    id="inlinePlaceTypeCheckbox{{ $type->id }}"
-                                                    value="{{ $type->id }}"
-                                                    @if(!empty(old('placeType')) && in_array($type->id, old('placeType'))) CHECKED @endif>
+                                                   name="placeType[]"
+                                                   type="checkbox"
+                                                   id="inlinePlaceTypeCheckbox{{ $type->id }}"
+                                                   value="{{ $type->id }}"
+                                                   @if(!empty(old('placeType')) && in_array($type->id, old('placeType'))) CHECKED @endif>
                                             <label class="form-check-label"
-                                                    for="inlinePlaceTypeCheckbox{{ $type->id }}">
+                                                   for="inlinePlaceTypeCheckbox{{ $type->id }}">
                                                 {{ $type->name }}
                                             </label>
                                         </div>
@@ -184,43 +184,43 @@
                                     @foreach(App\DeliveryType::all() as $type)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input"
-                                                    name="deliveryType[]"
-                                                    type="checkbox"
-                                                    id="inlineDeliveryTypeCheckbox{{ $type->id }}"
-                                                    value="{{ $type->id }}"
-                                                    @if(!empty(old('deliveryType')) && in_array($type->id, old('deliveryType'))) CHECKED @endif>
+                                                   name="deliveryType[]"
+                                                   type="checkbox"
+                                                   id="inlineDeliveryTypeCheckbox{{ $type->id }}"
+                                                   value="{{ $type->id }}"
+                                                   @if(!empty(old('deliveryType')) && in_array($type->id, old('deliveryType'))) CHECKED @endif>
                                             <label class="form-check-label"
-                                                    for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
+                                                   for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
                                         </div>
                                     @endforeach
 
                                     @error('deliveryType')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{!! $message !!}</strong>
-                                        </span>
+                                     </span>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="deliveryType"
-                                        class="col-md-3 col-form-label text-md-right">
+                                       class="col-md-3 col-form-label text-md-right">
                                     Adresse de l'entreprise *
                                 </label>
                                 <div class="col-md-9">
                                     <input type="text"
-                                            class="form-control"
-                                            id="inputAddress"
-                                            placeholder="1234 rue de l'achat local"
-                                            name="address[line1]"
-                                            required=""
-                                            value="{{ old('address.line1') }}">
+                                           class="form-control"
+                                           id="inputAddress"
+                                           placeholder="1234 rue de l'achat local"
+                                           name="address[line1]"
+                                           required=""
+                                           value="{{ old('address.line1') }}">
                                     <input type="text"
-                                            class="form-control mt-2"
-                                            id="inputAddress2"
-                                            placeholder="Appartement, etc. (optionnel) "
-                                            name="address[line2]"
-                                            value="{{ old('address.line2') }}">
+                                           class="form-control mt-2"
+                                           id="inputAddress2"
+                                           placeholder="Appartement, etc. (optionnel) "
+                                           name="address[line2]"
+                                           value="{{ old('address.line2') }}">
                                 </div>
                             </div>
 
@@ -230,12 +230,12 @@
                                 </label>
                                 <div class="col-md-9">
                                     <input type="text"
-                                            class="form-control"
-                                            id="inputCity"
-                                            placeholder="Sainte-Geneviève-de-Batiscan"
-                                            name="city"
-                                            required=""
-                                            value="{{ old('city') }}">
+                                           class="form-control"
+                                           id="inputCity"
+                                           placeholder="Sainte-Geneviève-de-Batiscan"
+                                           name="city"
+                                           required=""
+                                           value="{{ old('city') }}">
                                 </div>
                             </div>
 
@@ -246,22 +246,22 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputProvince">Province</label>
                                     <input type="text"
-                                            class="form-control"
-                                            id="inputProvince"
-                                            readonly=""
-                                            value="Québec">
+                                           class="form-control"
+                                           id="inputProvince"
+                                           readonly=""
+                                           value="Québec">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputPostalCode">
                                         Code postal *
                                     </label>
                                     <input type="text"
-                                            class="form-control"
-                                            id="inputPostalCode"
-                                            placeholder="H0H 0H0"
-                                            name="postalCode"
-                                            required=""
-                                            value="{{ old('postalCode') }}">
+                                           class="form-control"
+                                           id="inputPostalCode"
+                                           placeholder="H0H 0H0"
+                                           name="postalCode"
+                                           required=""
+                                           value="{{ old('postalCode') }}">
                                 </div>
                             </div>
 
@@ -272,10 +272,10 @@
                                 <div class="col-md-9">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input"
-                                                name="hideAddress"
-                                                type="checkbox"
-                                                id="inlineHideAddressCheckbox"
-                                                @if(!empty(old('hideAddress'))) CHECKED @endif>
+                                               name="hideAddress"
+                                               type="checkbox"
+                                               id="inlineHideAddressCheckbox"
+                                               @if(!empty(old('hideAddress'))) CHECKED @endif>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
                                             Si votre entreprise n'a <b>pas</b> besoin d'afficher son adresse
                                             (par ex. : vente exclusivement en ligne), cochez cette case.
@@ -338,11 +338,11 @@
 
                                 <div class="col-md-9">
                                     <input id="phoneNumber" type="text"
-                                            class="form-control @error('phoneNumber') is-invalid @enderror"
-                                            name="phoneNumber"
-                                            value="{{ old('phoneNumber') }}"
-                                            autocomplete="phoneNumber"
-                                            autofocus>
+                                           class="form-control @error('phoneNumber') is-invalid @enderror"
+                                           name="phoneNumber"
+                                           value="{{ old('phoneNumber') }}"
+                                           autocomplete="phoneNumber"
+                                           autofocus>
 
                                     @error('phoneNumber')
                                         <span class="invalid-feedback" role="alert">
@@ -354,15 +354,15 @@
 
                             <div class="form-group row">
                                 <label for="additionnalPhoneNumber"
-                                        class="col-md-3 col-form-label text-md-right">
+                                       class="col-md-3 col-form-label text-md-right">
                                     No. de tél. add.
                                 </label>
                                 <div class="col-md-9">
                                     <input id="additionnalPhoneNumber" type="text"
-                                            class="form-control @error('additionnalPhoneNumber') is-invalid @enderror"
-                                            name="additionnalPhoneNumber"
-                                            value="{{ old('additionnalPhoneNumber') }}"
-                                            autocomplete="additionnalPhoneNumber" autofocus>
+                                           class="form-control @error('additionnalPhoneNumber') is-invalid @enderror"
+                                           name="additionnalPhoneNumber"
+                                           value="{{ old('additionnalPhoneNumber') }}"
+                                           autocomplete="additionnalPhoneNumber" autofocus>
 
                                     @error('additionnalPhoneNumber')
                                         <span class="invalid-feedback" role="alert">
@@ -373,20 +373,20 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email_business"
-                                        class="col-md-3 col-form-label text-md-right">
+                                <label for="email"
+                                       class="col-md-3 col-form-label text-md-right">
                                     Courriel
                                 </label>
 
                                 <div class="col-md-9">
-                                    <input id="email_business" type="text"
-                                            class="form-control @error('email_business') is-invalid @enderror"
-                                            name="email_business"
-                                            value="{{ old('email_business') }}"
-                                            autocomplete="email_business"
-                                            autofocus>
+                                    <input id="email" type="text"
+                                           class="form-control @error('email') is-invalid @enderror"
+                                           name="email"
+                                           value="{{ old('email') }}"
+                                           autocomplete="email"
+                                           autofocus>
 
-                                    @error('email_business')
+                                    @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{!! $message !!}</strong>
                                         </span>
@@ -401,11 +401,11 @@
 
                                 <div class="col-md-9">
                                     <input id="url" type="text"
-                                            class="form-control @error('url') is-invalid @enderror"
-                                            name="url"
-                                            value="{{ old('url') }}"
-                                            placeholder="Ex.: https://solutionlocale.ca" 
-                                            autocomplete="url" autofocus>
+                                           class="form-control @error('url') is-invalid @enderror"
+                                           name="url"
+                                           value="{{ old('url') }}"
+                                           placeholder="Ex.: https://solutionlocale.ca" 
+                                           autocomplete="url" autofocus>
 
                                     @error('url')
                                         <span class="invalid-feedback" role="alert">
@@ -422,11 +422,11 @@
 
                                 <div class="col-md-9">
                                     <input id="facebook_url" type="text"
-                                            class="form-control @error('facebook_url') is-invalid @enderror"
-                                            name="facebook_url"
-                                            value="{{ old('facebook_url') }}"
-                                            placeholder="Ex.: https://www.facebook.com/Solutionlocale/" 
-                                            autocomplete="facebook_url" autofocus>
+                                           class="form-control @error('facebook_url') is-invalid @enderror"
+                                           name="facebook_url"
+                                           value="{{ old('facebook_url') }}"
+                                           placeholder="Ex.: https://www.facebook.com/Solutionlocale/" 
+                                           autocomplete="facebook_url" autofocus>
 
                                     @error('facebook_url')
                                         <span class="invalid-feedback" role="alert">
@@ -452,75 +452,14 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">Création de votre compte</div>
-
-                        <div class="card-body">
-                            <div class="alert alert-info">
-                                En vous créant un compte, vous pourrez vous-même mettre à jour vos informations, si nécessaire.
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="user_name" class="col-md-4 col-form-label text-md-right">{{ __('Votre nom') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
-    
-                                    @error('user_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Votre addresse courriel') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-    
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-    
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <span class="col-md-5"></span>
-            
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </main>
