@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Http\Filters\PlaceFilter;
-use App\Http\Requests\StorePlaces;
+use Geocodio;
 use App\Place;
 use App\Region;
-use Geocodio;
+use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StorePlaces;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Cache;
+use Solutionlocale\Commons\Filters\PlaceFilter;
 
 class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @param \App\Http\Filters\PlaceFilter
+     * @param \Solutionlocale\Commons\Filters\PlaceFilter
      * @return \Illuminate\Http\Response
      */
     public function index(PlaceFilter $request)

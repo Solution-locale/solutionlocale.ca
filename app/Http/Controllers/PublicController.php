@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Place;
 use App\Region;
-use App\Utils\Utils;
+use Solutionlocale\Commons\Sorters\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
@@ -62,18 +62,18 @@ class PublicController extends Controller
         if (is_null($category)) {
             return redirect('/', 308)->with('status', 'Cette catégorie est introuvable ou a peut-être récemment été changée. Merci de réessayer !');
         }
-        
+
         $sort = $this->getSortColumn(request('trierpar', ''));
         $places = $category->places()
-                    ->where('is_approved', true)
-                    ->whereNull('rejection_id')
-                    ->where('places.region_id', $region->id)
-                    ->where('is_closed', false)
-                    ->orderBy($sort['col'], $sort['order'])
-                    ->get();
+            ->where('is_approved', true)
+            ->whereNull('rejection_id')
+            ->where('places.region_id', $region->id)
+            ->where('is_closed', false)
+            ->orderBy($sort['col'], $sort['order'])
+            ->get();
 
         return view('indexes.categories')->with([
-           'categories' => $category->children,
+            'categories' => $category->children,
             'places' => $places,
             'selectedRegion' => $region,
             'category' => $category,
@@ -102,7 +102,7 @@ class PublicController extends Controller
 
         return view('indexes.search')->with([
             'places' => $places,
-            'page_title' => "{$q} - ".config('app.name', ''),
+            'page_title' => "{$q} - " . config('app.name', ''),
             'q' => $q,
             'viewTemplate' => $viewTemplate,
         ]);
@@ -167,7 +167,7 @@ class PublicController extends Controller
         $parts =  parse_url(url()->full());
         parse_str(@$parts['query'], $params);
         $params['vue'] = $view;
-        return url()->current().'?'.http_build_query($params);
+        return url()->current() . '?' . http_build_query($params);
     }
 
     public function feeDents()

@@ -2,10 +2,10 @@
 
 namespace App;
 
-use App\Http\Filters\Filterable;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Laravel\Scout\Searchable;
+use Solutionlocale\Commons\Filters\Filterable;
 
 class Place extends Model
 {
