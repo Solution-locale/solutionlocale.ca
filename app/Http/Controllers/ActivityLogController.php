@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use Solutionlocale\Commons\Models\User;
 use Spatie\Activitylog\Models\Activity;
 
 class ActivityLogController extends Controller

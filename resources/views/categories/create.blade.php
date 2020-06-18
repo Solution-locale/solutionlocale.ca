@@ -18,7 +18,7 @@
                             @csrf
 
                             @include('categories.form', [
-                                'category' => new App\Category,
+                                'category' => new \Solutionlocale\Commons\Models\Category,
                                 'btn_text' => 'Envoyer'
                             ])
 

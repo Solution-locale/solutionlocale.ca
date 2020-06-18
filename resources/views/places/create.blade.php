@@ -46,7 +46,7 @@
                             <label for="categories" class="col-md-3 col-form-label text-md-right">Catégorie</label>
 
                             <div class="col-md-9">
-                                @foreach(App\Category::all() as $categorie)
+                                @foreach(\Solutionlocale\Commons\Models\Category::all() as $categorie)
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="categories[]" type="checkbox" id="inlineCategoryCheckbox{{ $categorie->id }}" value="{{ $categorie->id }}">
                                   <label class="form-check-label" for="inlineCategoryCheckbox{{ $categorie->id }}">{{ $categorie->name }}</label>
@@ -59,7 +59,7 @@
                             <label for="placeType" class="col-md-3 col-form-label text-md-right">Type d'entreprise</label>
 
                             <div class="col-md-9">
-                                @foreach(App\PlaceType::all() as $type)
+                                @foreach(\Solutionlocale\Commons\Models\PlaceType::all() as $type)
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="placeType[]" type="checkbox" id="inlinePlaceTypeCheckbox{{ $type->id }}" value="{{ $type->id }}">
                                   <label class="form-check-label" for="inlinePlaceTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
@@ -72,7 +72,7 @@
                             <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Mode de distribution</label>
 
                             <div class="col-md-9">
-                                @foreach(App\DeliveryType::all() as $type)
+                                @foreach(\Solutionlocale\Commons\Models\DeliveryType::all() as $type)
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}">
                                   <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
@@ -106,7 +106,7 @@
 
                             <div class="col-md-9">
                                 <select class="custom-select" name="region_id" id="region">
-                                    @foreach(App\Region::all() as $region)
+                                    @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
                                     <option value="{{ $region->id }}">{{ $region->name }}</option>
                                     @endforeach
                                 </select>

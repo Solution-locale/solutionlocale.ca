@@ -2,10 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Category;
 use Faker\Generator as Faker;
 
-$factory->define(Category::class, function (Faker $faker) {
+$factory->define(\Solutionlocale\Commons\Models\Category::class, function (Faker $faker) {
     return [
         'name'  =>  $faker->name,
         'slug'  =>  $faker->slug,

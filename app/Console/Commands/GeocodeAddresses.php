@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Place;
 use Geocodio;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Solutionlocale\Commons\Models\Place;
 
 class GeocodeAddresses extends Command
 {
@@ -55,10 +55,10 @@ class GeocodeAddresses extends Command
     {
         $i = 1;
         $total = Place::count();
-        
+
         Place::all()->each(function ($place) use (&$i, $total) {
-            
-            $address = $place->complete_address.", Canada";
+
+            $address = $place->complete_address . ", Canada";
             $seconds = 86400; // 24 hours
 
             $response = Cache::remember($address, $seconds, function () use ($address) {
@@ -78,7 +78,7 @@ class GeocodeAddresses extends Command
     {
         $place = Place::find($this->argument('place'));
 
-        $address = $place->complete_address.", Canada";
+        $address = $place->complete_address . ", Canada";
         $seconds = 86400; // 24 hours
 
         $response = Cache::remember($address, $seconds, function () use ($address) {

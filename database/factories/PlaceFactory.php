@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Place;
-use App\Region;
 use Faker\Generator as Faker;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Region;
 
 $factory->define(Place::class, function (Faker $faker) {
     return [

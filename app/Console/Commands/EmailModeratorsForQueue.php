@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\ModeratorHasPlacesToCheck;
-use App\Region;
-use App\User;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ModeratorHasPlacesToCheck;
+use Solutionlocale\Commons\Models\User;
+use Solutionlocale\Commons\Models\Region;
+use Illuminate\Database\Eloquent\Builder;
 
 class EmailModeratorsForQueue extends Command
 {
@@ -86,7 +86,7 @@ class EmailModeratorsForQueue extends Command
         ])->get()->reject(function ($region) {
             return $region->waiting_for_moderation == 0;
         });
-        
+
         $this->sendEmail($user, $moderation_queue, 'specific');
     }
 }

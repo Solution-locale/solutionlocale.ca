@@ -24,8 +24,8 @@
       <div class="row" id="region-list">
       <div class="col-md-12 text-center mb-5 h5">
           <h3 class="mb-4">Filtrer par région</h3>
-          <a href="{{ route("recherche.index") }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ App\Place::countByKeyword($q) }}</span></a>
-          @foreach(App\Region::all() as $region)
+          <a href="{{ route("recherche.index") }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">Tout le Québec <span class="badge badge-light">{{ \Solutionlocale\Commons\Models\Place::countByKeyword($q) }}</span></a>
+          @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
           <a href="{{ route("recherche.index-region", ['region' => $region->slug]) }}{{ $q ? '?q='.$q : '' }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->countPlacesByKeyword($q) }}</span></a>
           @endforeach
         </div>

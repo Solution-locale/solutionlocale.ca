@@ -1,7 +1,7 @@
 <?php
 
-use App\PlaceType;
 use Illuminate\Database\Seeder;
+use Solutionlocale\Commons\Models\PlaceType;
 
 class PlaceTypesSeeder extends Seeder
 {

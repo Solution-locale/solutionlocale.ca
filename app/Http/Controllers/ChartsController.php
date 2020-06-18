@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Charts\DailyNewPlaces;
-use App\Place;
-use Illuminate\Http\Request;
+use Solutionlocale\Commons\Models\Place;
 
 class ChartsController extends Controller
 {
     public function dailyNewPlaces()
     {
         $data = Place::all()
-                ->groupBy(function ($place) {
-                    return $place->created_at->toDateString();
-                })
+            ->groupBy(function ($place) {
+                return $place->created_at->toDateString();
+            })
             ->map(function ($item) {
                 return count($item);
             });

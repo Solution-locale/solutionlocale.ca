@@ -75,7 +75,7 @@
 
                                 <div class="col-md-9">
                                     <select multiple="multiple" name="regions[]" id="regions">
-                                        @foreach(App\Region::all() as $region)
+                                        @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
                                             <option value="{{ $region->id }}"
                                                 @if (is_array(old('regions')))
                                                     @foreach(old('regions') as $r)

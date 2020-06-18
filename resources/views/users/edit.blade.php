@@ -87,7 +87,7 @@
                                 <label for="regions" class="col-md-3 col-form-label text-md-right">Région</label>
                                 <div class="col-md-9">
                                     <select multiple="multiple" name="regions[]" id="regions">
-                                        @foreach(App\Region::all() as $region)
+                                        @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
                                         <option value="{{ $region->id }}"
                                             @if($user->regions->contains($region))
                                                 selected

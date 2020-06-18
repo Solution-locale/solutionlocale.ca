@@ -25,8 +25,8 @@
 
       <div class="col-md-12 text-center mb-5 h5">
           <h5 class="mb-2">Filtrer par région</h5>
-          <a href="{{ route("regions.index-provincial") }}" class="badge badge-info">Toutes les régions <span class="badge badge-light">{{ App\Place::where('is_approved', true)->count() }}</span></a>
-          @foreach(App\Region::all() as $region)
+          <a href="{{ route("regions.index-provincial") }}" class="badge badge-info">Toutes les régions <span class="badge badge-light">{{ \Solutionlocale\Commons\Models\Place::where('is_approved', true)->count() }}</span></a>
+          @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
           <a href="{{ route("regions.index-region", ['region' => $region->slug]) }}" class="badge badge-info">{{ $region->name }} <span class="badge badge-light">{{ $region->places()->where('is_approved', true)->count() }}</span></a>
           @endforeach
         </div>

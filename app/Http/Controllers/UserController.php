@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUsers;
-use App\Region;
-use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUsers;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Spatie\Permission\Models\Role;
+use Solutionlocale\Commons\Models\User;
 
 class UserController extends Controller
 {
@@ -67,7 +65,6 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -78,7 +75,6 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -89,7 +85,6 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function editSelf()
@@ -101,7 +96,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(StoreUsers $request, User $user)
@@ -109,7 +103,7 @@ class UserController extends Controller
         if ($user->hasRole('super_admin') && !$request->user()->hasRole('super_admin')) {
             abort(401);
         }
-        
+
         // Filter out invalid roles
         $roles = array_intersect(Role::all()->pluck('name')->toArray(), $request->roles);
 
@@ -136,7 +130,6 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DeliveryType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Solutionlocale\Commons\Models\DeliveryType;
 
 class DeliveryTypeController extends Controller
 {
@@ -46,7 +46,6 @@ class DeliveryTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DeliveryType  $deliveryType
      * @return \Illuminate\Http\Response
      */
     public function show(DeliveryType $deliveryType)
@@ -57,7 +56,6 @@ class DeliveryTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DeliveryType  $deliveryType
      * @return \Illuminate\Http\Response
      */
     public function edit(DeliveryType $deliveryType)
@@ -68,8 +66,6 @@ class DeliveryTypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DeliveryType  $deliveryType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, DeliveryType $deliveryType)
@@ -80,7 +76,6 @@ class DeliveryTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DeliveryType  $deliveryType
      * @return \Illuminate\Http\Response
      */
     public function destroy(DeliveryType $deliveryType)

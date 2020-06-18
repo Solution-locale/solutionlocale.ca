@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Place;
-use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Solutionlocale\Commons\Models\User;
+use Solutionlocale\Commons\Models\Place;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ModerationPlaceTest extends TestCase
 {

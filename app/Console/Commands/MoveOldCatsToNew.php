@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Category;
-use App\Region;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Solutionlocale\Commons\Models\Region;
+use Solutionlocale\Commons\Models\Category;
 
 class MoveOldCatsToNew extends Command
 {
@@ -62,27 +62,27 @@ class MoveOldCatsToNew extends Command
 
     private function loopThroughSpecificRegionCategories()
     {
-        
+
         $places_to_change = $this->old_category->places()->where('region_id', $this->region->id)->get();
         $count_places_to_change = $places_to_change->count();
 
         $this->info("Changement des catégories « {$this->old_category->name} » de la région {$this->region->name} en « $this->new_category->name ». Total de {$count_places_to_change} changements à effectuer.");
-        
+
         $i = 1;
         $places_to_change->each(function ($place) use (&$i, $count_places_to_change) {
             $this->line("{$i}/{$count_places_to_change} Changement de catégories pour {$place->name}, au {$this->region->name}.");
-            
+
             $new_categories_map = collect(DB::table('category_place')
-                                    ->where('place_id', $place->id)
-                                    ->select('category_id')
-                                    ->get())->transform(function ($item, $key) {
-                                        return $item->category_id;
-                                    })
-                                    ->reject(function ($category) {
-                                        return $category == $this->old_category->id;
-                                    })
-                                    ->push($this->new_category->id)
-                                    ->toArray();
+                ->where('place_id', $place->id)
+                ->select('category_id')
+                ->get())->transform(function ($item, $key) {
+                return $item->category_id;
+            })
+                ->reject(function ($category) {
+                    return $category == $this->old_category->id;
+                })
+                ->push($this->new_category->id)
+                ->toArray();
 
             $place->categories()->sync($new_categories_map);
 
@@ -100,18 +100,18 @@ class MoveOldCatsToNew extends Command
         $i = 1;
         $places_to_change->each(function ($place) use (&$i, $count_places_to_change) {
             $this->line("{$i}/{$count_places_to_change} Changement de catégories pour {$place->name}, au {$place->region->name}.");
-            
+
             $new_categories_map = collect(DB::table('category_place')
-                                    ->where('place_id', $place->id)
-                                    ->select('category_id')
-                                    ->get())->transform(function ($item, $key) {
-                                        return $item->category_id;
-                                    })
-                                    ->reject(function ($category) {
-                                        return $category == $this->old_category->id;
-                                    })
-                                    ->push($this->new_category->id)
-                                    ->toArray();
+                ->where('place_id', $place->id)
+                ->select('category_id')
+                ->get())->transform(function ($item, $key) {
+                return $item->category_id;
+            })
+                ->reject(function ($category) {
+                    return $category == $this->old_category->id;
+                })
+                ->push($this->new_category->id)
+                ->toArray();
 
             $place->categories()->sync($new_categories_map);
 
