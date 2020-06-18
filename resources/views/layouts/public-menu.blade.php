@@ -9,7 +9,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                @foreach(App\Region::all() as $region)
+                @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
                 <a class="dropdown-item" href="{{ route('regions.index-region', ['region' => $region->slug]) }}">
                     {{ $region->name }}
                 </a>

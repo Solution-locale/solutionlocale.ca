@@ -26,7 +26,7 @@
 
       <div class="row" id="region-list">
         <div class="col-md-12 text-center mb-5 h5">
-          <a href="{{ route('regions.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ App\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
+          <a href="{{ route('regions.index-region', ['region' => $selectedRegion]) }}" class="badge badge-info">Toutes catégories <span class="badge badge-light">{{ \Solutionlocale\Commons\Models\Place::where('region_id', $selectedRegion->id)->where('is_approved', true)->count() }}</span></a>
             @foreach($categories as $category)
                 @if ($category->places()->where('region_id', $selectedRegion->id)->count() > 0)
                     <a href="{{ route("regions.index-region-category", ['region' => $selectedRegion, 'category' => $category->slug]) }}" class="badge badge-info">{{ $category->name }} <span class="badge badge-light">{{ $category->places()->where('region_id', $selectedRegion->id)->count() }}</span></a>

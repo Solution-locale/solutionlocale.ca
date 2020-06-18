@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => \Solutionlocale\Commons\Models\User::class,
         ],
 
         // 'users' => [
@@ -96,7 +96,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60*24,
+            'expire' => 60 * 24,
             'throttle' => 60,
         ],
     ],

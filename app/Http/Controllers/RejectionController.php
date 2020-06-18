@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Place;
-use App\Rejection;
 use Illuminate\Http\Request;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Rejection;
 
 class RejectionController extends Controller
 {
@@ -57,7 +57,6 @@ class RejectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rejection  $rejection
      * @return \Illuminate\Http\Response
      */
     public function show(Rejection $rejection)
@@ -68,7 +67,6 @@ class RejectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rejection  $rejection
      * @return \Illuminate\Http\Response
      */
     public function edit(Rejection $rejection)
@@ -80,7 +78,6 @@ class RejectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rejection  $rejection
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rejection $rejection)
@@ -91,7 +88,6 @@ class RejectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rejection  $rejection
      * @return \Illuminate\Http\Response
      */
     public function destroy(Place $place)

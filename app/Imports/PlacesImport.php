@@ -2,9 +2,9 @@
 
 namespace App\Imports;
 
-use App\Place;
 use App\Region;
 use Illuminate\Support\Collection;
+use Solutionlocale\Commons\Models\Place;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -42,10 +42,10 @@ class PlacesImport implements ToCollection, WithHeadingRow
                         'address' => $search['locale_names']['default'][0],
                         'province' => 'Québec',
                         'region_id' => $region->id,
-                        'subRegion' => ! isset($search['county']) ? $search['city']['default'][0] : $search['county']['default'][0],
+                        'subRegion' => !isset($search['county']) ? $search['city']['default'][0] : $search['county']['default'][0],
                         'city' => $search['city']['default'][0],
                         'countryCode' => $search['country_code'],
-                        'postalCode' => ! isset($search['postcode']) ? $row['code_postal'] : $search['postcode'][0],
+                        'postalCode' => !isset($search['postcode']) ? $row['code_postal'] : $search['postcode'][0],
                         'phoneNumber' => $row['numero_de_telephone'],
                         'email' => $row['courriel'],
                         'url' => $row['site_web'],

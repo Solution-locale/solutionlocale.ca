@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Geocodio;
-use App\Place;
 use App\Region;
-use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePlaces;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Category;
 use Solutionlocale\Commons\Filters\PlaceFilter;
 
 class PlaceController extends Controller
@@ -127,7 +127,6 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function show(Place $place)
@@ -150,7 +149,6 @@ class PlaceController extends Controller
     /**
      * Display the specified resource as JSON
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function showJson(Place $place)
@@ -176,7 +174,6 @@ class PlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function edit(Place $place)
@@ -192,7 +189,6 @@ class PlaceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Place $place)
