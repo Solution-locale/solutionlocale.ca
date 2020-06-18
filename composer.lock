@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9a8874f9757ad1e8085a1c9531f66b8",
+    "content-hash": "03601b02727fc051b7b9995f6beb3f88",
     "packages": [
         {
             "name": "alexpechkarev/geometry-library",
@@ -4314,6 +4314,52 @@
                 "variable"
             ],
             "time": "2018-07-03T12:46:23+00:00"
+        },
+        {
+            "name": "solutionlocale/commons",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Solution-locale/commons.git",
+                "reference": "0ab95c1b505a3fbb2a41119ece4f9d85f86b289c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Solution-locale/commons/zipball/0ab95c1b505a3fbb2a41119ece4f9d85f86b289c",
+                "reference": "0ab95c1b505a3fbb2a41119ece4f9d85f86b289c",
+                "shasum": ""
+            },
+            "require": {
+                "alexpechkarev/google-maps": "7.0",
+                "algolia/scout-extended": "^1.9",
+                "spatie/laravel-activitylog": "^3.14",
+                "spatie/laravel-permission": "^3.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Solutionlocale\\Commons\\Provider\\CommonsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Solutionlocale\\Commons\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jean-Philippe Murray",
+                    "email": "jp@atomescroch.us"
+                }
+            ],
+            "description": "Reusable parts of Solution Locale's platforms.",
+            "support": {
+                "source": "https://github.com/Solution-locale/commons/tree/1.1.0",
+                "issues": "https://github.com/Solution-locale/commons/issues"
+            },
+            "time": "2020-06-17T19:41:14+00:00"
         },
         {
             "name": "spatie/db-dumper",
