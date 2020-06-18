@@ -23,9 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \App\Category::observe(\App\Observers\CategoryObserver::class);
-        \App\Place::observe(\App\Observers\PlaceObserver::class);
-        \App\Region::observe(\App\Observers\RegionObserver::class);
-        \App\Rcm::observe(\App\Observers\RCMObserver::class);
+        \Solutionlocale\Commons\Models\Category::observe(\Solutionlocale\Commons\Observers\CategoryObserver::class);
+        \Solutionlocale\Commons\Models\Place::observe(\Solutionlocale\Commons\Observers\PlaceObserver::class);
+        \Solutionlocale\Commons\Models\Region::observe(\Solutionlocale\Commons\Observers\RegionObserver::class);
+        \Solutionlocale\Commons\Models\Rcm::observe(\Solutionlocale\Commons\Observers\RCMObserver::class);
     }
 }
