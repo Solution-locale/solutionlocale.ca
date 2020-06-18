@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
 use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Region;
 use Solutionlocale\Commons\Sorters\Utils;
 use Solutionlocale\Commons\Models\Category;
 

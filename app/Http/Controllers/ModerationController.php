@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Region;
 
 class ModerationController extends Controller
 {

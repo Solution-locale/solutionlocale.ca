@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Region;
 use Solutionlocale\Commons\Models\Rcm;
+use Solutionlocale\Commons\Models\Region;
 
 class RcmController extends Controller
 {

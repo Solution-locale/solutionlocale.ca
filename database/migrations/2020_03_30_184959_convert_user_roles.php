@@ -1,11 +1,11 @@
 <?php
 
-use App\User;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Schema;
+use Solutionlocale\Commons\Models\User;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class ConvertUserRoles extends Migration
 {
@@ -29,7 +29,7 @@ class ConvertUserRoles extends Migration
         // Convert users' roles
         $users = User::all();
 
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $user->assignRole([
                 $user->is_admin ? 'admin' : null,
                 $user->is_moderator ? 'moderator' : null,
@@ -62,7 +62,7 @@ class ConvertUserRoles extends Migration
         // Convert back users' roles
         $users = User::all();
 
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $user->is_admin = $user->hasRole('admin');
             $user->is_moderator = $user->hasRole('moderator');
             $user->is_super_admin = $user->hasRole('super_admin');

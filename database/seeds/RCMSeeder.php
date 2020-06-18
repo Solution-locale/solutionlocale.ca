@@ -1,6 +1,5 @@
 <?php
 
-use App\Region;
 use Illuminate\Database\Seeder;
 use Solutionlocale\Commons\Models\Rcm;
 

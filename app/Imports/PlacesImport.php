@@ -2,9 +2,9 @@
 
 namespace App\Imports;
 
-use App\Region;
 use Illuminate\Support\Collection;
 use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Region;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 

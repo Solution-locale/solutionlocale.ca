@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Geocodio;
-use App\Region;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePlaces;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
 use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Region;
 use Solutionlocale\Commons\Models\Category;
 use Solutionlocale\Commons\Filters\PlaceFilter;
 

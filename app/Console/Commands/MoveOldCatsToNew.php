@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Region;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Solutionlocale\Commons\Models\Region;
 use Solutionlocale\Commons\Models\Category;
 
 class MoveOldCatsToNew extends Command
