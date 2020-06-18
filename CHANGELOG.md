@@ -1,8 +1,8 @@
 # Changelog
 
-# Next
+# 3.0.0 (2020-06-18)
 
--   Finished the usage of the new commons package.
+-   Changed models, observers, and other classes to the commons.
 
 # 2.14.2 (2020-05-27)
 
