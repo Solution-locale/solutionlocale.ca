@@ -1,4 +1,3 @@
-use Solutionlocale\Commons\Models\Region;
 @extends('layouts.public')
 
 @section('page-title')
