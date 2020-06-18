@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Http\Filters\PlaceFilter;
-use App\Http\Requests\StorePlaces;
-use App\Place;
-use App\Region;
 use Geocodio;
+use App\Region;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StorePlaces;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Cache;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Category;
+use Solutionlocale\Commons\Filters\PlaceFilter;
 
 class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @param \App\Http\Filters\PlaceFilter
+     * @param \Solutionlocale\Commons\Filters\PlaceFilter
      * @return \Illuminate\Http\Response
      */
     public function index(PlaceFilter $request)
@@ -128,7 +127,6 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function show(Place $place)
@@ -151,7 +149,6 @@ class PlaceController extends Controller
     /**
      * Display the specified resource as JSON
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function showJson(Place $place)
@@ -177,7 +174,6 @@ class PlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function edit(Place $place)
@@ -193,7 +189,6 @@ class PlaceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Place $place)

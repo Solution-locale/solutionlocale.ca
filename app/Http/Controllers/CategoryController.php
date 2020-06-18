@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Http\Requests\StoreCategories;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreCategories;
+use Solutionlocale\Commons\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('active','=',1)->get();
+        $categories = Category::where('active', '=', 1)->get();
 
         return view('categories.index')->with(['categories' => $categories]);
     }
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('active','=',1)->get();
+        $categories = Category::where('active', '=', 1)->get();
         return view("categories.create", compact('categories'));
     }
 
@@ -41,10 +41,9 @@ class CategoryController extends Controller
     public function store(StoreCategories $request)
     {
         $category = new Category(request([
-                'name',
-                'parent_id'
-            ])
-        );
+            'name',
+            'parent_id'
+        ]));
 
         $category->save();
 
@@ -54,26 +53,22 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Category $category)
     {
-        $categories = Category::where('active','=',1)->get();
+        $categories = Category::where('active', '=', 1)->get();
         return view('categories.edit', compact('category', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Category                      $category
-     *
      * @param \App\Http\Requests\StoreCategories $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update (Category $category, StoreCategories $request)
+    public function update(Category $category, StoreCategories $request)
     {
 
         $category->name = $request['name'];
@@ -86,15 +81,13 @@ class CategoryController extends Controller
             ->with('status', request("name") . ' à été modifier avec succès');
     }
 
-    public function delete (Category $category)
+    public function delete(Category $category)
     {
         return view('categories.delete', compact('category'));
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -105,7 +98,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->with('saved.message', __('app.confirmation.update',[
+            ->with('saved.message', __('app.confirmation.update', [
                 'title'  =>  request("name")
             ]));
     }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Partner;
 use Illuminate\Database\Seeder;
 
 class PartnerSeeder extends Seeder
@@ -12,7 +11,7 @@ class PartnerSeeder extends Seeder
      */
     public function run()
     {
-        Partner::create([
+        \Solutionlocale\Commons\Models\Partner::create([
             'name' => 'UPA',
             'url' => 'https://www.upa.qc.ca/',
         ]);

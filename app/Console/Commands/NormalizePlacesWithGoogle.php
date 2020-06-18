@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Place;
-use App\Services\GoogleGeocoding;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Provider\GoogleGeocoding;
 
 class NormalizePlacesWithGoogle extends Command
 {

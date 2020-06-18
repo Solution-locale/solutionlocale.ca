@@ -1,7 +1,7 @@
 <?php
 
-use App\DeliveryType;
 use Illuminate\Database\Seeder;
+use Solutionlocale\Commons\Models\DeliveryType;
 
 class DeliveryTypeSeeder extends Seeder
 {

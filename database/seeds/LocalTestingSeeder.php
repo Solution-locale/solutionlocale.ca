@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Solutionlocale\Commons\Models\Place;
+use Solutionlocale\Commons\Models\Category;
+use Solutionlocale\Commons\Models\PlaceType;
+use Solutionlocale\Commons\Models\DeliveryType;
 
 class LocalTestingSeeder extends Seeder
 {
@@ -11,18 +15,18 @@ class LocalTestingSeeder extends Seeder
      */
     public function run()
     {
-        $category = App\Category::create(['name' => 'Produits d\'épicerie']);
-        App\Category::create(['name' => 'Repas de restaurant']);
-        App\Category::create(['name' => 'Médicaments et produits de pharmacie']);
-        App\Category::create(['name' => 'Hygiène et produits naturels']);
-        App\Category::create(['name' => 'Mets cuisinés']);
+        $category = Category::create(['name' => 'Produits d\'épicerie']);
+        Category::create(['name' => 'Repas de restaurant']);
+        Category::create(['name' => 'Médicaments et produits de pharmacie']);
+        Category::create(['name' => 'Hygiène et produits naturels']);
+        Category::create(['name' => 'Mets cuisinés']);
 
-        App\PlaceType::create(['name' => "L'entreprise offre essentiellement des produits cultivés, fabriqués ou transformés au Québec"]);
-        App\PlaceType::create(['name' => "L'entreprise est un commerce de proximité au sein d'une municipalité"]);
+        PlaceType::create(['name' => "L'entreprise offre essentiellement des produits cultivés, fabriqués ou transformés au Québec"]);
+        PlaceType::create(['name' => "L'entreprise est un commerce de proximité au sein d'une municipalité"]);
 
-        App\DeliveryType::create(['name' => 'Cueillette sans contact']);
-        $delivery = App\DeliveryType::create(['name' => 'Livraison à domicile sans contact']);
-        App\DeliveryType::create(['name' => 'Livraison par la poste']);
+        DeliveryType::create(['name' => 'Cueillette sans contact']);
+        $delivery = DeliveryType::create(['name' => 'Livraison à domicile sans contact']);
+        DeliveryType::create(['name' => 'Livraison par la poste']);
 
         App\Region::create(['name' => 'Bas-Saint-Laurent']);
         App\Region::create(['name' => 'Saguenay–Lac-Saint-Jean']);
@@ -42,7 +46,7 @@ class LocalTestingSeeder extends Seeder
         App\Region::create(['name' => 'Montérégie']);
         App\Region::create(['name' => 'Centre-du-Québec']);
 
-        $place = App\Place::create(['name' => 'Miel Beaulieu', 'address' => '224 Rue de la Petite-Pointe', 'province' => 'Québec', 'subRegion' => 'Les Chenaux', 'city' => 'Sainte-Geneviève-de-Batiscan', 'countryCode' => 'ca', 'postalCode' => 'G0X 2R0', 'long' => '-72.3445000', 'lat' => '46.5318000', 'phoneNumber' => '819-489-0184', 'email' => 'mielbeaulieu@gmail.com', 'region_id' => $region->id]);
+        $place = Place::create(['name' => 'Miel Beaulieu', 'address' => '224 Rue de la Petite-Pointe', 'province' => 'Québec', 'subRegion' => 'Les Chenaux', 'city' => 'Sainte-Geneviève-de-Batiscan', 'countryCode' => 'ca', 'postalCode' => 'G0X 2R0', 'long' => '-72.3445000', 'lat' => '46.5318000', 'phoneNumber' => '819-489-0184', 'email' => 'mielbeaulieu@gmail.com', 'region_id' => $region->id]);
         $place->categories()->sync($category->id);
         $place->delivery()->sync($delivery->id);
         $place->types()->sync([1, 2]);

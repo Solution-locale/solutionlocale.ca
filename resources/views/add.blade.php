@@ -1,3 +1,4 @@
+use Solutionlocale\Commons\Models\Region;
 @extends('layouts.public')
 
 @section('page-title')
@@ -152,7 +153,7 @@
                                 <label for="placeType" class="col-md-3 col-form-label text-md-right">
                                     Type d'entreprise *</label>
                                 <div class="col-md-9">
-                                    @foreach(App\PlaceType::all() as $type)
+                                    @foreach(\Solutionlocale\Commons\Models\PlaceType::all() as $type)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input"
                                                    name="placeType[]"
@@ -181,7 +182,7 @@
                                 </label>
 
                                 <div class="col-md-9">
-                                    @foreach(App\DeliveryType::all() as $type)
+                                    @foreach(\Solutionlocale\Commons\Models\DeliveryType::all() as $type)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input"
                                                    name="deliveryType[]"
@@ -292,7 +293,7 @@
                                 <div class="col-md-9">
                                     <select class="custom-select" name="region_id" id="region">
                                         <option>Choisir une région</option>
-                                        @foreach(App\Region::all() as $region)
+                                        @foreach(Region::all() as $region)
                                             <option value="{{ $region->id }}"
                                                     @if(old('region_id') == $region->id) SELECTED @endif>
                                                 {{ $region->name }}
@@ -316,7 +317,7 @@
                                 <div class="col-md-9">
                                     <select class="custom-select" name="rcm_id" id="rcm_id">
                                         <option>Veuillez d'abord choisir une rgion administrative</option>
-                                        @foreach(App\Rcm::all() as $rcm)
+                                        @foreach(\Solutionlocale\Commons\Models\Rcm::all() as $rcm)
                                             <option data-region="{{ $rcm->region_id }}" value="{{ $rcm->id }}" @if(old('rcm_id') === $rcm->id) SELECTED @endif>
                                                 {{ $rcm->name }}
                                             </option>

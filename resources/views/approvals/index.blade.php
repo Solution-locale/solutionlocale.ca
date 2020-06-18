@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
-        @foreach(App\Region::all() as $region)
+        @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
         <div class="col mb-4">
             <div class="card">
                 <div class="card-body">

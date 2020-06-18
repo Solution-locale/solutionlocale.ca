@@ -15,10 +15,10 @@
                     @endif
 
                     <ul>
-                        <li>Nombre total de fiches, peu importe le status: {{ App\Place::count() }}</li>
-                        @if(App\Place::where('is_approved', false)->get()->isNotEmpty())
-                        <li>Total de fiches en attente d'approbation: {{ App\Place::where('is_approved', false)->whereNull('rejection_id')->count() }}.</li>
-                        <li>Total de fiches rejetées: {{ App\Place::whereNotNull('rejection_id', false)->count() }}.</li>
+                        <li>Nombre total de fiches, peu importe le status: {{ \Solutionlocale\Commons\Models\Place::count() }}</li>
+                        @if(\Solutionlocale\Commons\Models\Place::where('is_approved', false)->get()->isNotEmpty())
+                        <li>Total de fiches en attente d'approbation: {{ \Solutionlocale\Commons\Models\Place::where('is_approved', false)->whereNull('rejection_id')->count() }}.</li>
+                        <li>Total de fiches rejetées: {{ \Solutionlocale\Commons\Models\Place::whereNotNull('rejection_id', false)->count() }}.</li>
                         @endif
                     </ul>
                 </div>

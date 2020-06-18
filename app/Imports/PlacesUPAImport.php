@@ -2,9 +2,9 @@
 
 namespace App\Imports;
 
-use App\Place;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Solutionlocale\Commons\Models\Place;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -21,10 +21,10 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
         'subcategory_8' => 46, // id prod for "produits horitcoles"
         'subcategory_9' => 47, // id prod for "viandes et poisson"
     ];
-    
+
     /**
-    * @param Collection $collection
-    */
+     * @param Collection $collection
+     */
     public function collection(Collection $rows)
     {
 
@@ -55,7 +55,7 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
                 $place->is_approved = true;
 
                 $place->save();
-                
+
                 $place->categories()->sync($categories);
                 $place->delivery()->sync($types);
                 $place->types()->sync([1]);
@@ -66,7 +66,7 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
     private function formatCategories($row)
     {
         $categories = collect([14]); //14 == producteurs agroalimentaires
-        for ($i=1; $i <= 9; $i++) {  // 9 == total of subcategory_X fields
+        for ($i = 1; $i <= 9; $i++) {  // 9 == total of subcategory_X fields
             $index_name = "subcategory_{$i}";
             $row[$index_name] !== null ? $categories->push($this->category_correspondence[$index_name]) : null;
         }
@@ -78,29 +78,29 @@ class PlacesUPAImport implements ToCollection, WithHeadingRow
     {
 
         return Str::of($value)
-                    ->trim()
-                    ->explode(PHP_EOL)
-                    ->flatten()
-                    ->map(function ($item) {
-                        switch ($item) {
-                            case 'Cueillette sans contact':
-                                return 1;
+            ->trim()
+            ->explode(PHP_EOL)
+            ->flatten()
+            ->map(function ($item) {
+                switch ($item) {
+                    case 'Cueillette sans contact':
+                        return 1;
 
-                            case 'Cueillette sans contact sur rendez-vous':
-                                return 1;
+                    case 'Cueillette sans contact sur rendez-vous':
+                        return 1;
 
-                            case 'Cuillette sans contact':
-                                return 1;
+                    case 'Cuillette sans contact':
+                        return 1;
 
-                            case 'Ventre directe':
-                                return 1;
+                    case 'Ventre directe':
+                        return 1;
 
-                            case 'Livraison à domicile sans contact':
-                                return 2;
+                    case 'Livraison à domicile sans contact':
+                        return 2;
 
-                            case 'Livraison par la poste':
-                                return 3;
-                        }
-                    });
+                    case 'Livraison par la poste':
+                        return 3;
+                }
+            });
     }
 }

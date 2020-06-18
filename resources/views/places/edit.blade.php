@@ -99,7 +99,7 @@
                             <label for="placeType" class="col-md-3 col-form-label text-md-right">Type d'entreprise</label>
 
                             <div class="col-md-9">
-                                @foreach(App\PlaceType::all() as $type)
+                                @foreach(\Solutionlocale\Commons\Models\PlaceType::all() as $type)
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="placeType[]" type="checkbox" id="inlinePlaceTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->types->contains($type->id)) CHECKED @endif>
                                   <label class="form-check-label" for="inlinePlaceTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
@@ -112,7 +112,7 @@
                             <label for="deliveryType" class="col-md-3 col-form-label text-md-right">Modes de distribution</label>
 
                             <div class="col-md-9">
-                                @foreach(App\DeliveryType::all() as $type)
+                                @foreach(\Solutionlocale\Commons\Models\DeliveryType::all() as $type)
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" name="deliveryType[]" type="checkbox" id="inlineDeliveryTypeCheckbox{{ $type->id }}" value="{{ $type->id }}" @if($place->delivery->contains($type->id)) CHECKED @endif>
                                   <label class="form-check-label" for="inlineDeliveryTypeCheckbox{{ $type->id }}">{{ $type->name }}</label>
@@ -169,7 +169,7 @@
 
                             <div class="col-md-9">
                                 <select class="custom-select" name="region_id" id="region" autocomplete="off">
-                                    @foreach(App\Region::all() as $region)
+                                    @foreach(\Solutionlocale\Commons\Models\Region::all() as $region)
                                     <option value="{{ $region->id }}" @if($place->region_id == $region->id) selected="selected" @endif>{{ $region->name }}</option>
                                     @endforeach
                                 </select>
@@ -192,7 +192,7 @@
                                     @if($place->rcm === null)
                                     <option>Veuillez d'abord choisir une rgion administrative</option>
                                     @endif
-                                    @foreach(App\Rcm::all() as $rcm)
+                                    @foreach(\Solutionlocale\Commons\Models\Rcm::all() as $rcm)
                                         <option
                                             data-region="{{ $rcm->region_id }}"
                                             value="{{ $rcm->id }}"

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUsers;
-use App\Region;
-use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUsers;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Spatie\Permission\Models\Role;
+use Solutionlocale\Commons\Models\User;
 
 class UserController extends Controller
 {
@@ -109,7 +107,7 @@ class UserController extends Controller
         if ($user->hasRole('super_admin') && !$request->user()->hasRole('super_admin')) {
             abort(401);
         }
-        
+
         // Filter out invalid roles
         $roles = array_intersect(Role::all()->pluck('name')->toArray(), $request->roles);
 
