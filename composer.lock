@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03601b02727fc051b7b9995f6beb3f88",
+    "content-hash": "4cd709a9d65e8c5c0230e95436674230",
     "packages": [
         {
             "name": "alexpechkarev/geometry-library",
@@ -4317,21 +4317,23 @@
         },
         {
             "name": "solutionlocale/commons",
-            "version": "1.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Solution-locale/commons.git",
-                "reference": "0ab95c1b505a3fbb2a41119ece4f9d85f86b289c"
+                "reference": "4c41b67fb78d3e36f48a6be6b9172c46247ce9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Solution-locale/commons/zipball/0ab95c1b505a3fbb2a41119ece4f9d85f86b289c",
-                "reference": "0ab95c1b505a3fbb2a41119ece4f9d85f86b289c",
+                "url": "https://api.github.com/repos/Solution-locale/commons/zipball/4c41b67fb78d3e36f48a6be6b9172c46247ce9b5",
+                "reference": "4c41b67fb78d3e36f48a6be6b9172c46247ce9b5",
                 "shasum": ""
             },
             "require": {
                 "alexpechkarev/google-maps": "7.0",
                 "algolia/scout-extended": "^1.9",
+                "axlon/laravel-postal-code-validation": "^2.1",
+                "propaganistas/laravel-phone": "^4.2",
                 "spatie/laravel-activitylog": "^3.14",
                 "spatie/laravel-permission": "^3.11"
             },
@@ -4356,10 +4358,10 @@
             ],
             "description": "Reusable parts of Solution Locale's platforms.",
             "support": {
-                "source": "https://github.com/Solution-locale/commons/tree/1.1.0",
+                "source": "https://github.com/Solution-locale/commons/tree/2.2.0",
                 "issues": "https://github.com/Solution-locale/commons/issues"
             },
-            "time": "2020-06-17T19:41:14+00:00"
+            "time": "2020-06-29T19:19:50+00:00"
         },
         {
             "name": "spatie/db-dumper",

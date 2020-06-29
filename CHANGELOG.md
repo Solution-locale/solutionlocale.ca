@@ -1,5 +1,9 @@
 # Changelog
 
+# 3.0.1 (2020-06-29)
+
+-   Updated commons to latest.
+
 # 3.0.0 (2020-06-18)
 
 -   Changed models, observers, and other classes to the commons.
