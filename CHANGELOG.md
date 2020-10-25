@@ -1,5 +1,9 @@
 # Changelog
 
+# 3.1.0 (2020-10-25)
+
+-   Now onto Laravel 8 territories !
+
 # 3.0.1 (2020-06-29)
 
 -   Updated commons to latest.
