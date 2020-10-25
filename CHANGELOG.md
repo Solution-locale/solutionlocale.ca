@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 3.1.0 (2020-10-25)
 
 -   Now onto Laravel 8 territories !
 
