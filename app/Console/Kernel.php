@@ -25,24 +25,26 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('soloc:moderator-queue-notification')
-                ->weekly()
-                ->mondays()
-                ->thursdays()
-                ->at('8:00');
+            ->weekly()
+            ->mondays()
+            ->thursdays()
+            ->at('8:00');
 
         $schedule->command('activitylog:clean --days=30')
-                ->daily();
+            ->daily();
 
         $schedule->command('telescope:prune --hours=72')
-                ->daily();
+            ->daily();
 
         $schedule->command('backup:clean')
-                ->daily()
-                ->at('01:00');
+            ->environments("production")
+            ->daily()
+            ->at('01:00');
 
         $schedule->command('backup:run')
-                ->daily()
-                ->at('02:00');
+            ->environments("production")
+            ->daily()
+            ->at('02:00');
     }
 
     /**
@@ -52,7 +54,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
