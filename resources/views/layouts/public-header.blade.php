@@ -14,9 +14,9 @@
         <li class="nav-item @if(Route::currentRouteName() == 'map.show') active @endif">
           <a class="nav-link" href="{{ route('map.show') }}">Consulter la carte interactive</a>
         </li>
-        <li class="nav-item @if(Route::currentRouteName() == 'places.create-public') active @endif">
+        {{-- <li class="nav-item @if(Route::currentRouteName() == 'places.create-public') active @endif">
           <a class="nav-link" href="{{ route('places.create-public') }}">Inscrire une entreprise</a>
-        </li>
+        </li> --}}
         <li class="nav-item @if(Route::currentRouteName() == 'public.team') active @endif">
           <a class="nav-link" href="{{ route('public.team') }}">Équipe et partenaires</a>
         </li>
