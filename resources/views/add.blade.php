@@ -13,6 +13,15 @@
                         <b>Informations importantes</b>
                     </div>
                     <div class="card-body">
+                        <h6><b>Nouvelles inscriptions fermées</b></h6>
+                        <p>Solution locale est en mode consultation seulement, nous n'acceptons plus de nouvelles inscriptions</p>
+                    </div>
+                </div>
+                {{-- <div class="card mb-3 text-white bg-info">
+                    <div class="card-header">
+                        <b>Informations importantes</b>
+                    </div>
+                    <div class="card-body">
                         <h6><b>Commerces et services essentiels uniquement</b></h6>
                         <p>Afin d'être affichés sur le site, les produits et services offerts doivent appartenir aux
                             catégories proposées. Cette liste est inspirée de la liste des commerces essentiels fournie
@@ -30,8 +39,8 @@
                         <p>Notre initiative citoyenne repose sur des ressources limitées, merci de votre compréhension
                             quant au délai de traitement des inscriptions.</p>
                     </div>
-                </div>
-                <div class="card">
+                </div> --}}
+                {{-- <div class="card">
                     <div class="card-header">
                         Ajout d'une entreprise au répertoire
                     </div>
@@ -459,7 +468,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </main>

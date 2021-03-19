@@ -24,7 +24,7 @@
       <p class="lead text-muted">Une initiative citoyenne, en collaboration<br>avec plusieurs partenaires locaux</p>
       <p><strong>{{ $total_places }}</strong> entreprises locales partout au Québec!</p>
       <p>
-        <a href="{{ route('places.create-public') }}" class="btn btn-primary my-2">Inscrivez une entreprise</a>
+        {{-- <a href="{{ route('places.create-public') }}" class="btn btn-primary my-2">Inscrivez une entreprise</a> --}}
         <a href="{{ route('map.show') }}" class="btn btn-primary my-2"><i class="fas fa-map-marker-alt"></i> Voir la carte interactive</a>
         <a href="{{ route('regions.index-provincial') }}" class="btn btn-primary my-2"> Consulter par régions</a>
       </p>
