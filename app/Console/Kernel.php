@@ -36,15 +36,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('telescope:prune --hours=72')
             ->daily();
 
-        $schedule->command('backup:clean')
-            ->environments('production')
-            ->daily()
-            ->at('01:00');
+        // $schedule->command('backup:clean')
+        //     ->environments('production')
+        //     ->daily()
+        //     ->at('01:00');
 
-        $schedule->command('backup:run')
-            ->environments('production')
-            ->daily()
-            ->at('02:00');
+        // $schedule->command('backup:run')
+        //     ->environments('production')
+        //     ->daily()
+        //     ->at('02:00');
     }
 
     /**
